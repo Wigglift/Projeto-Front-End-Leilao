@@ -1,0 +1,54 @@
+{
+    "produtos": [
+        {
+            "id": 1,
+            "nome": "Tênis Esportivo",
+            "marca": "Nike",
+            "preco": 299.99,
+            "tamanhos": [38, 39, 40, 41, 42, 43],
+            "cores": ["Preto", "Branco", "Vermelho"],
+            "imagem": "tenis_esportivo.jpg",
+            "descricao": "Tênis esportivo confortável e durável, ideal para corridas e atividades físicas."
+        },
+        {
+            "id": 2,
+            "nome": "Tênis Casual",
+            "marca": "Adidas",
+            "preco": 199.99,
+            "tamanhos": [36, 37, 38, 39, 40, 41],
+            "cores": ["Azul", "Cinza", "Verde"],
+            "imagem": "tenis_casual.jpg",
+            "descricao": "Tênis casual estiloso para uso diário, combina com diversos looks."
+        }
+    ],
+    "usuarios" : [
+        {
+            "id": 1,
+            "nome": "João Silva",
+            "email": "joao.silve@email",
+            "senha": "senha123",
+            "tipo": "vendedor",
+            "endereco": {
+                "rua": "Rua das Flores",
+                "numero": 123,
+                "cidade": "São Paulo",
+                "estado": "SP",
+                "cep": "01234-567"
+            }
+        },
+        {
+            "id": 2,
+            "nome": "Maria Oliveira",
+            "email": "maria.oliveira@email",
+            "senha": "senha456",
+            "tipo": "comprador",
+            "endereco": {
+                "rua": "Avenida Central",
+                "numero": 456,
+                "cidade": "Rio de Janeiro",
+                "estado": "RJ",
+                "cep": "76543-210"
+            }
+        }
+    ]
+}
