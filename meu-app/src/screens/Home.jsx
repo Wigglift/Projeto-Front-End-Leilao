@@ -1,12 +1,12 @@
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from "react-native";
 
 export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Tela Home</Text>
-      <Button 
+      <Button
         title="Ir para Settings"
-        onPress={() => navigation.navigate('Settings')}
+        onPress={() => navigation.navigate("Settings")}
       />
     </View>
   );
@@ -15,10 +15,10 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
-    fontSize: 24
-  }
+    fontSize: 24,
+  },
 });
