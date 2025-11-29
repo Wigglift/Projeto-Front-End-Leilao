@@ -1,54 +1,251 @@
 {
-    "produtos": [
-        {
-            "id": 1,
-            "nome": "Tênis Esportivo",
-            "marca": "Nike",
-            "preco": 299.99,
-            "tamanhos": [38, 39, 40, 41, 42, 43],
-            "cores": ["Preto", "Branco", "Vermelho"],
-            "imagem": "tenis_esportivo.jpg",
-            "descricao": "Tênis esportivo confortável e durável, ideal para corridas e atividades físicas."
-        },
-        {
-            "id": 2,
-            "nome": "Tênis Casual",
-            "marca": "Adidas",
-            "preco": 199.99,
-            "tamanhos": [36, 37, 38, 39, 40, 41],
-            "cores": ["Azul", "Cinza", "Verde"],
-            "imagem": "tenis_casual.jpg",
-            "descricao": "Tênis casual estiloso para uso diário, combina com diversos looks."
-        }
-    ],
-    "usuarios" : [
-        {
-            "id": 1,
-            "nome": "João Silva",
-            "email": "joao.silve@email",
-            "senha": "senha123",
-            "tipo": "vendedor",
-            "endereco": {
-                "rua": "Rua das Flores",
-                "numero": 123,
-                "cidade": "São Paulo",
-                "estado": "SP",
-                "cep": "01234-567"
-            }
-        },
-        {
-            "id": 2,
-            "nome": "Maria Oliveira",
-            "email": "maria.oliveira@email",
-            "senha": "senha456",
-            "tipo": "comprador",
-            "endereco": {
-                "rua": "Avenida Central",
-                "numero": 456,
-                "cidade": "Rio de Janeiro",
-                "estado": "RJ",
-                "cep": "76543-210"
-            }
-        }
-    ]
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Tênis Esportivo",
+      "marca": "Nike",
+      "preco": 299.99,
+      "tamanhos": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "cores": [
+        "Preto",
+        "Branco",
+        "Vermelho"
+      ],
+      "imagem": "tenis_esportivo.jpg",
+      "descricao": "Tênis esportivo confortável e durável, ideal para corridas e atividades físicas."
+    },
+    {
+      "id": 2,
+      "nome": "Tênis Casual",
+      "marca": "Adidas",
+      "preco": 199.99,
+      "tamanhos": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "cores": [
+        "Azul",
+        "Cinza",
+        "Verde"
+      ],
+      "imagem": "tenis_casual.jpg",
+      "descricao": "Tênis casual estiloso para uso diário, combina com diversos looks."
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "João Silva",
+      "email": "joao.silve@email",
+      "senha": "senha123",
+      "tipo": "vendedor",
+      "endereco": {
+        "rua": "Rua das Flores",
+        "numero": 123,
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01234-567"
+      }
+    },
+    {
+      "id": 2,
+      "nome": "Maria Oliveira",
+      "email": "maria.oliveira@email",
+      "senha": "senha456",
+      "tipo": "comprador",
+      "endereco": {
+        "rua": "Avenida Central",
+        "numero": 456,
+        "cidade": "Rio de Janeiro",
+        "estado": "RJ",
+        "cep": "76543-210"
+      }
+    }
+  ],
+  "categorias": [
+    {
+      "id": "all",
+      "nome": "Todos",
+      "icone": "🏆"
+    },
+    {
+      "id": "electronics",
+      "nome": "Eletrônicos",
+      "icone": "📱"
+    },
+    {
+      "id": "vehicles",
+      "nome": "Veículos",
+      "icone": "🚗"
+    },
+    {
+      "id": "art",
+      "nome": "Arte",
+      "icone": "🎨"
+    },
+    {
+      "id": "collectibles",
+      "nome": "Colecionáveis",
+      "icone": "💎"
+    },
+    {
+      "id": "furniture",
+      "nome": "Móveis",
+      "icone": "🛋️"
+    },
+    {
+      "id": "jewelry",
+      "nome": "Joias",
+      "icone": "💍"
+    }
+  ],
+  "leiloes": [
+    {
+      "id": "1",
+      "titulo": "iPhone 14 Pro Max 256GB",
+      "descricao": "Seminovo, em perfeito estado com caixa e acessórios originais. Aparelho com 3 meses de uso, sem arranhões ou marcas de uso. Bateria com 98% de capacidade.",
+      "categoriaId": "electronics",
+      "imagemUrl": "https://picsum.photos/800/600?random=1",
+      "lanceAtual": 3500.00,
+      "lanceMinimo": 100.00,
+      "dataInicio": "2025-01-15T10:00:00Z",
+      "dataFim": "2025-01-20T18:00:00Z",
+      "status": "ativo",
+      "vendedorId": 1,
+      "totalLances": 24,
+      "participantes": 12
+    },
+    {
+      "id": "2",
+      "titulo": "MacBook Air M2 2023",
+      "descricao": "Notebook Apple com chip M2, 8GB RAM, 256GB SSD. Nunca foi reparado, possui nota fiscal e garantia até dezembro de 2025.",
+      "categoriaId": "electronics",
+      "imagemUrl": "https://picsum.photos/800/600?random=2",
+      "lanceAtual": 5200.00,
+      "lanceMinimo": 150.00,
+      "dataInicio": "2025-01-14T08:00:00Z",
+      "dataFim": "2025-01-21T20:00:00Z",
+      "status": "ativo",
+      "vendedorId": 1,
+      "totalLances": 18,
+      "participantes": 9
+    },
+    {
+      "id": "3",
+      "titulo": "PlayStation 5 + 2 Controles",
+      "descricao": "Console completo com jogos e garantia estendida. Acompanha God of War Ragnarok, Spider-Man 2 e mais 3 jogos digitais.",
+      "categoriaId": "electronics",
+      "imagemUrl": "https://picsum.photos/800/600?random=3",
+      "lanceAtual": 2800.00,
+      "lanceMinimo": 100.00,
+      "dataInicio": "2025-01-16T12:00:00Z",
+      "dataFim": "2025-01-19T15:00:00Z",
+      "status": "ativo",
+      "vendedorId": 2,
+      "totalLances": 32,
+      "participantes": 15
+    },
+    {
+      "id": "4",
+      "titulo": "Camera Canon EOS R6",
+      "descricao": "Câmera profissional mirrorless full-frame com lente 24-105mm. Perfeita para fotografia profissional e vídeos em 4K.",
+      "categoriaId": "electronics",
+      "imagemUrl": "https://picsum.photos/800/600?random=4",
+      "lanceAtual": 8500.00,
+      "lanceMinimo": 200.00,
+      "dataInicio": "2025-01-13T09:00:00Z",
+      "dataFim": "2025-01-22T17:00:00Z",
+      "status": "ativo",
+      "vendedorId": 1,
+      "totalLances": 15,
+      "participantes": 8
+    },
+    {
+      "id": "5",
+      "titulo": "Relógio Rolex Submariner",
+      "descricao": "Relógio automático suíço original com certificado de autenticidade. Modelo clássico de 2018, revisado em 2024.",
+      "categoriaId": "jewelry",
+      "imagemUrl": "https://picsum.photos/800/600?random=5",
+      "lanceAtual": 45000.00,
+      "lanceMinimo": 1000.00,
+      "dataInicio": "2025-01-10T10:00:00Z",
+      "dataFim": "2025-01-25T16:00:00Z",
+      "status": "ativo",
+      "vendedorId": 2,
+      "totalLances": 8,
+      "participantes": 5
+    },
+    {
+      "id": "6",
+      "titulo": "Quadro Original - Tarsila do Amaral",
+      "descricao": "Pintura a óleo original de 1965, autenticada por especialistas. Peça rara de acervo particular.",
+      "categoriaId": "art",
+      "imagemUrl": "https://picsum.photos/800/600?random=6",
+      "lanceAtual": 125000.00,
+      "lanceMinimo": 5000.00,
+      "dataInicio": "2025-01-12T14:00:00Z",
+      "dataFim": "2025-01-28T19:00:00Z",
+      "status": "ativo",
+      "vendedorId": 1,
+      "totalLances": 12,
+      "participantes": 7
+    },
+    {
+      "id": "7",
+      "titulo": "Honda Civic 2022 Touring",
+      "descricao": "Veículo zero km de leilão, único dono, 15.000 km rodados. Todas as revisões em concessionária autorizada.",
+      "categoriaId": "vehicles",
+      "imagemUrl": "https://picsum.photos/800/600?random=7",
+      "lanceAtual": 98000.00,
+      "lanceMinimo": 2000.00,
+      "dataInicio": "2025-01-11T11:00:00Z",
+      "dataFim": "2025-01-24T18:00:00Z",
+      "status": "ativo",
+      "vendedorId": 2,
+      "totalLances": 22,
+      "participantes": 11
+    },
+    {
+      "id": "8",
+      "titulo": "Sofá de Couro Italiano",
+      "descricao": "Sofá 3 lugares em couro legítimo importado da Itália. Design contemporâneo, estado de novo.",
+      "categoriaId": "furniture",
+      "imagemUrl": "https://picsum.photos/800/600?random=8",
+      "lanceAtual": 4200.00,
+      "lanceMinimo": 100.00,
+      "dataInicio": "2025-01-17T13:00:00Z",
+      "dataFim": "2025-01-23T16:00:00Z",
+      "status": "ativo",
+      "vendedorId": 1,
+      "totalLances": 19,
+      "participantes": 10
+    }
+  ],
+  "lances": [
+    {
+      "id": "1",
+      "leilaoId": "1",
+      "usuarioId": 2,
+      "valor": 3500.00,
+      "dataHora": "2025-01-18T14:30:00Z"
+    },
+    {
+      "id": "2",
+      "leilaoId": "2",
+      "usuarioId": 2,
+      "valor": 5200.00,
+      "dataHora": "2025-01-18T15:00:00Z"
+    }
+  ]
 }
