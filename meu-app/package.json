@@ -11,8 +11,10 @@
     "dev": "concurrently \"npm run start\" \"npm run database\""
   },
   "dependencies": {
+    "@expo/vector-icons": "^15.0.3",
     "@react-navigation/native": "^7.1.22",
     "@react-navigation/native-stack": "^7.8.1",
+    "axios": "^1.13.2",
     "expo": "~54.0.25",
     "expo-status-bar": "~3.0.8",
     "react": "^19.2.0",
