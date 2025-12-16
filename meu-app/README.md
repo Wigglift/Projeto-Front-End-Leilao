@@ -19,7 +19,7 @@ Antes de começar, certifique-se de ter instalado:
 - [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
 - [Expo Go](https://expo.dev/client) instalado no seu dispositivo móvel
 
-## 🔧 Instalação
+## Instalação
 
 1. Clone o repositório:
 ```bash
@@ -34,7 +34,7 @@ npm install
 
 ## Inicialização do Projeto
 
-⚠️ **IMPORTANTE**: Este projeto requer **dois terminais** rodando simultaneamente.
+⚠️ **IMPORTANTE**: Este projeto requer **dois terminais** rodando simultaneamente. ⚠️ 
 
 ### Opção 1: Iniciar manualmente (recomendado)
 
