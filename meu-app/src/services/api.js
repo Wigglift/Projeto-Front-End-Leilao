@@ -1,7 +1,17 @@
 import axios from "axios";
+import Constants from 'expo-constants';
+
+const getApiUrl = () => {
+  const hostUri = Constants.expoConfig?.hostUri;
+  if (hostUri) {
+    const host = hostUri.split(':')[0];
+    return `http://${host}:3001`;
+  }
+  return 'http://localhost:3001';
+};
 
 const api = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: getApiUrl(),
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
