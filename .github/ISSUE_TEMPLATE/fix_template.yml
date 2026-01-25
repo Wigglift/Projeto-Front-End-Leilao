@@ -9,6 +9,16 @@ body:
       label: Feedback do professor
       description: Copie o feedback.
       placeholder: "Ex: Ajustar lógica do algoritmo X, pois falha em casos de borda"
+    validations:
+      required: true
+
+  - type: textarea
+    id: observations
+    attributes:
+      label: Observações
+      description: Caso tenha alguma observação:
+    validations:
+      required: false
       
   - type: checkboxes
     id: status
