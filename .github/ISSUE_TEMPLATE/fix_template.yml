@@ -8,7 +8,7 @@ body:
     attributes:
       label: Feedback do professor
       description: Copie o feedback.
-      placeholder: Ex: Ajustar lógica do algoritmo X, pois falha em casos de borda
+      placeholder: "Ex: Ajustar lógica do algoritmo X, pois falha em casos de borda"
       
   - type: checkboxes
     id: status
