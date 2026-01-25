@@ -7,11 +7,9 @@ body:
     id: feedback
     attributes:
       label: Feedback do professor
-      description: Copie o feedback exatamente como foi passado. Não interprete, não filtre.
+      description: Copie o feedback.
       placeholder: Ex: Ajustar lógica do algoritmo X, pois falha em casos de borda
-    validations:
-      required: true
-
+      
   - type: checkboxes
     id: status
     attributes:
