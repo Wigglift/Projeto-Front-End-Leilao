@@ -1,0 +1,23 @@
+name: Task
+description: Criar ou acompanhar uma task objetiva
+title: "[TASK]: "
+labels: ["task"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição da task
+      description: Explique claramente o que precisa ser feito. Se ficar ambíguo, a culpa é sua.
+      placeholder: Descreva a task de forma objetiva
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: status
+    attributes:
+      label: Status
+      options:
+        - label: Em desenvolvimento
+          required: false
+        - label: Concluído
+          required: false

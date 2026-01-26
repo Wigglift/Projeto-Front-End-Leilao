@@ -22,28 +22,32 @@ Antes de começar, certifique-se de ter instalado:
 ## Instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/Wigglift/Projeto-Front-End-Leilao.git
 cd meu-app
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install
 ```
 
 ## Inicialização do Projeto
 
-⚠️ **IMPORTANTE**: Este projeto requer **dois terminais** rodando simultaneamente. ⚠️ 
+⚠️ **IMPORTANTE**: Este projeto requer **dois terminais** rodando simultaneamente. ⚠️
 
 ### Opção 1: Iniciar manualmente (recomendado)
 
 **Terminal 1** - Inicie o servidor JSON (API Mock):
+
 ```bash
 npm run database
 ```
 
 **Terminal 2** - Inicie o aplicativo Expo:
+
 ```bash
 npx expo start
 ```
@@ -115,6 +119,18 @@ O JSON Server roda na porta **3001** e fornece os seguintes endpoints:
 - `GET http://localhost:3001/produtos` - Lista produtos
 - `GET http://localhost:3001/produtos/:id` - Busca produto específico
 - Outros endpoints conforme estrutura do `db.json`
+
+## Protótipo da Aplicação
+
+Este é o protótipo da nossa aplicação de leilões, desenvolvido no Figma. Será nosso guia visual para todo o processo de construção do sistema, representando a identidade visual e os principais fluxos que o usuário irá navegar dentro da aplicação.
+
+Você pode acessar e navegar pelo design completo através do link abaixo:
+
+🔗 [Acesse o protótipo no Figma](https://www.figma.com/design/F1pPXVJthzRKbf8bNoGMOX/Sistema-de-Leil%C3%A3o?node-id=0-1&t=vXUljPJCR0RIEPyV-1)
+
+### Preview
+
+[![Preview do protótipo](assets/prototipo_preview.png)](https://www.figma.com/design/F1pPXVJthzRKbf8bNoGMOX/Sistema-de-Leil%C3%A3o?node-id=0-1&t=vXUljPJCR0RIEPyV-1)
 
 ## Notas
 
