@@ -1,60 +1,61 @@
 import styled from "styled-components/native";
+import theme from "../../../styles/theme";
 
 export const Container = styled.TouchableOpacity`
-  background-color: #ffffff;
-  border-radius: 16px;
-  margin-bottom: 16px;
+  background-color: ${theme.colors.background.secondary};
+  border-radius: ${theme.borderRadius.lg}px;
+  margin-bottom: ${theme.spacing.lg}px;
   overflow: hidden;
-  shadow-color: #000;
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.1;
-  shadow-radius: 8px;
-  elevation: 3;
+  shadow-color: ${theme.shadows.medium.shadowColor};
+  shadow-offset: ${theme.shadows.medium.shadowOffset.width}px ${theme.shadows.medium.shadowOffset.height}px;
+  shadow-opacity: ${theme.shadows.medium.shadowOpacity};
+  shadow-radius: ${theme.shadows.medium.shadowRadius}px;
+  elevation: ${theme.shadows.medium.elevation};
 `;
 
 export const Image = styled.Image`
   width: 100%;
-  height: 180px;
-  background-color: #f0f0f0;
+  height: ${theme.componentHeight.card}px;
+  background-color: ${theme.colors.background.input};
 `;
 
 export const InfoContainer = styled.View`
-  padding: 16px;
+  padding: ${theme.spacing.lg}px;
 `;
 
 export const Title = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-  color: #333333;
-  margin-bottom: 8px;
+  font-size: ${theme.fontSize.xl}px;
+  font-weight: ${theme.fontWeight.bold};
+  color: ${theme.colors.text.primary};
+  margin-bottom: ${theme.spacing.sm}px;
 `;
 
 export const Description = styled.Text`
-  font-size: 14px;
-  color: #666666;
-  margin-bottom: 12px;
-  line-height: 20px;
+  font-size: ${theme.fontSize.md}px;
+  color: ${theme.colors.text.secondary};
+  margin-bottom: ${theme.spacing.md}px;
+  line-height: ${theme.fontSize.xxl}px;
 `;
 
 export const CurrentBid = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff5f2;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 12px;
+  background-color: ${theme.colors.primaryLight};
+  padding: ${theme.spacing.md}px;
+  border-radius: ${theme.borderRadius.sm}px;
+  margin-bottom: ${theme.spacing.md}px;
 `;
 
 export const BidLabel = styled.Text`
-  font-size: 14px;
-  color: #666666;
+  font-size: ${theme.fontSize.md}px;
+  color: ${theme.colors.text.secondary};
 `;
 
 export const BidValue = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  color: #ff6b35;
+  font-size: ${theme.fontSize.xxl}px;
+  font-weight: ${theme.fontWeight.bold};
+  color: ${theme.colors.primary};
 `;
 
 export const Footer = styled.View`
@@ -69,7 +70,7 @@ export const FooterItem = styled.View`
 `;
 
 export const FooterText = styled.Text`
-  font-size: 14px;
-  color: #666666;
-  margin-left: 6px;
+  font-size: ${theme.fontSize.md}px;
+  color: ${theme.colors.text.secondary};
+  margin-left: ${theme.spacing.xs + 2}px;
 `;
