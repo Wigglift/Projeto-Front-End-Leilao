@@ -82,12 +82,17 @@ meu-app/
 │   ├── services/            # Serviços e APIs
 │   │   ├── api.js           # Configuração do Axios
 │   │   └── auctionService.js
+│   ├── styles/              # Tema e tokens de design
+│   │   └── theme.js
 │   └── utils/               # Utilitários
+│       ├── responsive.js    # Sistema de responsividade
 │       └── timeUtils.js
 ├── utils/
 │   └── mock/
 │       └── db.json          # Banco de dados fake (JSON Server)
 ├── assets/                  # Imagens e recursos
+├── docs/                    # Documentação técnica
+│   └── responsividade.md    # Guia de responsividade
 ├── App.jsx                  # Componente principal
 └── package.json             # Dependências do projeto
 ```
@@ -100,6 +105,10 @@ meu-app/
 - Filtro por categorias
 - Visualização de detalhes
 - Interface responsiva e moderna
+
+## Documentação
+
+Para desenvolvedores, consulte o [Guia de Responsividade](./docs/responsividade.md) para entender o sistema de estilos e responsividade implementado no projeto.
 
 ## Scripts Disponíveis
 

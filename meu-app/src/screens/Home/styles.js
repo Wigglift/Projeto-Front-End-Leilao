@@ -1,77 +1,80 @@
 import styled from "styled-components/native";
+import theme from "../../styles/theme";
+import { moderateScale, isWeb } from "../../utils/responsive";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #f8f8f8;
+  background-color: ${theme.colors.background.primary};
 `;
 
 export const Header = styled.View`
-  background-color: #ffffff;
-  padding: 24px 20px 16px;
-  shadow-color: #000;
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.05;
-  shadow-radius: 4px;
-  elevation: 2;
+  background-color: ${theme.colors.background.secondary};
+  padding: ${theme.spacing.xxl}px ${theme.spacing.xl}px ${theme.spacing.lg}px;
+  shadow-color: ${theme.shadows.small.shadowColor};
+  shadow-offset: ${theme.shadows.small.shadowOffset.width}px ${theme.shadows.small.shadowOffset.height}px;
+  shadow-opacity: ${theme.shadows.small.shadowOpacity};
+  shadow-radius: ${theme.shadows.small.shadowRadius}px;
+  elevation: ${theme.shadows.small.elevation};
 `;
 
 export const HeaderTop = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: ${theme.spacing.lg}px;
+  padding-top: ${isWeb ? 0 : theme.spacing.lg}px;
 `;
 
 export const MenuButton = styled.TouchableOpacity`
-  padding: 8px;
+  padding: ${theme.spacing.sm}px;
 `;
 
 export const LocationContainer = styled.View`
   flex: 1;
-  margin-left: 12px;
+  margin-left: ${theme.spacing.md}px;
 `;
 
 export const LocationLabel = styled.Text`
-  font-size: 12px;
-  color: #ff6b35;
-  font-weight: 600;
+  font-size: ${theme.fontSize.sm}px;
+  color: ${theme.colors.primary};
+  font-weight: ${theme.fontWeight.semibold};
 `;
 
 export const LocationText = styled.Text`
-  font-size: 14px;
-  color: #333333;
-  font-weight: 500;
+  font-size: ${theme.fontSize.md}px;
+  color: ${theme.colors.text.primary};
+  font-weight: ${theme.fontWeight.medium};
 `;
 
 export const NotificationButton = styled.TouchableOpacity`
-  padding: 8px;
+  padding: ${theme.spacing.sm}px;
   position: relative;
 `;
 
 export const NotificationBadge = styled.View`
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background-color: #ff6b35;
-  width: 8px;
-  height: 8px;
-  border-radius: 4px;
+  top: ${theme.spacing.sm}px;
+  right: ${theme.spacing.sm}px;
+  background-color: ${theme.colors.primary};
+  width: ${moderateScale(8)}px;
+  height: ${moderateScale(8)}px;
+  border-radius: ${moderateScale(4)}px;
 `;
 
 export const SearchContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  padding: 12px 16px;
-  margin-top: 8px;
+  background-color: ${theme.colors.background.input};
+  border-radius: ${theme.borderRadius.md}px;
+  padding: ${theme.spacing.md}px ${theme.spacing.lg}px;
+  margin-top: ${theme.spacing.sm}px;
 `;
 
 export const SearchInput = styled.TextInput`
   flex: 1;
-  font-size: 14px;
-  color: #333333;
-  margin-left: 12px;
+  font-size: ${theme.fontSize.md}px;
+  color: ${theme.colors.text.primary};
+  margin-left: ${theme.spacing.md}px;
 `;
 
 export const Content = styled.ScrollView`
@@ -79,20 +82,20 @@ export const Content = styled.ScrollView`
 `;
 
 export const Section = styled.View`
-  padding: 20px;
+  padding: ${theme.spacing.xl}px;
 `;
 
 export const SectionHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: ${theme.spacing.lg}px;
 `;
 
 export const SectionTitle = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  color: #333333;
+  font-size: ${theme.fontSize.xxl}px;
+  font-weight: ${theme.fontWeight.bold};
+  color: ${theme.colors.text.primary};
 `;
 
 export const SeeAllButton = styled.TouchableOpacity`
@@ -101,54 +104,54 @@ export const SeeAllButton = styled.TouchableOpacity`
 `;
 
 export const SeeAllText = styled.Text`
-  font-size: 14px;
-  color: #ff6b35;
-  font-weight: 600;
-  margin-right: 4px;
+  font-size: ${theme.fontSize.md}px;
+  color: ${theme.colors.primary};
+  font-weight: ${theme.fontWeight.semibold};
+  margin-right: ${theme.spacing.xs}px;
 `;
 
 export const CategoriesContainer = styled.ScrollView.attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
 })`
-  margin-bottom: 8px;
+  margin-bottom: ${theme.spacing.sm}px;
 `;
 
 export const AuctionsContainer = styled.View`
-  padding-bottom: 80px;
+  padding-bottom: ${moderateScale(80)}px;
 `;
 
 export const FloatingButton = styled.TouchableOpacity`
   position: absolute;
-  bottom: 24px;
-  right: 20px;
-  background-color: #ff6b35;
+  bottom: ${theme.spacing.xxl}px;
+  right: ${theme.spacing.xl}px;
+  background-color: ${theme.colors.primary};
   flex-direction: row;
   align-items: center;
-  padding: 16px 24px;
-  border-radius: 30px;
-  shadow-color: #000;
-  shadow-offset: 0px 4px;
-  shadow-opacity: 0.3;
-  shadow-radius: 8px;
-  elevation: 6;
+  padding: ${theme.spacing.lg}px ${theme.spacing.xxl}px;
+  border-radius: ${theme.borderRadius.full}px;
+  shadow-color: ${theme.shadows.large.shadowColor};
+  shadow-offset: ${theme.shadows.large.shadowOffset.width}px ${theme.shadows.large.shadowOffset.height}px;
+  shadow-opacity: ${theme.shadows.large.shadowOpacity};
+  shadow-radius: ${theme.shadows.large.shadowRadius}px;
+  elevation: ${theme.shadows.large.elevation};
 `;
 
 export const FloatingButtonText = styled.Text`
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 8px;
+  color: ${theme.colors.text.white};
+  font-size: ${theme.fontSize.lg}px;
+  font-weight: ${theme.fontWeight.bold};
+  margin-left: ${theme.spacing.sm}px;
 `;
 
 export const GreetingText = styled.Text`
-  font-size: 16px;
-  color: #333333;
-  margin-bottom: 4px;
+  font-size: ${theme.fontSize.lg}px;
+  color: ${theme.colors.text.primary};
+  margin-bottom: ${theme.spacing.xs}px;
 `;
 
 export const WelcomeText = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
-  color: #333333;
+  font-size: ${theme.fontSize.xxxl}px;
+  font-weight: ${theme.fontWeight.bold};
+  color: ${theme.colors.text.primary};
 `;
