@@ -1,9 +1,10 @@
 import styled from "styled-components/native";
+import theme from "../../../styles/theme";
 
 export const LinkButton = styled.TouchableOpacity``;
 
 export const LinkText = styled.Text`
-  font-size: 14px;
-  color: ${(props) => props.color};
-  font-weight: ${(props) => (props.bold ? "bold" : "500")};
+  font-size: ${theme.fontSize.md}px;
+  color: ${(props) => props.color || theme.colors.primary};
+  font-weight: ${(props) => (props.bold ? theme.fontWeight.bold : theme.fontWeight.medium)};
 `;
