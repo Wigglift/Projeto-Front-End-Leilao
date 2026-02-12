@@ -1,0 +1,20 @@
+@use "../../../Assets/Scss/Index.scss";
+
+.items{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+
+    li{
+        list-style: none;
+
+        a{
+            text-decoration: none;
+            color: white;
+
+            &:hover{
+                color: Index.$primary-color;
+            }
+        }
+    }
+}
