@@ -10,7 +10,6 @@ export const Container = styled.TouchableOpacity`
   shadow-offset: ${theme.shadows.medium.shadowOffset.width}px ${theme.shadows.medium.shadowOffset.height}px;
   shadow-opacity: ${theme.shadows.medium.shadowOpacity};
   shadow-radius: ${theme.shadows.medium.shadowRadius}px;
-  elevation: ${theme.shadows.medium.elevation};
 `;
 
 export const Image = styled.Image`

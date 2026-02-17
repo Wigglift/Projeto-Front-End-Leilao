@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Alert } from "react-native";
 import Input from "../../components/styleds/Input";
 import Button from "../../components/styleds/Button";
 import Checkbox from "../../components/styleds/Checkbox";
 import TextLink from "../../components/styleds/TextLink";
+import authService from "../../services/authService";
 import {
   Container,
   Header,
@@ -15,12 +17,29 @@ import {
 } from "./styles";
 
 export default function Login({ navigation }) {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    navigation.navigate("Home");
+  const handleLogin = async () => {
+    if (!username.trim() || !password.trim()) {
+      Alert.alert("Erro", "Por favor, preencha todos os campos");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await authService.login(username, password);
+      navigation.navigate("Home");
+    } catch (error) {
+      Alert.alert(
+        "Erro no Login",
+        error.message || "Não foi possível fazer login. Verifique suas credenciais."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,17 +51,16 @@ export default function Login({ navigation }) {
 
       <FormContainer>
         <Input
-          label="E-MAIL"
-          placeholder="example@gmail.com"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
+          label="USUÁRIO"
+          placeholder="Digite seu usuário..."
+          value={username}
+          onChangeText={setUsername}
           autoCapitalize="none"
         />
 
         <Input
           label="SENHA"
-          placeholder="••••••••••"
+          placeholder="Digite sua senha..."
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -59,7 +77,12 @@ export default function Login({ navigation }) {
           <TextLink text="Esqueci senha" onPress={() => {}} />
         </OptionsRow>
 
-        <Button title="Entrar" onPress={handleLogin} variant="primary" />
+        <Button
+          title={loading ? "Entrando..." : "Entrar"}
+          onPress={handleLogin}
+          variant="primary"
+          disabled={loading}
+        />
 
         <SignUpContainer>
           <SignUpText>Não possui conta? </SignUpText>

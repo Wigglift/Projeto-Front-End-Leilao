@@ -30,13 +30,14 @@ export const calculateTimeRemaining = (endDate) => {
 /**
  * Formata um valor monetário para o padrão brasileiro
  * @param {number} value - Valor numérico
- * @returns {string} - Valor formatado (ex: "3.500,00")
+ * @returns {string} - Valor formatado (ex: "R$ 3.500,00")
  */
 export const formatCurrency = (value) => {
-  return value.toLocaleString("pt-BR", {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
     minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
+  }).format(value);
 };
 
 // TODO implementar futuramente
