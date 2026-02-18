@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import Input from "../../components/styleds/Input";
 import Button from "../../components/styleds/Button";
 import Checkbox from "../../components/styleds/Checkbox";
@@ -43,52 +43,66 @@ export default function Login({ navigation }) {
   };
 
   return (
-    <Container>
-      <Header>
-        <Title>Sistema de Leilão</Title>
-        <Subtitle>Por favor, faça login na sua conta existente.</Subtitle>
-      </Header>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
+            <Header>
+              <Title>Sistema de Leilão</Title>
+              <Subtitle>Por favor, faça login na sua conta existente.</Subtitle>
+            </Header>
 
-      <FormContainer>
-        <Input
-          label="USUÁRIO"
-          placeholder="Digite seu usuário..."
-          value={username}
-          onChangeText={setUsername}
-          autoCapitalize="none"
-        />
+            <FormContainer>
+              <Input
+                label="USUÁRIO"
+                placeholder="Digite seu usuário..."
+                value={username}
+                onChangeText={setUsername}
+                autoCapitalize="none"
+              />
 
-        <Input
-          label="SENHA"
-          placeholder="Digite sua senha..."
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          showPasswordToggle
-        />
+              <Input
+                label="SENHA"
+                placeholder="Digite sua senha..."
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+                showPasswordToggle
+              />
 
-        <OptionsRow>
-          <Checkbox
-            label="Lembrar de mim"
-            checked={rememberMe}
-            onPress={() => setRememberMe(!rememberMe)}
-          />
+              <OptionsRow>
+                <Checkbox
+                  label="Lembrar de mim"
+                  checked={rememberMe}
+                  onPress={() => setRememberMe(!rememberMe)}
+                />
 
-          <TextLink text="Esqueci senha" onPress={() => {}} />
-        </OptionsRow>
+                <TextLink text="Esqueci senha" onPress={() => {}} />
+              </OptionsRow>
 
-        <Button
-          title={loading ? "Entrando..." : "Entrar"}
-          onPress={handleLogin}
-          variant="primary"
-          disabled={loading}
-        />
+              <Button
+                title={loading ? "Entrando..." : "Entrar"}
+                onPress={handleLogin}
+                variant="primary"
+                disabled={loading}
+              />
 
-        <SignUpContainer>
-          <SignUpText>Não possui conta? </SignUpText>
-          <TextLink text="Criar conta" onPress={() => {}} bold />
-        </SignUpContainer>
-      </FormContainer>
-    </Container>
+              <SignUpContainer>
+                <SignUpText>Não possui conta? </SignUpText>
+                <TextLink text="Criar conta" onPress={() => {}} bold />
+              </SignUpContainer>
+            </FormContainer>
+          </ScrollView>
+        </Container>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
