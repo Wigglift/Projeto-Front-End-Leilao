@@ -1,25 +1,22 @@
 import axios from "axios";
-import Constants from 'expo-constants';
+import authService from "./authService";
 
-const getApiUrl = () => {
-  const hostUri = Constants.expoConfig?.hostUri;
-  if (hostUri) {
-    const host = hostUri.split(':')[0];
-    return `http://${host}:3001`;
-  }
-  return 'http://localhost:3001';
-};
+const API_BASE_URL = "http://ec2-3-20-227-42.us-east-2.compute.amazonaws.com:3000";
 
 const api = axios.create({
-  baseURL: getApiUrl(),
-  timeout: 10000,
+  baseURL: API_BASE_URL,
+  timeout: 15000,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 api.interceptors.request.use(
-  (config) => {
+  async (config) => {
+    const token = await authService.getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => {
