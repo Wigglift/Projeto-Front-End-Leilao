@@ -14,7 +14,6 @@ export const Header = styled.View`
   shadow-offset: ${theme.shadows.small.shadowOffset.width}px ${theme.shadows.small.shadowOffset.height}px;
   shadow-opacity: ${theme.shadows.small.shadowOpacity};
   shadow-radius: ${theme.shadows.small.shadowRadius}px;
-  elevation: ${theme.shadows.small.elevation};
 `;
 
 export const HeaderTop = styled.View`
@@ -134,7 +133,6 @@ export const FloatingButton = styled.TouchableOpacity`
   shadow-offset: ${theme.shadows.large.shadowOffset.width}px ${theme.shadows.large.shadowOffset.height}px;
   shadow-opacity: ${theme.shadows.large.shadowOpacity};
   shadow-radius: ${theme.shadows.large.shadowRadius}px;
-  elevation: ${theme.shadows.large.elevation};
 `;
 
 export const FloatingButtonText = styled.Text`

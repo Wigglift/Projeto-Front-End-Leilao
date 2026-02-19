@@ -1,9 +1,12 @@
 import {useState, useEffect} from "react";
-import {ActivityIndicator, RefreshControl} from "react-native";
+import {ActivityIndicator, RefreshControl, Alert} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import CategoryChip from "../../components/styleds/CategoryChip";
 import AuctionCard from "../../components/styleds/AuctionCard";
+import MenuDrawer from "../../components/styleds/MenuDrawer";
+import FilterModal from "../../components/styleds/FilterModal";
 import auctionService from "../../services/auctionService";
+import authService from "../../services/authService";
 import {
     Container,
     Header,
@@ -37,6 +40,9 @@ export default function Home({navigation}) {
     const [auctions, setAuctions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
+    const [menuVisible, setMenuVisible] = useState(false);
+    const [filterModalVisible, setFilterModalVisible] = useState(false);
+    const [activeFilters, setActiveFilters] = useState(null);
 
     useEffect(() => {
         loadCategories();
@@ -103,20 +109,97 @@ export default function Home({navigation}) {
         setSearchQuery("");
     };
 
-    const handleAuctionPress = (auctionId) => {
-        console.log("Navegar para detalhes do leilão", auctionId);
+    const handleAuctionPress = (auction) => {
+        navigation.navigate("AuctionDetails", { auction });
     };
 
     const handleLiveAuction = () => {
         console.log("Navegar para leilões ao vivo");
     };
 
+    const handleApplyFilters = async (filters) => {
+        try {
+            setLoading(true);
+            setActiveFilters(filters);
+            let data = [];
+
+            if (filters.startDate && filters.endDate) {
+                data = await auctionService.getAuctionsByDateRange(
+                    filters.startDate,
+                    filters.endDate
+                );
+            } else if (filters.city && filters.state) {
+                data = await auctionService.getAuctionsByLocation(
+                    filters.city,
+                    filters.state
+                );
+            } else if (filters.auctioneer) {
+                data = await auctionService.getAuctionsByAuctioneer(
+                    filters.auctioneer
+                );
+            } else {
+                data = await auctionService.getActiveAuctions();
+            }
+
+            setAuctions(data);
+        } catch (error) {
+            console.error("Erro ao aplicar filtros:", error);
+            Alert.alert("Erro", "Não foi possível aplicar os filtros");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getGreeting = () => {
+        const hour = new Date().getHours();
+        
+        if (hour >= 5 && hour < 12) {
+            return "Bom dia!";
+        } else if (hour >= 12 && hour < 18) {
+            return "Boa tarde!";
+        } else {
+            return "Boa noite!";
+        }
+    };
+
+    const handleLogout = async () => {
+        setMenuVisible(false);
+        
+        Alert.alert(
+            "Sair",
+            "Deseja realmente sair da sua conta?",
+            [
+                {
+                    text: "Cancelar",
+                    style: "cancel",
+                    onPress: () => console.log("Logout cancelado")
+                },
+                {
+                    text: "Sair",
+                    style: "destructive",
+                    onPress: async () => {
+                        try {
+                            await authService.logout();
+                            
+                            navigation.reset({
+                                index: 0,
+                                routes: [{ name: "Login" }],
+                            });
+                        } catch (error) {
+                            console.error("Erro no logout:", error);
+                            Alert.alert("Erro", "Não foi possível fazer logout");
+                        }
+                    }
+                }
+            ]
+        );
+    };
+
     return (
         <Container>
             <Header>
                 <HeaderTop>
-                    <MenuButton onPress={() => {
-                    }}>
+                    <MenuButton onPress={() => setMenuVisible(true)}>
                         <Ionicons name="menu" size={28} color="#333"/>
                     </MenuButton>
 
@@ -125,6 +208,11 @@ export default function Home({navigation}) {
                         <LocationText>São Paulo, BR</LocationText>
                     </LocationContainer>
 
+                    <NotificationButton onPress={() => setFilterModalVisible(true)}>
+                        <Ionicons name="funnel-outline" size={28} color="#333"/>
+                        {activeFilters && <NotificationBadge/>}
+                    </NotificationButton>
+                    
                     <NotificationButton onPress={() => {
                     }}>
                         <Ionicons name="notifications-outline" size={28} color="#333"/>
@@ -133,8 +221,7 @@ export default function Home({navigation}) {
                 </HeaderTop>
 
                 <GreetingText>Olá, Seja bem-vindo(a)!</GreetingText>
-                {/*Criar método para saber o horário da saudação, bom-dia, boa-tarde e boa-noite*/}
-                <WelcomeText>Boa Tarde!</WelcomeText>
+                <WelcomeText>{getGreeting()}</WelcomeText>
 
                 <SearchContainer>
                     <Ionicons name="search" size={20} color="#999"/>
@@ -203,7 +290,7 @@ export default function Home({navigation}) {
                                         currentBid={auction.currentBidFormatted}
                                         timeRemaining={auction.timeRemaining}
                                         totalBids={auction.totalLances}
-                                        onPress={() => handleAuctionPress(auction.id)}
+                                        onPress={() => handleAuctionPress(auction)}
                                     />
                                 ))
                             ) : (
@@ -220,6 +307,18 @@ export default function Home({navigation}) {
                 <Ionicons name="radio" size={24} color="#fff"/>
                 <FloatingButtonText>Leilão Live</FloatingButtonText>
             </FloatingButton>
+
+            <MenuDrawer
+                visible={menuVisible}
+                onClose={() => setMenuVisible(false)}
+                onLogout={handleLogout}
+            />
+            
+            <FilterModal
+                visible={filterModalVisible}
+                onClose={() => setFilterModalVisible(false)}
+                onApplyFilters={handleApplyFilters}
+            />
         </Container>
     );
 }

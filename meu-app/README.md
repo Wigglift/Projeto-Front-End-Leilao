@@ -9,7 +9,7 @@ Aplicativo mobile de leilão desenvolvido com React Native e Expo, permitindo vi
 - **React Navigation** - Navegação entre telas
 - **Styled Components** - Estilização dos componentes
 - **Axios** - Requisições HTTP
-- **JSON Server** - API REST fake para desenvolvimento local
+- **AsyncStorage** - Armazenamento local de dados
 
 ## Pré-requisitos
 
@@ -36,29 +36,19 @@ npm install
 
 ## Inicialização do Projeto
 
-⚠️ **IMPORTANTE**: Este projeto requer **dois terminais** rodando simultaneamente. ⚠️
-
-### Opção 1: Iniciar manualmente (recomendado)
-
-**Terminal 1** - Inicie o servidor JSON (API Mock):
-
-```bash
-npm run database
-```
-
-**Terminal 2** - Inicie o aplicativo Expo:
+Para iniciar o aplicativo:
 
 ```bash
 npx expo start
 ```
 
-### Opção 2: Iniciar com um único comando para rodar via web
+Ou use os comandos específicos da plataforma:
 
 ```bash
-npm run dev
+npm run android    # Para Android
+npm run ios        # Para iOS
+npm run web        # Para web
 ```
-
-Este comando iniciará automaticamente o JSON Server e o Expo simultaneamente.
 
 ## Como usar
 
@@ -81,15 +71,13 @@ meu-app/
 │   │   └── Settings.jsx     # Tela de configurações
 │   ├── services/            # Serviços e APIs
 │   │   ├── api.js           # Configuração do Axios
-│   │   └── auctionService.js
+│   │   ├── authService.js   # Serviço de autenticação
+│   │   └── auctionService.js # Serviço de leilões
 │   ├── styles/              # Tema e tokens de design
 │   │   └── theme.js
 │   └── utils/               # Utilitários
 │       ├── responsive.js    # Sistema de responsividade
 │       └── timeUtils.js
-├── utils/
-│   └── mock/
-│       └── db.json          # Banco de dados fake (JSON Server)
 ├── assets/                  # Imagens e recursos
 ├── docs/                    # Documentação técnica
 │   └── responsividade.md    # Guia de responsividade
@@ -99,16 +87,19 @@ meu-app/
 
 ## Funcionalidades
 
-- Login de usuário
-- Listagem de produtos/leilões
-- Busca de produtos
-- Filtro por categorias
-- Visualização de detalhes
+- Autenticação com JWT (Bearer Token)
+- Listagem de leilões por tipo
+- Busca de leilões
+- Filtro por categorias/tipos
+- Filtros avançados (data, localidade, leiloeiro)
+- Consulta de lotes de leilão
 - Interface responsiva e moderna
 
 ## Documentação
 
-Para desenvolvedores, consulte o [Guia de Responsividade](./docs/responsividade.md) para entender o sistema de estilos e responsividade implementado no projeto.
+Para desenvolvedores:
+- [Guia de Responsividade](./docs/responsividade.md) - Sistema de estilos e responsividade
+- [Integração da API](./docs/api-integration.md) - Documentação completa da integração com a API
 
 ## Scripts Disponíveis
 
@@ -117,17 +108,28 @@ npm start          # Inicia o Expo
 npm run android    # Inicia no emulador Android
 npm run ios        # Inicia no emulador iOS
 npm run web        # Inicia na web
-npm run database   # Inicia o JSON Server
-npm run dev        # Inicia tudo simultaneamente
 ```
 
-## API Local
+## API
 
-O JSON Server roda na porta **3001** e fornece os seguintes endpoints:
+O aplicativo se conecta à API de leilões hospedada em:
+- **Base URL**: `http://ec2-3-20-227-42.us-east-2.compute.amazonaws.com:3000`
 
-- `GET http://localhost:3001/produtos` - Lista produtos
-- `GET http://localhost:3001/produtos/:id` - Busca produto específico
-- Outros endpoints conforme estrutura do `db.json`
+### Autenticação
+- **URL**: `http://ec2-3-20-227-42.us-east-2.compute.amazonaws.com:3000/login`
+- **Método**: POST
+- **Credenciais**: Configuradas no authService
+- **Token**: Bearer JWT (expira em 2 horas)
+
+### Endpoints Principais
+- `GET /leiloes` - Lista todos os leilões
+- `GET /leiloes/tipo/:tipo` - Busca leilões por tipo
+- `GET /leiloes/localidade?cidade=X&estado=Y` - Busca por localidade
+- `GET /leiloes/intervalo_data/:dataInicial/:dataFinal` - Busca por intervalo de datas
+- `GET /leiloes/:id/lotes` - Lista lotes de um leilão
+- `GET /leiloes/tipos` - Lista todos os tipos
+- `GET /leiloes/leiloeiros` - Lista todos os leiloeiros
+- `GET /leiloes/cidades_estados` - Lista cidades e estados
 
 ## Protótipo da Aplicação
 
@@ -143,9 +145,9 @@ Você pode acessar e navegar pelo design completo através do link abaixo:
 
 ## Notas
 
-- O servidor JSON precisa estar rodando para o app funcionar corretamente
-- Em dispositivos físicos, certifique-se de estar na mesma rede Wi-Fi
-- A API se ajusta automaticamente ao IP da máquina host
+- O aplicativo requer conexão com a internet para acessar a API
+- Token de autenticação expira após 2 horas
+- Em dispositivos físicos, certifique-se de ter uma conexão estável
 
 ## Contribuindo
 

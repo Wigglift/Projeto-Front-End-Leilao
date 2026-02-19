@@ -9,9 +9,10 @@ export const Container = styled.TouchableOpacity`
   margin-right: 12px;
 `;
 
-export const Icon = styled.Text`
-  font-size: 24px;
+export const IconContainer = styled.View`
   margin-right: 8px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Label = styled.Text`
