@@ -200,3 +200,13 @@ const loadAuctions = async () => {
   }
 };
 ```
+
+## Testes
+
+Todos os serviços mencionados neste documento possuem cobertura de testes automatizados:
+
+- **authService**: Testes de login, logout, validação de token e expiração
+- **auctionService**: Testes de busca, filtros, categorias e tratamento de erros
+- **Telas**: Testes de integração para Login e Home
+
+Para mais detalhes sobre a estrutura de testes, execução e cobertura, consulte o [Guia de Testes](../TESTING.md).

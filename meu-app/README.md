@@ -100,6 +100,7 @@ meu-app/
 Para desenvolvedores:
 - [Guia de Responsividade](./docs/responsividade.md) - Sistema de estilos e responsividade
 - [Integração da API](./docs/api-integration.md) - Documentação completa da integração com a API
+- [Guia de Testes](./TESTING.md) - Estrutura de testes, cobertura e boas práticas
 
 ## Scripts Disponíveis
 
@@ -108,6 +109,9 @@ npm start          # Inicia o Expo
 npm run android    # Inicia no emulador Android
 npm run ios        # Inicia no emulador iOS
 npm run web        # Inicia na web
+npm test           # Executa testes
+npm run test:watch # Executa testes em modo watch
+npm run test:coverage # Gera relatório de cobertura
 ```
 
 ## API
