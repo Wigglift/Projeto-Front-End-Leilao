@@ -1,60 +1,62 @@
 import styled from "styled-components/native";
-import theme from "../../styles/theme";
 import { moderateScale, isWeb } from "../../utils/responsive";
+import { colors, spacing, typography, borderRadius, shadows } from "../../theme";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${theme.colors.background.primary};
+  background-color: ${colors.background};
 `;
 
 export const Header = styled.View`
-  background-color: ${theme.colors.background.secondary};
-  padding: ${theme.spacing.xxl}px ${theme.spacing.xl}px ${theme.spacing.lg}px;
-  shadow-color: ${theme.shadows.small.shadowColor};
-  shadow-offset: ${theme.shadows.small.shadowOffset.width}px ${theme.shadows.small.shadowOffset.height}px;
-  shadow-opacity: ${theme.shadows.small.shadowOpacity};
-  shadow-radius: ${theme.shadows.small.shadowRadius}px;
+  background-color: ${colors.backgroundSecondary};
+  padding: ${spacing.xl}px ${spacing.base}px ${spacing.lg}px;
+  shadow-color: ${shadows.sm.shadowColor};
+  shadow-offset: ${shadows.sm.shadowOffset.width}px ${shadows.sm.shadowOffset.height}px;
+  shadow-opacity: ${shadows.sm.shadowOpacity};
+  shadow-radius: ${shadows.sm.shadowRadius}px;
+  elevation: ${shadows.sm.elevation};
 `;
 
 export const HeaderTop = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${theme.spacing.lg}px;
-  padding-top: ${isWeb ? 0 : theme.spacing.lg}px;
+  margin-bottom: ${spacing.lg}px;
+  padding-top: ${isWeb ? 0 : spacing.lg}px;
 `;
 
 export const MenuButton = styled.TouchableOpacity`
-  padding: ${theme.spacing.sm}px;
+  padding: ${spacing.sm}px;
 `;
 
 export const LocationContainer = styled.View`
   flex: 1;
-  margin-left: ${theme.spacing.md}px;
+  margin-left: ${spacing.md}px;
 `;
 
 export const LocationLabel = styled.Text`
-  font-size: ${theme.fontSize.sm}px;
-  color: ${theme.colors.primary};
-  font-weight: ${theme.fontWeight.semibold};
+  font-size: ${typography.fontSize.sm}px;
+  color: ${colors.textMuted};
+  font-weight: ${typography.fontWeight.semiBold};
+  text-transform: uppercase;
 `;
 
 export const LocationText = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: ${theme.colors.text.primary};
-  font-weight: ${theme.fontWeight.medium};
+  font-size: ${typography.fontSize.md}px;
+  color: ${colors.text};
+  font-weight: ${typography.fontWeight.semiBold};
 `;
 
 export const NotificationButton = styled.TouchableOpacity`
-  padding: ${theme.spacing.sm}px;
+  padding: ${spacing.sm}px;
   position: relative;
 `;
 
 export const NotificationBadge = styled.View`
   position: absolute;
-  top: ${theme.spacing.sm}px;
-  right: ${theme.spacing.sm}px;
-  background-color: ${theme.colors.primary};
+  top: ${spacing.sm}px;
+  right: ${spacing.sm}px;
+  background-color: ${colors.error};
   width: ${moderateScale(8)}px;
   height: ${moderateScale(8)}px;
   border-radius: ${moderateScale(4)}px;
@@ -63,17 +65,18 @@ export const NotificationBadge = styled.View`
 export const SearchContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  background-color: ${theme.colors.background.input};
-  border-radius: ${theme.borderRadius.md}px;
-  padding: ${theme.spacing.md}px ${theme.spacing.lg}px;
-  margin-top: ${theme.spacing.sm}px;
+  background-color: ${colors.inputBackground};
+  border: 1px solid ${colors.inputBorder};
+  border-radius: ${borderRadius.xxl}px;
+  padding: ${spacing.md}px ${spacing.base}px;
+  margin-top: ${spacing.sm}px;
 `;
 
 export const SearchInput = styled.TextInput`
   flex: 1;
-  font-size: ${theme.fontSize.md}px;
-  color: ${theme.colors.text.primary};
-  margin-left: ${theme.spacing.md}px;
+  font-size: ${typography.fontSize.md}px;
+  color: ${colors.inputText};
+  margin-left: ${spacing.md}px;
 `;
 
 export const Content = styled.ScrollView`
@@ -81,20 +84,20 @@ export const Content = styled.ScrollView`
 `;
 
 export const Section = styled.View`
-  padding: ${theme.spacing.xl}px;
+  padding: ${spacing.base}px;
 `;
 
 export const SectionHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${theme.spacing.lg}px;
+  margin-bottom: ${spacing.lg}px;
 `;
 
 export const SectionTitle = styled.Text`
-  font-size: ${theme.fontSize.xxl}px;
-  font-weight: ${theme.fontWeight.bold};
-  color: ${theme.colors.text.primary};
+  font-size: ${typography.fontSize.xl}px;
+  font-weight: ${typography.fontWeight.bold};
+  color: ${colors.text};
 `;
 
 export const SeeAllButton = styled.TouchableOpacity`
@@ -103,17 +106,17 @@ export const SeeAllButton = styled.TouchableOpacity`
 `;
 
 export const SeeAllText = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: ${theme.colors.primary};
-  font-weight: ${theme.fontWeight.semibold};
-  margin-right: ${theme.spacing.xs}px;
+  font-size: ${typography.fontSize.base}px;
+  color: ${colors.primary};
+  font-weight: ${typography.fontWeight.semiBold};
+  margin-right: ${spacing.xs}px;
 `;
 
 export const CategoriesContainer = styled.ScrollView.attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
 })`
-  margin-bottom: ${theme.spacing.sm}px;
+  margin-bottom: ${spacing.sm}px;
 `;
 
 export const AuctionsContainer = styled.View`
@@ -122,34 +125,35 @@ export const AuctionsContainer = styled.View`
 
 export const FloatingButton = styled.TouchableOpacity`
   position: absolute;
-  bottom: ${theme.spacing.xxl}px;
-  right: ${theme.spacing.xl}px;
-  background-color: ${theme.colors.primary};
+  bottom: ${spacing.xxl}px;
+  right: ${spacing.xl}px;
+  background-color: ${colors.primary};
   flex-direction: row;
   align-items: center;
-  padding: ${theme.spacing.lg}px ${theme.spacing.xxl}px;
-  border-radius: ${theme.borderRadius.full}px;
-  shadow-color: ${theme.shadows.large.shadowColor};
-  shadow-offset: ${theme.shadows.large.shadowOffset.width}px ${theme.shadows.large.shadowOffset.height}px;
-  shadow-opacity: ${theme.shadows.large.shadowOpacity};
-  shadow-radius: ${theme.shadows.large.shadowRadius}px;
+  padding: ${spacing.lg}px ${spacing.xl}px;
+  border-radius: ${borderRadius.round}px;
+  shadow-color: ${shadows.lg.shadowColor};
+  shadow-offset: ${shadows.lg.shadowOffset.width}px ${shadows.lg.shadowOffset.height}px;
+  shadow-opacity: ${shadows.lg.shadowOpacity};
+  shadow-radius: ${shadows.lg.shadowRadius}px;
+  elevation: ${shadows.lg.elevation};
 `;
 
 export const FloatingButtonText = styled.Text`
-  color: ${theme.colors.text.white};
-  font-size: ${theme.fontSize.lg}px;
-  font-weight: ${theme.fontWeight.bold};
-  margin-left: ${theme.spacing.sm}px;
+  color: ${colors.buttonPrimaryText};
+  font-size: ${typography.fontSize.base}px;
+  font-weight: ${typography.fontWeight.bold};
+  margin-left: ${spacing.sm}px;
 `;
 
 export const GreetingText = styled.Text`
-  font-size: ${theme.fontSize.lg}px;
-  color: ${theme.colors.text.primary};
-  margin-bottom: ${theme.spacing.xs}px;
+  font-size: ${typography.fontSize.base}px;
+  color: ${colors.textLink};
+  margin-bottom: ${spacing.xs}px;
 `;
 
 export const WelcomeText = styled.Text`
-  font-size: ${theme.fontSize.xxxl}px;
-  font-weight: ${theme.fontWeight.bold};
-  color: ${theme.colors.text.primary};
+  font-size: ${typography.fontSize.xxxl}px;
+  font-weight: ${typography.fontWeight.bold};
+  color: ${colors.text};
 `;

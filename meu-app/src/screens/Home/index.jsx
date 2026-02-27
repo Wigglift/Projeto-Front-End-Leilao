@@ -312,6 +312,7 @@ export default function Home({navigation}) {
                 visible={menuVisible}
                 onClose={() => setMenuVisible(false)}
                 onLogout={handleLogout}
+                navigation={navigation}
             />
             
             <FilterModal

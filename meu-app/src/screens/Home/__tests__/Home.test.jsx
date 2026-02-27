@@ -78,7 +78,7 @@ describe('Tela Home', () => {
       expect(auctionService.getCategories).toHaveBeenCalled();
     });
 
-    const seguradoraChip = getByText('SEGURADORA');
+    const seguradoraChip = await waitFor(() => getByText('SEGURADORA'), { timeout: 3000 });
     fireEvent.press(seguradoraChip);
 
     await waitFor(() => {

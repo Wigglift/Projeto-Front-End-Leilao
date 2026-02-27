@@ -1,10 +1,10 @@
 import styled from "styled-components/native";
-import theme from "../../../styles/theme";
+import { colors, typography } from "../../../theme";
 
 export const LinkButton = styled.TouchableOpacity``;
 
 export const LinkText = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: ${(props) => props.color || theme.colors.primary};
-  font-weight: ${(props) => (props.bold ? theme.fontWeight.bold : theme.fontWeight.medium)};
+  font-size: ${typography.fontSize.sm}px;
+  color: ${(props) => props.color || colors.textLink};
+  font-weight: ${(props) => (props.bold ? typography.fontWeight.bold : typography.fontWeight.semiBold)};
 `;

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ScrollView, Alert, View, Modal, TextInput, TouchableWithoutFeedback } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import BidConfirmationModal from "../../components/styleds/BidConfirmationModal";
@@ -99,6 +99,28 @@ export default function AuctionDetails({ route, navigation }) {
   const initialBid = 5000;
   const currentBid = currentHighestBid || liveBids[0]?.amount || initialBid;
 
+  const handleAuctionEnd = useCallback(() => {
+    let auctionWinner;
+    const finalBid = currentHighestBid || liveBids[0]?.amount || initialBid;
+
+    if (currentHighestBid && userHasBid) {
+      auctionWinner = {
+        name: "Você",
+        amount: finalBid,
+        isCurrentUser: true
+      };
+    } else {
+      auctionWinner = {
+        name: liveBids[0].bidder,
+        amount: liveBids[0].amount,
+        isCurrentUser: false
+      };
+    }
+    
+    setWinner(auctionWinner);
+    setShowAuctionEndModal(true);
+  }, [currentHighestBid, userHasBid, liveBids, initialBid]);
+
   useEffect(() => {
     setTimeRemaining(timer);
     
@@ -118,28 +140,7 @@ export default function AuctionDetails({ route, navigation }) {
         clearInterval(timerRef.current);
       }
     };
-  }, []);
-
-  const handleAuctionEnd = () => {
-    let auctionWinner;
-
-    if (userHasBid && currentHighestBid) {
-      auctionWinner = {
-        name: "Você",
-        amount: currentHighestBid,
-        isCurrentUser: true
-      };
-    } else {
-      auctionWinner = {
-        name: liveBids[0].bidder,
-        amount: liveBids[0].amount,
-        isCurrentUser: false
-      };
-    }
-    
-    setWinner(auctionWinner);
-    setShowAuctionEndModal(true);
-  };
+  }, [handleAuctionEnd]);
 
   const handleCloseAuctionEndModal = () => {
     setShowAuctionEndModal(false);
@@ -338,13 +339,13 @@ export default function AuctionDetails({ route, navigation }) {
       {/* Modal de Lance Customizado */}
       <Modal visible={showCustomBidModal} transparent animationType="fade">
         <TouchableWithoutFeedback onPress={() => setShowCustomBidModal(false)}>
-          <View style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.5)", justifyContent: "center", alignItems: "center" }}>
+          <View style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.7)", justifyContent: "center", alignItems: "center" }}>
             <TouchableWithoutFeedback>
-              <View style={{ backgroundColor: "#fff", borderRadius: 16, padding: 24, width: "85%", maxWidth: 400 }}>
+              <View style={{ backgroundColor: "#13202E", borderRadius: 16, padding: 24, width: "85%", maxWidth: 400 }}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
                   <SectionTitle>Lance Customizado</SectionTitle>
                   <BackButton onPress={() => setShowCustomBidModal(false)} style={{ width: 32, height: 32 }}>
-                    <Ionicons name="close" size={24} color="#333" />
+                    <Ionicons name="close" size={24} color="#FFFFFF" />
                   </BackButton>
                 </View>
 
@@ -352,32 +353,32 @@ export default function AuctionDetails({ route, navigation }) {
                   <BidLabel style={{ marginBottom: 8 }}>Valor do Lance (em reais)</BidLabel>
                   <TextInput
                     style={{
-                      backgroundColor: "#f5f5f5",
+                      backgroundColor: "#0D1F2D",
                       borderRadius: 8,
                       padding: 16,
                       fontSize: 18,
                       fontWeight: "600",
-                      color: "#333",
+                      color: "#FFFFFF",
                       borderWidth: 1,
-                      borderColor: "#e0e0e0"
+                      borderColor: "#2A3F54"
                     }}
                     placeholder={`Mínimo: R$ ${((currentBid + 500) / 1000).toFixed(1)}k`}
-                    placeholderTextColor="#999"
+                    placeholderTextColor="#6B8299"
                     keyboardType="numeric"
                     value={customBidValue}
                     onChangeText={setCustomBidValue}
                   />
-                  <DescriptionText style={{ fontSize: 12, marginTop: 8, color: "#666" }}>
+                  <DescriptionText style={{ fontSize: 12, marginTop: 8 }}>
                     Lance atual: R$ {(currentBid / 1000).toFixed(1)}k
                   </DescriptionText>
                 </View>
 
                 <View style={{ flexDirection: "row", gap: 12 }}>
                   <CustomBidButton 
-                    style={{ flex: 1, backgroundColor: "#f0f0f0" }}
+                    style={{ flex: 1, backgroundColor: "#0D1F2D", borderWidth: 1, borderColor: "#2A3F54" }}
                     onPress={() => setShowCustomBidModal(false)}
                   >
-                    <CustomBidText style={{ color: "#666" }}>Cancelar</CustomBidText>
+                    <CustomBidText style={{ color: "#B0C4DE" }}>Cancelar</CustomBidText>
                   </CustomBidButton>
                   <PlaceBidButton style={{ flex: 2 }} onPress={handleConfirmCustomBid}>
                     <PlaceBidText>Confirmar</PlaceBidText>
@@ -392,12 +393,12 @@ export default function AuctionDetails({ route, navigation }) {
       {/* Modal de Leilão Finalizado */}
       <Modal visible={showAuctionEndModal} transparent animationType="fade">
         <View style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.7)", justifyContent: "center", alignItems: "center" }}>
-          <View style={{ backgroundColor: "#fff", borderRadius: 20, padding: 32, width: "85%", maxWidth: 400, alignItems: "center" }}>
+          <View style={{ backgroundColor: "#13202E", borderRadius: 20, padding: 32, width: "85%", maxWidth: 400, alignItems: "center" }}>
             <View style={{ 
               width: 80, 
               height: 80, 
               borderRadius: 40, 
-              backgroundColor: winner?.isCurrentUser ? "#4CAF50" : "#ff6b35",
+              backgroundColor: winner?.isCurrentUser ? "#4CAF50" : "#F44336",
               justifyContent: "center",
               alignItems: "center",
               marginBottom: 20
@@ -421,11 +422,13 @@ export default function AuctionDetails({ route, navigation }) {
             </DescriptionText>
 
             <View style={{ 
-              backgroundColor: "#f5f5f5", 
+              backgroundColor: "#0D1F2D", 
               padding: 20, 
               borderRadius: 12, 
               width: "100%",
-              marginBottom: 24
+              marginBottom: 24,
+              borderWidth: 1,
+              borderColor: "#2A3F54"
             }}>
               <BidLabel style={{ textAlign: "center", marginBottom: 8 }}>Lance Vencedor</BidLabel>
               <BidValue primary style={{ textAlign: "center", fontSize: 32 }}>

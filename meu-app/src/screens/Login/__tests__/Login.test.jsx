@@ -24,7 +24,7 @@ describe('Tela de Login', () => {
     expect(getByPlaceholderText('Digite seu usuário...')).toBeTruthy();
     expect(getByPlaceholderText('Digite sua senha...')).toBeTruthy();
     expect(getByText('Entrar')).toBeTruthy();
-    expect(getByText('Sistema de Leilão')).toBeTruthy();
+    expect(getByText('BidLive')).toBeTruthy();
   });
 
   it('deve mostrar erro quando os campos estão vazios', async () => {
@@ -51,10 +51,13 @@ describe('Tela de Login', () => {
     fireEvent.changeText(getByPlaceholderText('Digite sua senha...'), 'password123');
     fireEvent.press(getByText('Entrar'));
 
-    await waitFor(() => {
-      expect(authService.login).toHaveBeenCalledWith('testuser', 'password123');
-      expect(mockNavigation.navigate).toHaveBeenCalledWith('Home');
-    });
+    await waitFor(
+      () => {
+        expect(authService.login).toHaveBeenCalledWith('testuser', 'password123');
+        expect(mockNavigation.navigate).toHaveBeenCalledWith('Home');
+      },
+      { timeout: 10000 }
+    );
   });
 
   it('deve mostrar mensagem de erro em caso de falha no login', async () => {

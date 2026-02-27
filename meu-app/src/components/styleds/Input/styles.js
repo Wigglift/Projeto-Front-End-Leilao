@@ -1,32 +1,34 @@
 import styled from "styled-components/native";
-import theme from "../../../styles/theme";
+import { colors, spacing, typography, borderRadius } from "../../../theme";
 
 export const Container = styled.View`
-  margin-bottom: ${theme.spacing.lg}px;
+  margin-bottom: ${spacing.base}px;
 `;
 
 export const Label = styled.Text`
-  font-size: ${theme.fontSize.sm}px;
-  font-weight: ${theme.fontWeight.semibold};
-  color: ${theme.colors.text.primary};
-  margin-bottom: ${theme.spacing.sm}px;
+  font-size: ${typography.fontSize.sm}px;
+  font-weight: ${typography.fontWeight.semiBold};
+  color: ${colors.inputLabel};
+  margin-bottom: ${spacing.sm}px;
+  text-transform: uppercase;
 `;
 
 export const InputWrapper = styled.View`
   flex-direction: row;
   align-items: center;
-  background-color: ${theme.colors.background.input};
-  border-radius: ${theme.borderRadius.md}px;
-  padding: 0 ${theme.spacing.lg}px;
-  height: ${theme.componentHeight.input}px;
+  background-color: ${colors.inputBackground};
+  border: 1px solid ${colors.inputBorder};
+  border-radius: ${borderRadius.md}px;
+  padding: 0 ${spacing.base}px;
+  height: 56px;
 `;
 
 export const StyledInput = styled.TextInput`
   flex: 1;
-  font-size: ${theme.fontSize.lg}px;
-  color: ${theme.colors.text.primary};
+  font-size: ${typography.fontSize.md}px;
+  color: ${colors.inputText};
 `;
 
 export const IconButton = styled.TouchableOpacity`
-  padding: ${theme.spacing.sm}px;
+  padding: ${spacing.sm}px;
 `;
