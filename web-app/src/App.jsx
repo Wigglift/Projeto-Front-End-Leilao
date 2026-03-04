@@ -1,9 +1,9 @@
-import "./Assets/Scss/Reset.scss";
-import "./Assets/Scss/Common.scss";
-import "./Assets/Scss/Container.scss";
+import "./assets/scss/Reset.scss";
+import "./assets/scss/Common.scss";
+import "./assets/scss/Container.scss";
 
-import Header from "./Components/Header/Header";
-import Banner from "./Components/banner/Banner";
+import Header from "./components/header/Header";
+import Banner from "./components/banner/Banner";
 
 function App() {
   return (

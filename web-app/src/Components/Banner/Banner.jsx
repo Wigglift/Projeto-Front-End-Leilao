@@ -1,11 +1,11 @@
 import Cards from "../cards/Cards";
-import devices_img from "../../Assets/Images/devices.png";
+import devices_img from "../../assets/images/devices.png";
 import PrimaryButton from "../primaryBtn/PrimaryBtn";
 import SecondaryBtn from "../secondaryBtn/SecondaryBtn";
 import styles from "./Banner.module.scss";
-import bid_icon from "../../Assets/Images/bid_icon.svg";
-import clock_icon from "../../Assets/Images/clock_icon.svg";
-import star_icon from "../../Assets/Images/star_icon.svg";
+import bid_icon from "../../assets/images/bid_icon.svg";
+import clock_icon from "../../assets/images/clock_icon.svg";
+import star_icon from "../../assets/images/star_icon.svg";
 
 export default function Banner() {
   const infos = [
