@@ -1,0 +1,17 @@
+@use "../../Assets/Scss/Index.scss";
+
+.button {
+  padding: 1em 1.5em;
+  background-color: Index.$primary-color;
+  border: 1px solid transparent;
+  border-radius: 0.4em;
+  font-weight: 500;
+  color: Index.$secondary-color;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: transparent;
+    border-color: Index.$primary-color;
+    color: Index.$primary-color;
+  }
+}

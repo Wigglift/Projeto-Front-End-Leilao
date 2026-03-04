@@ -1,4 +1,51 @@
-.banner{
-    max-width: 1200px;
-    background-color: transparent;
+@use "../../Assets/Scss/Index.scss";
+
+.banner {
+  margin: 12em 0 10em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .banner__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+
+    @include Index.responsivo(Index.$desktop) {
+      flex-direction: column-reverse;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .texto__banner {
+      max-width: 766px;
+      display: flex;
+      flex-direction: column;
+      gap: 3em;
+
+      .destaque {
+        color: Index.$primary-color;
+      }
+
+      .botoes {
+        display: flex;
+        gap: 1.5em;
+        @include Index.responsivo(Index.$desktop) {
+          justify-content: center;
+        }
+      }
+    }
+    .devices {
+      @include Index.responsivo(Index.$desktop) {
+        width: 322px;
+      }
+      @include Index.responsivo(Index.$tablet) {
+        width: 60%;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
 }
