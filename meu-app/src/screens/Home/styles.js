@@ -23,33 +23,44 @@ export const HeaderTop = styled.View`
   align-items: center;
   margin-bottom: ${spacing.lg}px;
   padding-top: ${isWeb ? 0 : spacing.lg}px;
+  flex-wrap: nowrap;
 `;
 
 export const MenuButton = styled.TouchableOpacity`
   padding: ${spacing.sm}px;
+  min-width: ${moderateScale(40)}px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const LocationContainer = styled.View`
   flex: 1;
-  margin-left: ${spacing.md}px;
+  margin-left: ${spacing.sm}px;
+  margin-right: ${spacing.sm}px;
+  min-width: 0;
 `;
 
 export const LocationLabel = styled.Text`
-  font-size: ${typography.fontSize.sm}px;
+  font-size: ${typography.fontSize.xs}px;
   color: ${colors.textMuted};
   font-weight: ${typography.fontWeight.semiBold};
   text-transform: uppercase;
+  flex-shrink: 1;
 `;
 
 export const LocationText = styled.Text`
-  font-size: ${typography.fontSize.md}px;
+  font-size: ${typography.fontSize.sm}px;
   color: ${colors.text};
   font-weight: ${typography.fontWeight.semiBold};
+  flex-shrink: 1;
 `;
 
 export const NotificationButton = styled.TouchableOpacity`
-  padding: ${spacing.sm}px;
+  padding: ${spacing.xs}px;
   position: relative;
+  min-width: ${moderateScale(40)}px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const NotificationBadge = styled.View`
@@ -84,20 +95,21 @@ export const Content = styled.ScrollView`
 `;
 
 export const Section = styled.View`
-  padding: ${spacing.base}px;
+  padding: ${spacing.md}px ${spacing.base}px;
 `;
 
 export const SectionHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${spacing.lg}px;
+  margin-bottom: ${spacing.md}px;
 `;
 
 export const SectionTitle = styled.Text`
-  font-size: ${typography.fontSize.xl}px;
+  font-size: ${typography.fontSize.lg}px;
   font-weight: ${typography.fontWeight.bold};
   color: ${colors.text};
+  flex-shrink: 1;
 `;
 
 export const SeeAllButton = styled.TouchableOpacity`
@@ -147,13 +159,14 @@ export const FloatingButtonText = styled.Text`
 `;
 
 export const GreetingText = styled.Text`
-  font-size: ${typography.fontSize.base}px;
+  font-size: ${typography.fontSize.sm}px;
   color: ${colors.textLink};
   margin-bottom: ${spacing.xs}px;
 `;
 
 export const WelcomeText = styled.Text`
-  font-size: ${typography.fontSize.xxxl}px;
+  font-size: ${typography.fontSize.xxl}px;
   font-weight: ${typography.fontWeight.bold};
   color: ${colors.text};
+  margin-bottom: ${spacing.sm}px;
 `;

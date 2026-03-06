@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { ScrollView, Alert, View, Modal, TextInput, TouchableWithoutFeedback } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import BidConfirmationModal from "../../components/styleds/BidConfirmationModal";
+import { moderateScale } from "../../utils/responsive";
 import {
   Container,
   Header,
@@ -40,6 +41,8 @@ import {
   CustomBidText,
   PlaceBidButton,
   PlaceBidText,
+  ViewLotsButton,
+  ViewLotsText,
 } from "./styles";
 
 export default function AuctionDetails({ route, navigation }) {
@@ -211,11 +214,15 @@ export default function AuctionDetails({ route, navigation }) {
     );
   };
 
+  const handleViewLots = () => {
+    navigation.navigate("LotList", { auction });
+  };
+
   return (
     <Container>
       <Header>
         <BackButton onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back" size={28} color="#333" />
+          <Ionicons name="chevron-back" size={moderateScale(24)} color="#FFFFFF" />
         </BackButton>
       </Header>
 
@@ -226,7 +233,7 @@ export default function AuctionDetails({ route, navigation }) {
             resizeMode="contain"
           />
           <ExpandButton>
-            <Ionicons name="expand-outline" size={24} color="#666" />
+            <Ionicons name="expand-outline" size={moderateScale(22)} color="#FFFFFF" />
           </ExpandButton>
         </ImageContainer>
 
@@ -326,6 +333,11 @@ export default function AuctionDetails({ route, navigation }) {
               {((selectedBid || quickBidValues[0]) / 1000).toFixed(0)}k
             </PlaceBidText>
           </PlaceBidButton>
+
+          <ViewLotsButton onPress={handleViewLots}>
+            <Ionicons name="cube-outline" size={moderateScale(20)} color="#5A9FD4" />
+            <ViewLotsText>Ver Lotes do Leilão</ViewLotsText>
+          </ViewLotsButton>
         </InfoCard>
       </ScrollView>
 
@@ -344,8 +356,8 @@ export default function AuctionDetails({ route, navigation }) {
               <View style={{ backgroundColor: "#13202E", borderRadius: 16, padding: 24, width: "85%", maxWidth: 400 }}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
                   <SectionTitle>Lance Customizado</SectionTitle>
-                  <BackButton onPress={() => setShowCustomBidModal(false)} style={{ width: 32, height: 32 }}>
-                    <Ionicons name="close" size={24} color="#FFFFFF" />
+                  <BackButton onPress={() => setShowCustomBidModal(false)} style={{ width: moderateScale(36), height: moderateScale(36), minWidth: 32, minHeight: 32 }}>
+                    <Ionicons name="close" size={moderateScale(24)} color="#FFFFFF" />
                   </BackButton>
                 </View>
 

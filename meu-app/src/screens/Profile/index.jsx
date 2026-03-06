@@ -3,6 +3,7 @@ import { ScrollView, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Avatar from '../../components/styleds/Avatar';
 import { colors } from '../../theme';
+import { moderateScale } from '../../utils/responsive';
 import {
   Container,
   Header,
@@ -33,7 +34,7 @@ const Profile = ({ navigation }) => {
       
       <Header>
         <BackButton onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color={colors.text} />
+          <Ionicons name="arrow-back" size={moderateScale(24)} color={colors.text} />
         </BackButton>
         <HeaderTitle>Perfil</HeaderTitle>
       </Header>

@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { colors, spacing, typography, borderRadius, shadows } from "../../theme";
+import { moderateScale } from "../../utils/responsive";
 
 export const Container = styled.View`
   flex: 1;
@@ -12,10 +13,14 @@ export const Header = styled.View`
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  width: 40px;
-  height: 40px;
+  width: ${moderateScale(44)}px;
+  height: ${moderateScale(44)}px;
   justify-content: center;
   align-items: center;
+  background-color: ${colors.backgroundCard};
+  border-radius: ${moderateScale(22)}px;
+  min-width: 40px;
+  min-height: 40px;
 `;
 
 export const ImageContainer = styled.View`
@@ -36,10 +41,12 @@ export const ExpandButton = styled.TouchableOpacity`
   position: absolute;
   bottom: ${spacing.lg}px;
   right: ${spacing.lg}px;
-  width: 40px;
-  height: 40px;
+  width: ${moderateScale(44)}px;
+  height: ${moderateScale(44)}px;
+  min-width: 40px;
+  min-height: 40px;
   background-color: ${colors.backgroundCard};
-  border-radius: ${borderRadius.round}px;
+  border-radius: ${moderateScale(22)}px;
   justify-content: center;
   align-items: center;
   shadow-color: ${shadows.md.shadowColor};
@@ -246,4 +253,23 @@ export const PlaceBidText = styled.Text`
   font-size: ${typography.fontSize.lg}px;
   font-weight: ${typography.fontWeight.bold};
   color: #FFFFFF;
+`;
+
+export const ViewLotsButton = styled.TouchableOpacity`
+  background-color: ${colors.backgroundCard};
+  padding: ${spacing.lg}px;
+  border-radius: ${borderRadius.md}px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid ${colors.primary};
+  margin-top: ${spacing.md}px;
+  margin-bottom: ${spacing.lg}px;
+`;
+
+export const ViewLotsText = styled.Text`
+  font-size: ${typography.fontSize.base}px;
+  font-weight: ${typography.fontWeight.semiBold};
+  color: ${colors.primary};
+  margin-left: ${spacing.sm}px;
 `;

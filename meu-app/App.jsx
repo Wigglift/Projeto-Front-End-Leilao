@@ -6,15 +6,24 @@ import SignUp from "./src/screens/SignUp";
 import Login from "./src/screens/Login";
 import Home from "./src/screens/Home";
 import Profile from "./src/screens/Profile";
-import Settings from "./src/screens/Settings";
 import AuctionDetails from "./src/screens/AuctionDetails";
+import AuctionListForLots from "./src/screens/AuctionListForLots";
+import LotList from "./src/screens/LotList";
+import LotDetails from "./src/screens/LotDetails";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
+      <Stack.Navigator
+        initialRouteName="Splash"
+        screenOptions={{
+          gestureEnabled: true,
+          fullScreenGestureEnabled: true,
+          animation: 'slide_from_right',
+        }}
+      >
         <Stack.Screen
           name="Splash"
           component={Splash}
@@ -38,19 +47,51 @@ export default function App() {
         <Stack.Screen 
           name="Home" 
           component={Home} 
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+          }}
         />
         <Stack.Screen 
           name="AuctionDetails" 
           component={AuctionDetails}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
+          }}
         />
         <Stack.Screen 
           name="Profile" 
           component={Profile}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
+          }}
         />
-        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen
+          name="AuctionListForLots"
+          component={AuctionListForLots}
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
+          }}
+        />
+        <Stack.Screen
+          name="LotList"
+          component={LotList}
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
+          }}
+        />
+        <Stack.Screen
+          name="LotDetails"
+          component={LotDetails}
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

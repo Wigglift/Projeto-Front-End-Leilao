@@ -54,6 +54,13 @@ export default function MenuDrawer({ visible, onClose, onLogout, navigation }) {
                   <MenuItemText>Meu Perfil</MenuItemText>
                 </MenuItem>
 
+                <MenuItem onPress={() => handleMenuItemPress('AuctionListForLots')}>
+                  <MenuItemIcon>
+                    <Ionicons name="cube-outline" size={24} color="#333" />
+                  </MenuItemIcon>
+                  <MenuItemText>Lotes</MenuItemText>
+                </MenuItem>
+
                 <MenuItem onPress={() => handleMenuItemPress()}>
                   <MenuItemIcon>
                     <Ionicons name="hammer-outline" size={24} color="#333" />

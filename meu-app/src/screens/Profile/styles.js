@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { colors, typography, spacing, borderRadius } from '../../theme';
+import { moderateScale } from '../../utils/responsive';
 
 export const Container = styled.View`
     flex: 1;
@@ -17,11 +18,14 @@ export const Header = styled.View`
 `;
 
 export const BackButton = styled.TouchableOpacity`
-    width: 40px;
-    height: 40px;
+    width: ${moderateScale(44)}px;
+    height: ${moderateScale(44)}px;
     justify-content: center;
     align-items: center;
     margin-right: ${spacing.base}px;
+    border-radius: ${moderateScale(22)}px;
+    min-width: 40px;
+    min-height: 40px;
 `;
 
 export const HeaderTitle = styled.Text`

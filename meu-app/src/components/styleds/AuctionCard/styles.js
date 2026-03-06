@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { colors, spacing, typography, borderRadius, shadows } from "../../../theme";
+import { moderateScale } from "../../../utils/responsive";
 
 export const Container = styled.TouchableOpacity`
   background-color: ${colors.backgroundCard};
@@ -15,7 +16,8 @@ export const Container = styled.TouchableOpacity`
 
 export const Image = styled.Image`
   width: 100%;
-  height: 200px;
+  height: ${moderateScale(180)}px;
+  min-height: 160px;
   background-color: ${colors.backgroundSecondary};
 `;
 
