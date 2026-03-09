@@ -1,60 +1,63 @@
 import styled from "styled-components/native";
-import theme from "../../../styles/theme";
+import { colors, spacing, typography, borderRadius, shadows } from "../../../theme";
+import { moderateScale } from "../../../utils/responsive";
 
 export const Container = styled.TouchableOpacity`
-  background-color: ${theme.colors.background.secondary};
-  border-radius: ${theme.borderRadius.lg}px;
-  margin-bottom: ${theme.spacing.lg}px;
+  background-color: ${colors.backgroundCard};
+  border-radius: ${borderRadius.lg}px;
+  margin-bottom: ${spacing.lg}px;
   overflow: hidden;
-  shadow-color: ${theme.shadows.medium.shadowColor};
-  shadow-offset: ${theme.shadows.medium.shadowOffset.width}px ${theme.shadows.medium.shadowOffset.height}px;
-  shadow-opacity: ${theme.shadows.medium.shadowOpacity};
-  shadow-radius: ${theme.shadows.medium.shadowRadius}px;
+  shadow-color: ${shadows.md.shadowColor};
+  shadow-offset: ${shadows.md.shadowOffset.width}px ${shadows.md.shadowOffset.height}px;
+  shadow-opacity: ${shadows.md.shadowOpacity};
+  shadow-radius: ${shadows.md.shadowRadius}px;
+  elevation: ${shadows.md.elevation};
 `;
 
 export const Image = styled.Image`
   width: 100%;
-  height: ${theme.componentHeight.card}px;
-  background-color: ${theme.colors.background.input};
+  height: ${moderateScale(180)}px;
+  min-height: 160px;
+  background-color: ${colors.backgroundSecondary};
 `;
 
 export const InfoContainer = styled.View`
-  padding: ${theme.spacing.lg}px;
+  padding: ${spacing.lg}px;
 `;
 
 export const Title = styled.Text`
-  font-size: ${theme.fontSize.xl}px;
-  font-weight: ${theme.fontWeight.bold};
-  color: ${theme.colors.text.primary};
-  margin-bottom: ${theme.spacing.sm}px;
+  font-size: ${typography.fontSize.lg}px;
+  font-weight: ${typography.fontWeight.bold};
+  color: ${colors.text};
+  margin-bottom: ${spacing.sm}px;
 `;
 
 export const Description = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: ${theme.colors.text.secondary};
-  margin-bottom: ${theme.spacing.md}px;
-  line-height: ${theme.fontSize.xxl}px;
+  font-size: ${typography.fontSize.base}px;
+  color: ${colors.textSecondary};
+  margin-bottom: ${spacing.md}px;
+  line-height: ${typography.lineHeight.relaxed * typography.fontSize.base}px;
 `;
 
 export const CurrentBid = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: ${theme.colors.primaryLight};
-  padding: ${theme.spacing.md}px;
-  border-radius: ${theme.borderRadius.sm}px;
-  margin-bottom: ${theme.spacing.md}px;
+  background-color: ${colors.primaryDark};
+  padding: ${spacing.md}px;
+  border-radius: ${borderRadius.md}px;
+  margin-bottom: ${spacing.md}px;
 `;
 
 export const BidLabel = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: ${theme.colors.text.secondary};
+  font-size: ${typography.fontSize.base}px;
+  color: ${colors.textSecondary};
 `;
 
 export const BidValue = styled.Text`
-  font-size: ${theme.fontSize.xxl}px;
-  font-weight: ${theme.fontWeight.bold};
-  color: ${theme.colors.primary};
+  font-size: ${typography.fontSize.xl}px;
+  font-weight: ${typography.fontWeight.bold};
+  color: ${colors.primary};
 `;
 
 export const Footer = styled.View`
@@ -69,7 +72,7 @@ export const FooterItem = styled.View`
 `;
 
 export const FooterText = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: ${theme.colors.text.secondary};
-  margin-left: ${theme.spacing.xs + 2}px;
+  font-size: ${typography.fontSize.sm}px;
+  color: ${colors.textMuted};
+  margin-left: ${spacing.xs}px;
 `;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Modal, TouchableWithoutFeedback, ScrollView, Alert, FlatList, ActivityIndicator } from "react-native";
+import { Modal, TouchableWithoutFeedback, ScrollView, Alert, FlatList, ActivityIndicator, KeyboardAvoidingView, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import auctionService from "../../../services/auctionService";
 import {
@@ -10,6 +10,7 @@ import {
   CloseButton,
   FilterSection,
   FilterLabel,
+  FilterLabelText,
   FilterInput,
   PickerContainer,
   PickerButton,
@@ -165,42 +166,52 @@ export default function FilterModal({ visible, onClose, onApplyFilters }) {
   return (
     <Modal visible={visible} transparent animationType="slide">
       <TouchableWithoutFeedback onPress={onClose}>
-        <ModalOverlay>
-          <TouchableWithoutFeedback>
-            <ModalContainer>
-              <ModalHeader>
-                <ModalTitle>Filtros Avançados</ModalTitle>
-                <CloseButton onPress={onClose}>
-                  <Ionicons name="close" size={28} color="#333" />
-                </CloseButton>
-              </ModalHeader>
+        <ModalOverlay />
+      </TouchableWithoutFeedback>
 
-              <ScrollView showsVerticalScrollIndicator={false}>
-                <FilterSection>
-                  <FilterLabel>
-                    <Ionicons name="calendar-outline" size={20} color="#ff6b35" />
-                    {" "}Período do Leilão
-                  </FilterLabel>
-                  
-                  <FilterInput
-                    placeholder="Data Inicial (YYYY-MM-DD)"
-                    value={startDate}
-                    onChangeText={setStartDate}
-                    placeholderTextColor="#999"
-                  />
-                  
-                  <FilterInput
-                    placeholder="Data Final (YYYY-MM-DD)"
-                    value={endDate}
-                    onChangeText={setEndDate}
-                    placeholderTextColor="#999"
-                  />
-                </FilterSection>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 100}
+      >
+        <ModalContainer>
+          <ModalHeader>
+            <ModalTitle>Filtros Avançados</ModalTitle>
+            <CloseButton onPress={onClose}>
+              <Ionicons name="close" size={28} color="#333" />
+            </CloseButton>
+          </ModalHeader>
 
-                <FilterSection>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 150 }}
+            keyboardShouldPersistTaps="handled"
+          >
+              <FilterSection>
+                <FilterLabel>
+                  <Ionicons name="calendar-outline" size={20} color="#ff6b35" />
+                  <FilterLabelText>Período do Leilão</FilterLabelText>
+                </FilterLabel>
+
+                <FilterInput
+                  placeholder="Data Inicial (YYYY-MM-DD)"
+                  value={startDate}
+                  onChangeText={setStartDate}
+                  placeholderTextColor="#999"
+                />
+
+                <FilterInput
+                  placeholder="Data Final (YYYY-MM-DD)"
+                  value={endDate}
+                  onChangeText={setEndDate}
+                  placeholderTextColor="#999"
+                />
+              </FilterSection>
+
+              <FilterSection>
                   <FilterLabel>
                     <Ionicons name="location-outline" size={20} color="#ff6b35" />
-                    {" "}Localidade
+                    <FilterLabelText>Localidade</FilterLabelText>
                   </FilterLabel>
 
                   <PickerContainer>
@@ -245,7 +256,7 @@ export default function FilterModal({ visible, onClose, onApplyFilters }) {
                 <FilterSection>
                   <FilterLabel>
                     <Ionicons name="person-outline" size={20} color="#ff6b35" />
-                    {" "}Leiloeiro
+                    <FilterLabelText>Leiloeiro</FilterLabelText>
                   </FilterLabel>
 
                   <PickerContainer>
@@ -281,9 +292,7 @@ export default function FilterModal({ visible, onClose, onApplyFilters }) {
                 </ButtonsRow>
               </ScrollView>
             </ModalContainer>
-          </TouchableWithoutFeedback>
-        </ModalOverlay>
-      </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
 
       {renderSelectionModal(
         "Selecionar Cidade",

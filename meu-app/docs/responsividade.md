@@ -16,11 +16,14 @@ Criamos um sistema de responsividade baseado na Dimensions API do React Native q
 
 **Arquivos criados:**
 - `src/utils/responsive.js` - Funções de escala e helpers
-- `src/styles/theme.js` - Tokens de design centralizados
+- `src/theme/` - Sistema de design tokens centralizados
+  - `src/theme/index.js` - Exportação centralizada
+  - `src/theme/colors.js` - Paleta de cores
+  - `src/theme/typography.js` - Sistema tipográfico
 
 **Componentes atualizados:**
 - Todos os componentes em `src/components/styleds/`
-- Screens `Home` e `Login`
+- Todas as screens (Home, Login, Profile, SignUp, Welcome, Splash, AuctionDetails)
 
 ---
 
@@ -30,18 +33,18 @@ Criamos um sistema de responsividade baseado na Dimensions API do React Native q
 
 ```javascript
 import styled from "styled-components/native";
-import theme from "../../../styles/theme";
+import { colors, spacing, typography, borderRadius } from "../../../theme";
 
 export const Container = styled.View`
-  padding: ${theme.spacing.lg}px;
-  background-color: ${theme.colors.background.secondary};
-  border-radius: ${theme.borderRadius.md}px;
+  padding: ${spacing.lg}px;
+  background-color: ${colors.backgroundCard};
+  border-radius: ${borderRadius.md}px;
 `;
 
 export const Title = styled.Text`
-  font-size: ${theme.fontSize.xl}px;
-  font-weight: ${theme.fontWeight.bold};
-  color: ${theme.colors.text.primary};
+  font-size: ${typography.sizes.xl}px;
+  font-weight: ${typography.weights.bold};
+  color: ${colors.text};
 `;
 ```
 
@@ -192,19 +195,30 @@ componentHeight.header  // 60px escalado
 
 ## Tema
 
-O tema (`src/styles/theme.js`) centraliza todos os valores. Sempre use o tema ao invés de valores hardcoded.
+O sistema de tema (`src/theme/`) centraliza todos os valores de design. Sempre use o tema ao invés de valores hardcoded.
+
+### Estrutura do Tema
+
+```javascript
+src/theme/
+  ├── index.js        // Exportação centralizada
+  ├── colors.js       // Paleta de cores (80+ cores)
+  └── typography.js   // Sistema tipográfico
+```
 
 ### Cores
 
 ```javascript
-import theme from '@/styles/theme';
+import { colors } from '../../theme';
 
 // Cores principais
-theme.colors.primary          // #ff6b35
-theme.colors.primaryLight     // #fff5f2
-theme.colors.secondary        // #ffffff
+colors.primary          // #5A9FD4 (azul primário)
+colors.primaryDark      // #2C5F7F
+colors.primaryLight     // #7BB3E0
 
-// Cores de texto
+// Backgrounds (dark theme)
+colors.background       // #0A1929
+colors.backgroundCard   // #13202E
 theme.colors.text.primary     // #333333
 theme.colors.text.secondary   // #666666
 theme.colors.text.light       // #999999

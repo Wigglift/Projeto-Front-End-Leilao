@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
-import theme from "../../../styles/theme";
 import { moderateScale } from "../../../utils/responsive";
+import { colors, spacing, typography, borderRadius } from "../../../theme";
 
 export const Container = styled.TouchableOpacity`
   flex-direction: row;
@@ -11,21 +11,21 @@ export const CheckboxBox = styled.View`
   width: ${moderateScale(20)}px;
   height: ${moderateScale(20)}px;
   border-width: 2px;
-  border-color: ${theme.colors.border.light};
-  border-radius: ${theme.borderRadius.xs}px;
+  border-color: ${colors.border};
+  border-radius: ${borderRadius.xs}px;
   justify-content: center;
   align-items: center;
-  margin-right: ${theme.spacing.sm}px;
+  margin-right: ${spacing.sm}px;
 `;
 
 export const CheckboxInner = styled.View`
   width: ${moderateScale(12)}px;
   height: ${moderateScale(12)}px;
-  background-color: ${(props) => (props.checked ? theme.colors.primary : theme.colors.transparent)};
+  background-color: ${(props) => (props.checked ? colors.primary : colors.transparent)};
   border-radius: 2px;
 `;
 
 export const Label = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: ${theme.colors.text.secondary};
+  font-size: ${typography.fontSize.sm}px;
+  color: ${colors.textSecondary};
 `;

@@ -213,21 +213,37 @@ const auctionService = {
 
   /**
    * Busca leilões por localidade
-   * @param {string} cidade - Nome da cidade
-   * @param {string} estado - Sigla do estado
+   * @param {string} cidade - Nome da cidade (opcional)
+   * @param {string} estado - Sigla do estado (opcional)
    * @returns {Promise<Array>} - Array de leilões da localidade
    */
   async getAuctionsByLocation(cidade, estado) {
     try {
-      const response = await api.get("/leiloes/localidade", {
-        params: { cidade, estado },
-      });
+      if (!cidade && !estado) {
+        return this.getActiveAuctions();
+      }
+
+      const params = {};
+      if (cidade) params.cidade = cidade;
+      if (estado) params.estado = estado;
+
+      const response = await api.get("/leiloes/localidade", { params });
       return response.data
         .filter(isValidAuction)
         .map(mapAuctionData);
     } catch (error) {
       console.error("Erro ao buscar leilões por localidade:", error);
-      throw error;
+      try {
+        const allAuctions = await this.getAuctions();
+        return allAuctions.filter(auction => {
+          const matchCity = !cidade || auction.cidade?.toLowerCase() === cidade.toLowerCase();
+          const matchState = !estado || auction.estado?.toLowerCase() === estado.toLowerCase();
+          return matchCity && matchState;
+        });
+      } catch (fallbackError) {
+        console.error("Erro no fallback de localidade:", fallbackError);
+        throw error;
+      }
     }
   },
 

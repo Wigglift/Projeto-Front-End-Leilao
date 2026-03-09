@@ -1,9 +1,9 @@
 import styled from "styled-components/native";
-import theme from "../../styles/theme";
+import { colors, spacing, typography, borderRadius } from "../../theme";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #1a1a2e;
+  background-color: ${colors.background};
 `;
 
 export const Header = styled.View`
@@ -13,41 +13,41 @@ export const Header = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: ${theme.fontSize.display}px;
-  font-weight: ${theme.fontWeight.bold};
-  color: ${theme.colors.text.white};
-  margin-bottom: ${theme.spacing.sm}px;
+  font-size: ${typography.fontSize.display}px;
+  font-weight: ${typography.fontWeight.bold};
+  color: ${colors.text};
+  margin-bottom: ${spacing.sm}px;
 `;
 
 export const Subtitle = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: #b0b0b0;
+  font-size: ${typography.fontSize.md}px;
+  color: ${colors.textSecondary};
 `;
 
 export const FormContainer = styled.View`
-  background-color: ${theme.colors.background.secondary};
-  border-top-left-radius: ${theme.borderRadius.full}px;
-  border-top-right-radius: ${theme.borderRadius.full}px;
+  background-color: ${colors.backgroundCard};
+  border-top-left-radius: ${borderRadius.xxl}px;
+  border-top-right-radius: ${borderRadius.xxl}px;
   flex: 1;
-  padding: 40px ${theme.spacing.xxl}px;
+  padding: 40px ${spacing.xl}px;
 `;
 
 export const OptionsRow = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${theme.spacing.xxl}px;
+  margin-bottom: ${spacing.xl}px;
 `;
 
 export const SignUpContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: ${theme.spacing.xxl}px;
+  margin-top: ${spacing.xl}px;
   margin-bottom: 8px;
 `;
 
 export const SignUpText = styled.Text`
-  font-size: ${theme.fontSize.md}px;
-  color: ${theme.colors.text.secondary};
+  font-size: ${typography.fontSize.md}px;
+  color: ${colors.textSecondary};
 `;

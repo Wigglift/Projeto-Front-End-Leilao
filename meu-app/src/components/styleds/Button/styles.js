@@ -1,53 +1,53 @@
 import styled from "styled-components/native";
-import theme from "../../../styles/theme";
+import { colors, spacing, typography, borderRadius } from "../../../theme";
 
 const getBackgroundColor = (variant, disabled) => {
-  if (disabled) return theme.colors.background.disabled;
+  if (disabled) return colors.buttonDisabled;
   
   switch (variant) {
     case "primary":
-      return theme.colors.primary;
+      return colors.buttonPrimary;
     case "secondary":
-      return theme.colors.secondary;
+      return colors.buttonSecondary;
     case "outline":
-      return theme.colors.transparent;
+      return colors.transparent;
     default:
-      return theme.colors.primary;
+      return colors.buttonPrimary;
   }
 };
 
 const getTextColor = (variant) => {
   switch (variant) {
     case "primary":
-      return theme.colors.text.white;
+      return colors.buttonPrimaryText;
     case "secondary":
-      return theme.colors.primary;
+      return colors.buttonSecondaryText;
     case "outline":
-      return theme.colors.primary;
+      return colors.buttonSecondaryText;
     default:
-      return theme.colors.text.white;
+      return colors.buttonPrimaryText;
   }
 };
 
 const getBorderColor = (variant) => {
-  if (variant === "outline") return theme.colors.primary;
-  return theme.colors.transparent;
+  if (variant === "outline" || variant === "secondary") return colors.buttonSecondaryBorder;
+  return colors.transparent;
 };
 
 export const ButtonContainer = styled.TouchableOpacity`
   background-color: ${(props) => getBackgroundColor(props.variant, props.disabled)};
-  border-radius: ${theme.borderRadius.md}px;
-  height: ${theme.componentHeight.button}px;
+  border-radius: ${borderRadius.md}px;
+  min-height: 56px;
+  padding: ${spacing.base}px;
   justify-content: center;
   align-items: center;
-  border-width: ${(props) => (props.variant === "outline" ? "2px" : "0px")};
+  border-width: ${(props) => (props.variant === "outline" || props.variant === "secondary" ? "1px" : "0px")};
   border-color: ${(props) => getBorderColor(props.variant)};
-  opacity: ${(props) => (props.disabled ? theme.opacity.disabled : 1)};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
 export const ButtonText = styled.Text`
-  font-size: ${theme.fontSize.lg}px;
-  font-weight: ${theme.fontWeight.bold};
+  font-size: ${typography.fontSize.md}px;
+  font-weight: ${typography.fontWeight.semiBold};
   color: ${(props) => getTextColor(props.variant)};
-  letter-spacing: 1px;
 `;

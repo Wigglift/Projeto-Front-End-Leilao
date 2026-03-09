@@ -13,9 +13,12 @@ import {
   MenuDivider,
 } from "./styles";
 
-export default function MenuDrawer({ visible, onClose, onLogout }) {
-  const handleMenuItemPress = () => {
+export default function MenuDrawer({ visible, onClose, onLogout, navigation }) {
+  const handleMenuItemPress = (screenName) => {
     onClose();
+    if (screenName && navigation) {
+      navigation.navigate(screenName);
+    }
   };
 
   return (
@@ -37,18 +40,25 @@ export default function MenuDrawer({ visible, onClose, onLogout }) {
               </DrawerHeader>
 
               <MenuList>
-                <MenuItem onPress={() => handleMenuItemPress()}>
+                <MenuItem onPress={() => handleMenuItemPress('Home')}>
                   <MenuItemIcon>
                     <Ionicons name="home-outline" size={24} color="#333" />
                   </MenuItemIcon>
                   <MenuItemText>Início</MenuItemText>
                 </MenuItem>
 
-                <MenuItem onPress={() => handleMenuItemPress()}>
+                <MenuItem onPress={() => handleMenuItemPress('Profile')}>
                   <MenuItemIcon>
                     <Ionicons name="person-outline" size={24} color="#333" />
                   </MenuItemIcon>
                   <MenuItemText>Meu Perfil</MenuItemText>
+                </MenuItem>
+
+                <MenuItem onPress={() => handleMenuItemPress('AuctionListForLots')}>
+                  <MenuItemIcon>
+                    <Ionicons name="cube-outline" size={24} color="#333" />
+                  </MenuItemIcon>
+                  <MenuItemText>Lotes</MenuItemText>
                 </MenuItem>
 
                 <MenuItem onPress={() => handleMenuItemPress()}>
