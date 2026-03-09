@@ -56,7 +56,7 @@ export default function Login({ navigation }) {
             showsVerticalScrollIndicator={false}
           >
             <Header>
-              <Title>Sistema de Leilão</Title>
+              <Title>BidLive</Title>
               <Subtitle>Por favor, faça login na sua conta existente.</Subtitle>
             </Header>
 
@@ -97,7 +97,7 @@ export default function Login({ navigation }) {
 
               <SignUpContainer>
                 <SignUpText>Não possui conta? </SignUpText>
-                <TextLink text="Criar conta" onPress={() => {}} bold />
+                <TextLink text="Criar conta" onPress={() => navigation.navigate("SignUp")} bold />
               </SignUpContainer>
             </FormContainer>
           </ScrollView>

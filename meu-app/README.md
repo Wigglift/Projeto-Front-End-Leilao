@@ -99,7 +99,7 @@ meu-app/
 
 Para desenvolvedores:
 - [Guia de Responsividade](./docs/responsividade.md) - Sistema de estilos e responsividade
-- [Integração da API](./docs/api-integration.md) - Documentação completa da integração com a API
+- [Guia de Testes](./TESTING.md) - Estrutura de testes, cobertura e boas práticas
 
 ## Scripts Disponíveis
 
@@ -108,28 +108,10 @@ npm start          # Inicia o Expo
 npm run android    # Inicia no emulador Android
 npm run ios        # Inicia no emulador iOS
 npm run web        # Inicia na web
+npm test           # Executa testes
+npm run test:watch # Executa testes em modo watch
+npm run test:coverage # Gera relatório de cobertura
 ```
-
-## API
-
-O aplicativo se conecta à API de leilões hospedada em:
-- **Base URL**: `http://ec2-3-20-227-42.us-east-2.compute.amazonaws.com:3000`
-
-### Autenticação
-- **URL**: `http://ec2-3-20-227-42.us-east-2.compute.amazonaws.com:3000/login`
-- **Método**: POST
-- **Credenciais**: Configuradas no authService
-- **Token**: Bearer JWT (expira em 2 horas)
-
-### Endpoints Principais
-- `GET /leiloes` - Lista todos os leilões
-- `GET /leiloes/tipo/:tipo` - Busca leilões por tipo
-- `GET /leiloes/localidade?cidade=X&estado=Y` - Busca por localidade
-- `GET /leiloes/intervalo_data/:dataInicial/:dataFinal` - Busca por intervalo de datas
-- `GET /leiloes/:id/lotes` - Lista lotes de um leilão
-- `GET /leiloes/tipos` - Lista todos os tipos
-- `GET /leiloes/leiloeiros` - Lista todos os leiloeiros
-- `GET /leiloes/cidades_estados` - Lista cidades e estados
 
 ## Protótipo da Aplicação
 

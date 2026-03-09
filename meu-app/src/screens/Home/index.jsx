@@ -7,6 +7,7 @@ import MenuDrawer from "../../components/styleds/MenuDrawer";
 import FilterModal from "../../components/styleds/FilterModal";
 import auctionService from "../../services/auctionService";
 import authService from "../../services/authService";
+import { moderateScale } from "../../utils/responsive";
 import {
     Container,
     Header,
@@ -128,10 +129,10 @@ export default function Home({navigation}) {
                     filters.startDate,
                     filters.endDate
                 );
-            } else if (filters.city && filters.state) {
+            } else if (filters.city || filters.state) {
                 data = await auctionService.getAuctionsByLocation(
-                    filters.city,
-                    filters.state
+                    filters.city || "",
+                    filters.state || ""
                 );
             } else if (filters.auctioneer) {
                 data = await auctionService.getAuctionsByAuctioneer(
@@ -200,7 +201,7 @@ export default function Home({navigation}) {
             <Header>
                 <HeaderTop>
                     <MenuButton onPress={() => setMenuVisible(true)}>
-                        <Ionicons name="menu" size={28} color="#333"/>
+                        <Ionicons name="menu" size={moderateScale(24)} color="#FFFFFF"/>
                     </MenuButton>
 
                     <LocationContainer>
@@ -209,13 +210,13 @@ export default function Home({navigation}) {
                     </LocationContainer>
 
                     <NotificationButton onPress={() => setFilterModalVisible(true)}>
-                        <Ionicons name="funnel-outline" size={28} color="#333"/>
+                        <Ionicons name="funnel-outline" size={moderateScale(24)} color="#FFFFFF"/>
                         {activeFilters && <NotificationBadge/>}
                     </NotificationButton>
                     
                     <NotificationButton onPress={() => {
                     }}>
-                        <Ionicons name="notifications-outline" size={28} color="#333"/>
+                        <Ionicons name="notifications-outline" size={moderateScale(24)} color="#FFFFFF"/>
                         <NotificationBadge/>
                     </NotificationButton>
                 </HeaderTop>
@@ -224,7 +225,7 @@ export default function Home({navigation}) {
                 <WelcomeText>{getGreeting()}</WelcomeText>
 
                 <SearchContainer>
-                    <Ionicons name="search" size={20} color="#999"/>
+                    <Ionicons name="search" size={moderateScale(20)} color="#999"/>
                     <SearchInput
                         placeholder="Buscar leilões, produtos..."
                         placeholderTextColor="#999"
@@ -245,7 +246,7 @@ export default function Home({navigation}) {
                         <SeeAllButton onPress={() => {
                         }}>
                             <SeeAllText>Ver Tudo</SeeAllText>
-                            <Ionicons name="chevron-forward" size={16} color="#ff6b35"/>
+                            <Ionicons name="chevron-forward" size={moderateScale(16)} color="#5A9FD4"/>
                         </SeeAllButton>
                     </SectionHeader>
 
@@ -268,7 +269,7 @@ export default function Home({navigation}) {
                         <SeeAllButton onPress={() => {
                         }}>
                             <SeeAllText>Ver Tudo</SeeAllText>
-                            <Ionicons name="chevron-forward" size={16} color="#ff6b35"/>
+                            <Ionicons name="chevron-forward" size={moderateScale(16)} color="#5A9FD4"/>
                         </SeeAllButton>
                     </SectionHeader>
 
@@ -304,7 +305,7 @@ export default function Home({navigation}) {
             </Content>
 
             <FloatingButton onPress={handleLiveAuction} activeOpacity={0.8}>
-                <Ionicons name="radio" size={24} color="#fff"/>
+                <Ionicons name="radio" size={moderateScale(24)} color="#fff"/>
                 <FloatingButtonText>Leilão Live</FloatingButtonText>
             </FloatingButton>
 
@@ -312,6 +313,7 @@ export default function Home({navigation}) {
                 visible={menuVisible}
                 onClose={() => setMenuVisible(false)}
                 onLogout={handleLogout}
+                navigation={navigation}
             />
             
             <FilterModal

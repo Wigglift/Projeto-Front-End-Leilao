@@ -24,7 +24,12 @@ Vamos implementar um sistema completo de responsividade utilizando a Dimensions 
 
 Primeiro, criaremos um módulo de responsividade (`src/utils/responsive.js`) que fornecerá funções de escala baseadas nas dimensões da tela. Definiremos um design base usando as dimensões do iPhone 11/12/13 (390x844px) como referência, e todas as escalas serão calculadas proporcionalmente a partir desta base. O módulo exportará funções como `moderateScale`, `horizontalScale`, `verticalScale` e `fontScale`, além de helpers prontos para uso como tokens de `spacing`, `fontSize` e `borderRadius` já calculados.
 
-Segundo, estabeleceremos um sistema de tema centralizado (`src/styles/theme.js`) que consumirá os valores responsivos e organizará todos os tokens de design da aplicação. Este tema incluirá paletas de cores completas, tamanhos de fonte escalados, espaçamentos padronizados, definições de sombra para as três plataformas, e alturas padrão de componentes. O tema será importado diretamente nos arquivos de estilo, sem necessidade de Context API neste momento.
+Segundo, estabeleceremos um sistema de tema modular centralizado (`src/theme/`) que consumirá os valores responsivos e organizará todos os tokens de design da aplicação. Este tema será composto por:
+- `src/theme/index.js` - Exportação centralizada de todos os tokens
+- `src/theme/colors.js` - Paleta de cores completa (80+ cores)
+- `src/theme/typography.js` - Sistema tipográfico
+
+O tema incluirá paletas de cores completas para dark theme, tamanhos de fonte escalados, espaçamentos padronizados, definições de sombra para as três plataformas, e alturas padrão de componentes. O tema será importado diretamente nos arquivos de estilo, sem necessidade de Context API neste momento.
 
 Vamos atualizar todos os componentes existentes em `src/components/styleds/` para utilizar os valores do tema ao invés de valores hardcoded. Cada componente passará a referenciar `theme.spacing.lg`, `theme.fontSize.xl`, `theme.colors.primary` e assim por diante. Para casos específicos onde os tokens do tema não são suficientes, as funções de escala estarão disponíveis para uso direto.
 
