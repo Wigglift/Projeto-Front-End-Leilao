@@ -6,6 +6,10 @@
   justify-content: center;
   align-items: center;
 
+  @include Index.responsivo(Index.$tablet) {
+    margin: 8.5em 0 8em 0;
+  }
+
   .banner__container {
     display: flex;
     justify-content: center;
@@ -33,6 +37,7 @@
         gap: 1.5em;
         @include Index.responsivo(Index.$desktop) {
           justify-content: center;
+          flex-direction: column;
         }
       }
     }
@@ -42,6 +47,9 @@
       }
       @include Index.responsivo(Index.$tablet) {
         width: 60%;
+      }
+      @include Index.responsivo(Index.$mobile) {
+        width: 50%;
       }
       img {
         width: 100%;

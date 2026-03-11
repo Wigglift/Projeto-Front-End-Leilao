@@ -9,6 +9,11 @@
   transition: 0.3s;
   color: Index.$primary-color;
 
+  @include Index.responsivo(Index.$tablet) {
+    display: flex;
+    justify-content: center;
+  }
+
   &:hover {
     background-color: Index.$primary-color;
     color: Index.$secondary-color;

@@ -7,7 +7,13 @@
   border-radius: 0.4em;
   font-weight: 500;
   color: Index.$secondary-color;
+  text-align: center;
   transition: 0.3s;
+
+  @include Index.responsivo(Index.$tablet) {
+    display: flex;
+    justify-content: center;
+  }
 
   &:hover {
     background-color: transparent;

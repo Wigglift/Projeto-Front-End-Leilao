@@ -21,7 +21,7 @@ h1 {
   font-size: 4rem;
   font-weight: 400;
   @include Index.responsivo(Index.$tablet) {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
