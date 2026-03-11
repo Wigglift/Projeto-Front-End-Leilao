@@ -1,84 +1,85 @@
 @use "../../assets/scss/Index.scss";
 
-.footer{
-        background-color: #01111E;
-        color: #c8d6e8;
-        font-size: 1em ;
-        border-top: 1px solid #1e3a5f;
-    }
+.footer {
+  background-color: #01111e;
+  color: #c8d6e8;
+  font-size: 1em;
+  border-top: 1px solid #1e3a5f;
 
-.footerGrid{
+  .footerGrid {
     max-width: 1200px;
     margin: 0 auto;
     padding: 36px 40px 28px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
-}
 
-.logo{
-    margin-bottom: 16px;
-    a {
-        img{
+    @include Index.responsivo(Index.$tablet) {
+      grid-template-columns: 1fr;
+    }
+
+    .footerLeft {
+      .logo {
+        margin-bottom: 16px;
+        a {
+          img {
             width: 12em;
+          }
         }
-    }
-}
-
-
-.footerLeft{
-    p{ 
+      }
+      p {
         color: Index.$tertiary-color;
         margin-bottom: 1em;
-        
+      }
     }
-}
 
-.footerCenter{
-    padding-left: 6em;
-}
-
-.sectionTitle{
-    color: #ffffff;
-    font-size: 1em;
-    margin-bottom: 1em;
-}
-
-.linksList{ 
-    list-style: none; 
-    
-    li{
-        margin-bottom: 0.5em;
+    .sectionTitle {
+      color: #ffffff;
+      font-size: 1em;
+      margin-bottom: 1em;
     }
-}
 
-.linksListItem{
-    color: #8aa3bf;
-    text-decoration: none;
-    transition: color 0.2s;
+    .footerCenter {
+      display: flex;
+      justify-content: center;
 
-    &:hover{
-        color: Index.$primary-color;
+      @include Index.responsivo(Index.$tablet) {
+        justify-content: flex-start;
+      }
+
+      .linksList {
+        list-style: none;
+
+        li {
+          margin-bottom: 0.5em;
+
+          .linksListItem {
+            color: #8aa3bf;
+            text-decoration: none;
+            transition: color 0.2s;
+
+            &:hover {
+              color: Index.$primary-color;
+            }
+          }
+        }
+      }
     }
-}
 
-.about{
-    color: Index.$primary-color;
-    text-decoration: none;
-}
-
-.footerRight{
-    p{ 
+    .footerRight {
+      p {
         color: Index.$tertiary-color;
         margin-bottom: 1em;
+      }
     }
-}
+  }
 
-.copyright{
+  .copyright {
     border-top: 1px solid #1e3a5f;
     text-align: center;
     padding: 14px 40px;
     color: Index.$primary-color;
     font-size: 1em;
     background: Index.$gradient;
+  }
 }

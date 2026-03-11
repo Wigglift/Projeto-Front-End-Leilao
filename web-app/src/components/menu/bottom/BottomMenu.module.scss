@@ -1,0 +1,29 @@
+@use "../../../assets/scss/Index.scss";
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+
+  li {
+    list-style: none;
+
+    &:last-child a {
+      color: Index.$primary-color;
+      border-bottom: 2px solid Index.$primary-color;
+    }
+
+    a {
+      padding-bottom: 0.5em;
+      font-weight: 500;
+      text-decoration: none;
+      color: Index.$tertiary-color;
+      transition: color 0.2s;
+
+      &:hover {
+        color: Index.$primary-color;
+        border-bottom: 2px solid Index.$primary-color;
+      }
+    }
+  }
+}
