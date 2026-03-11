@@ -1,21 +1,16 @@
 import styles from "./TopMenu.module.scss";
 
-export default function TopMenu() {
+export default function TopMenu({ links }) {
   return (
-    <nav>
+    <nav className={styles.navItems}>
       <ul className={styles.items}>
-        <li>
-          <a href=''>Home</a>
-        </li>
-        <li>
-          <a href=''>Serviços</a>
-        </li>
-        <li>
-          <a href=''>Vantagens</a>
-        </li>
-        <li>
-          <a href=''>Sobre</a>
-        </li>
+        {links.map((link, index) => {
+          return (
+            <li key={index}>
+              <a href=''>{link}</a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
