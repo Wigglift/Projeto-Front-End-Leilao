@@ -1,27 +1,42 @@
-import styles from "./LoginCard.module.scss"
+import styles from "./RegisterCard.module.scss";
 import { Link } from "react-router-dom";
+
 import { useState } from "react";
 
-export default function LoginBidLive() {
+export default function RegisterCard() {
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    alert(`Login com: ${email}`);
+    alert(`Cadastro com: ${nome}, ${email}, ${senha}`);
   };
 
   return (
     <div className={styles.page}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Bem vindo de volta</h1>
+        <h1 className={styles.title}>Cadastro</h1>
         <p className={styles.subtitle}>
-          Faça seu login para poder ter acesso ao{" "}
+          Faça seu cadastro para poder ter acesso ao{" "}
           <strong className={styles.brand}>BidLive.</strong>
         </p>
 
         <form onSubmit={handleLogin} className={styles.form}>
+
+            <div className={styles.field}>
+                <label className={styles.label}>NOME</label>
+                <input
+                type="text"
+                placeholder="Insira seu nome de usuario"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                className={styles.input}
+                onFocus={(e) => (e.target.style.borderColor = "#4a9eff")}
+                onBlur={(e) => (e.target.style.borderColor = "transparent")}
+                />
+            </div>
           <div className={styles.field}>
             <label className={styles.label}>E-MAIL</label>
             <input
@@ -72,14 +87,14 @@ export default function LoginBidLive() {
             onMouseEnter={(e) => (e.target.style.background = "#235c99")}
             onMouseLeave={(e) => (e.target.style.background = "#4a9eff")}
           >
-            Login
+            Cadastrar
           </button>
         </form>
 
         <p className={styles.cadastroText}>
-          Não possui conta?{" "}
-          <Link to='/register'>
-            <a href="#" className={styles.cadastroLink}>Cadastrar</a>
+          Já possui conta?{" "}
+          <Link to='/login'>
+            <a href="#" className={styles.cadastroLink}>Login</a>
           </Link>
         </p>
       </div>

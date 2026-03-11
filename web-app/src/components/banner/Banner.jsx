@@ -6,6 +6,7 @@ import styles from "./Banner.module.scss";
 import bid_icon from "../../assets/images/bid_icon.svg";
 import clock_icon from "../../assets/images/clock_icon.svg";
 import star_icon from "../../assets/images/star_icon.svg";
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   const infos = [
@@ -21,7 +22,9 @@ export default function Banner() {
             Sinta a emoção de acompanhar os <span className={styles.destaque}>melhores leilões</span> disponíveis <span className={styles.destaque}>ao vivo!</span>
           </h1>
           <div className={styles.botoes}>
-            <PrimaryButton texto='Cadastrar' />
+            <Link to='/register' className={styles.botoes}>
+              <PrimaryButton texto='Cadastrar' />
+            </Link>
             <SecondaryBtn texto='Baixar App' />
           </div>
 
