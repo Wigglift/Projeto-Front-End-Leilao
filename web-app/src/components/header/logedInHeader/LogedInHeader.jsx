@@ -25,6 +25,8 @@ export default function LogedInHeader() {
   const [isOpen, setIsOpen] = useState(true);
   const [search, setSearch] = useState("");
 
+  const options = [{ label: "Leilão Live", path: "/liveAuction" }, { label: "Tipos", path: "/" }, { label: "Cidades", path: "/" }];
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -37,8 +39,8 @@ export default function LogedInHeader() {
             <img src={logo} alt='Logo BidLive' title='Logo BidLive' />
           </Link>
         </div>
-        <Hamburguer links={["Leilão Live", "Tipos", "Cidades"]} isOpen={isOpen} toggleMenu={toggleMenu} />
-        <TopMenu links={["Leilão Live", "Tipos", "Cidades"]} />
+        <Hamburguer links={options} isOpen={isOpen} toggleMenu={toggleMenu} />
+        <TopMenu links={options} />
         <div className={styles.search_wrapper}>
           <span className={styles.search_icon}><SearchIcon /></span>
           <input
@@ -50,7 +52,7 @@ export default function LogedInHeader() {
           />
         </div>
         <div className={styles.btnContainer}>
-          <Link to='/'>
+          <Link to='/profile'>
             <div className={styles.user_icon}>
               <UserIcon />
             </div>

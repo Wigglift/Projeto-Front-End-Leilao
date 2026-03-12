@@ -30,7 +30,7 @@ export default function Hamburguer({ links, isOpen, toggleMenu }) {
             {links.map((link, index) => {
               return (
                 <li key={index}>
-                  <a href=''>{link}</a>
+                  <Link to={link.path}>{link.label}</Link>
                 </li>
               );
             })}

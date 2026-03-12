@@ -13,6 +13,7 @@ export default function Header() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const options = [{ label: "Home", path: "/" }, { label: "Serviços", path: "/" }, { label: "Vantagens", path: "/" }, { label: "Sobre", path: "/" }];
 
   return (
     <header className={styles.main}>
@@ -22,8 +23,8 @@ export default function Header() {
             <img src={logo} alt='Logo BidLive' title='Logo BidLive' />
           </Link>
         </div>
-        <Hamburguer links={["Home", "Serviços", "Vantagens", "Sobre"]} isOpen={isOpen} toggleMenu={toggleMenu} />
-        <TopMenu links={["Home", "Serviços", "Vantagens", "Sobre"]} />
+        <Hamburguer links={options} isOpen={isOpen} toggleMenu={toggleMenu} />
+        <TopMenu links={options} />
         <div className={styles.btnContainer}>
           <Link to='/login'>
             <PrimaryButton texto='Login' />

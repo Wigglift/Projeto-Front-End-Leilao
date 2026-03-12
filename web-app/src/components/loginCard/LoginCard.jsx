@@ -1,19 +1,23 @@
 import styles from "./LoginCard.module.scss"
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../contexts/auth/useAuth";
 
 export default function LoginBidLive() {
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
-  const {login} = useAuth();
+  const {login, user} = useAuth();
+  const navigate = useNavigate();
+
+  if(user) {
+    return <Navigate to="/liveAuction" />
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
-    let logedIn = true
-    login({logedIn, email, senha});
-    alert(`Login com: ${email}`);
+    let loggedIn = true
+    login({loggedIn, email, password});
   };
 
   return (
@@ -45,8 +49,8 @@ export default function LoginBidLive() {
               <input
                 type={mostrarSenha ? "text" : "password"}
                 placeholder="••••••••••"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className={`${styles.input} ${styles.inputPadding}`}
                 onFocus={(e) => (e.target.style.borderColor = "#4a9eff")}
                 onBlur={(e) => (e.target.style.borderColor = "transparent")}

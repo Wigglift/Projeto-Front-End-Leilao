@@ -1,4 +1,5 @@
 import styles from "./TopMenu.module.scss";
+import { Link } from "react-router-dom";
 
 export default function TopMenu({ links }) {
   return (
@@ -7,7 +8,7 @@ export default function TopMenu({ links }) {
         {links.map((link, index) => {
           return (
             <li key={index}>
-              <a href=''>{link}</a>
+              <Link to={link.path}>{link.label}</Link>
             </li>
           );
         })}

@@ -8,6 +8,8 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import { AuthProvider } from "./contexts/auth/AuthContext";
+import Profile from "./pages/profile/Profile";
+import LiveAuction from "./pages/liveAuction/LiveAuction";
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/liveAuction" element={<ProtectedRoute><LiveAuction /></ProtectedRoute>} />
         </Routes>
       </AuthProvider>
   );
