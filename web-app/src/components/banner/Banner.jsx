@@ -7,6 +7,7 @@ import bid_icon from "../../assets/images/bid_icon.svg";
 import clock_icon from "../../assets/images/clock_icon.svg";
 import star_icon from "../../assets/images/star_icon.svg";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/auth/useAuth";
 
 export default function Banner() {
   const infos = [
@@ -14,6 +15,8 @@ export default function Banner() {
     { titulo: "Disponível 24h por dia", resultado: "24/7", img: clock_icon, alternativo: "Ícone de Relógio" },
     { titulo: "Média de Avaliações", resultado: 8.5, img: star_icon, alternativo: "Ícone de Estrela" },
   ];
+
+  const {user} = useAuth();
   return (
     <section className={styles.banner}>
       <div className={`${styles.banner__container} container`}>

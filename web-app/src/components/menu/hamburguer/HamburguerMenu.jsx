@@ -4,8 +4,10 @@ import HamburguerIcon from "../../../assets/images/hamburguer_icon.svg";
 import CloseHamburguerIcon from "../../../assets/images/close_hamburguer_icon.svg";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/bidlive_logo.svg";
+import { useAuth } from "../../../contexts/auth/useAuth";
 
 export default function Hamburguer({ links, isOpen, toggleMenu }) {
+  const {user} = useAuth();
   return (
     <div className={styles.menu}>
       <a className={styles.menuHamburger} onClick={toggleMenu}>
@@ -34,9 +36,15 @@ export default function Hamburguer({ links, isOpen, toggleMenu }) {
             })}
           </ul>
           <div className={styles.btnContainer}>
-            <Link to='/login'>
-              <PrimaryBtn texto='Login' />
-            </Link>
+            {user ? (
+              <Link to='/profile'>
+                <PrimaryBtn texto='Perfil' />
+              </Link>
+            ) : (
+              <Link to='/login'>
+                <PrimaryBtn texto='Login' />
+              </Link>
+            )}
           </div>
         </nav>
       </div>

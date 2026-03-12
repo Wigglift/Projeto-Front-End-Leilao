@@ -2,7 +2,6 @@ import styles from "./RegisterCard.module.scss";
 import { Link } from "react-router-dom";
 
 import { useContext, useState } from "react";
-import { UserContext } from "../../contexts/auth/AuthProvider";
 
 export default function RegisterCard() {
   const [nome, setNome] = useState("");
