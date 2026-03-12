@@ -1,6 +1,7 @@
 import styles from "./LoginCard.module.scss"
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { use, useState } from "react";
+import { useAuth } from "../../contexts/auth/useAuth";
 
 export default function LoginBidLive() {
   const [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ export default function LoginBidLive() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    useAuth().login({ email, senha });
     alert(`Login com: ${email}`);
   };
 
