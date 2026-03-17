@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react";
 import {ActivityIndicator, RefreshControl, Alert} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
+import { useAuth } from "../../context/AuthContext";
 import CategoryChip from "../../components/styleds/CategoryChip";
 import AuctionCard from "../../components/styleds/AuctionCard";
 import MenuDrawer from "../../components/styleds/MenuDrawer";
 import FilterModal from "../../components/styleds/FilterModal";
 import auctionService from "../../services/auctionService";
-import authService from "../../services/authService";
 import { moderateScale } from "../../utils/responsive";
 import {
     Container,
@@ -35,6 +35,7 @@ import {
 } from "./styles";
 
 export default function Home({navigation}) {
+    const { signOut } = useAuth();
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [searchQuery, setSearchQuery] = useState("");
     const [categories, setCategories] = useState([]);
@@ -180,12 +181,7 @@ export default function Home({navigation}) {
                     style: "destructive",
                     onPress: async () => {
                         try {
-                            await authService.logout();
-                            
-                            navigation.reset({
-                                index: 0,
-                                routes: [{ name: "Login" }],
-                            });
+                            await signOut();
                         } catch (error) {
                             console.error("Erro no logout:", error);
                             Alert.alert("Erro", "Não foi possível fazer logout");
