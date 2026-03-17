@@ -4,6 +4,8 @@ import { moderateScale } from "../../utils/responsive";
 import {
   Container,
   Header,
+  HeaderTop,
+  HeaderTitle,
   BackButton,
   Content,
   InfoCard,
@@ -127,9 +129,12 @@ export default function LotDetails({ navigation, route }) {
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back" size={moderateScale(24)} color="#FFFFFF" />
-        </BackButton>
+        <HeaderTop>
+          <BackButton onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={moderateScale(24)} color="#FFFFFF" />
+          </BackButton>
+          <HeaderTitle>Detalhes do Lote</HeaderTitle>
+        </HeaderTop>
       </Header>
 
       <Content showsVerticalScrollIndicator={false}>
