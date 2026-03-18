@@ -22,7 +22,7 @@
     justify-content: space-between;
 
     .btnContainer {
-      @include Index.responsivo(Index.$tablet) {
+      @include Index.responsivo(Index.$large-tablet) {
         display: none;
       }
     }

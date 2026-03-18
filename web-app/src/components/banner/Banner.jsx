@@ -16,7 +16,7 @@ export default function Banner() {
     { titulo: "Média de Avaliações", resultado: 8.5, img: star_icon, alternativo: "Ícone de Estrela" },
   ];
 
-  const {user} = useAuth();
+  const { user } = useAuth();
   return (
     <section className={styles.banner}>
       <div className={`${styles.banner__container} container`}>
@@ -25,12 +25,9 @@ export default function Banner() {
             Sinta a emoção de acompanhar os <span className={styles.destaque}>melhores leilões</span> disponíveis <span className={styles.destaque}>ao vivo!</span>
           </h1>
           <div className={styles.botoes}>
-            <Link to='/register' className={styles.botoes}>
-              <PrimaryButton texto='Cadastrar' />
-            </Link>
+            <PrimaryButton texto='Cadastrar' destino='/register' />
             <SecondaryBtn texto='Baixar App' />
           </div>
-
           <Cards infos={infos} />
         </div>
         <div className={styles.devices}>

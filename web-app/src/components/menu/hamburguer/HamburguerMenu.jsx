@@ -34,17 +34,7 @@ export default function Hamburguer({ links, isOpen, toggleMenu }) {
               );
             })}
           </ul>
-          <div className={styles.btnContainer}>
-            {user ? (
-              <Link to='/profile'>
-                <PrimaryBtn texto='Perfil' />
-              </Link>
-            ) : (
-              <Link to='/login'>
-                <PrimaryBtn texto='Login' />
-              </Link>
-            )}
-          </div>
+          <div className={styles.btnContainer}>{user ? <PrimaryBtn texto='Perfil' destino='/profile' /> : <PrimaryBtn texto='Login' destino='/login' />}</div>
         </nav>
       </div>
     </div>

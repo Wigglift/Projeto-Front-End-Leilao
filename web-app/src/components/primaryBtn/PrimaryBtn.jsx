@@ -1,9 +1,10 @@
 import styles from "./PrimaryBtn.module.scss";
+import { Link } from "react-router-dom";
 
-export default function PrimaryButton({ texto }) {
+export default function PrimaryButton({ texto, destino }) {
   return (
-    <a href='' className={styles.button}>
+    <Link to={destino} className={styles.button}>
       {texto}
-    </a>
+    </Link>
   );
 }
