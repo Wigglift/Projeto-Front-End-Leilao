@@ -7,7 +7,7 @@ import logo from "../../../assets/images/bidlive_logo.svg";
 import { useAuth } from "../../../contexts/auth/useAuth";
 
 export default function Hamburguer({ links, isOpen, toggleMenu }) {
-  const {user} = useAuth();
+  const { user } = useAuth();
   return (
     <div className={styles.menu}>
       <a className={styles.menuHamburger} onClick={toggleMenu}>
@@ -18,7 +18,6 @@ export default function Hamburguer({ links, isOpen, toggleMenu }) {
           <Link to='/'>
             <img src={logo} alt='Logo BidLive' title='Logo BidLive' />
           </Link>
-
           <div className={styles.menuHamburger} onClick={toggleMenu}>
             <a>
               <img src={CloseHamburguerIcon} />

@@ -10,7 +10,7 @@
   text-align: center;
   transition: 0.3s;
 
-  @include Index.responsivo(Index.$tablet) {
+  @include Index.responsivo(Index.$large-tablet) {
     display: flex;
     justify-content: center;
   }

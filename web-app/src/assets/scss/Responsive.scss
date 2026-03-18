@@ -1,10 +1,11 @@
 $mobile: 576px;
 $tablet: 768px;
+$large-tablet: 950px;
 $desktop: 998px;
 $large-desktop: 1200px;
 
 @mixin responsivo($tamanho) {
-    @media (max-width: $tamanho) {
-        @content;
-    }
+  @media (max-width: $tamanho) {
+    @content;
+  }
 }

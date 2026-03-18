@@ -1,6 +1,6 @@
 @use "../../../assets/scss/Index.scss";
 .navItems {
-  @include Index.responsivo(Index.$tablet) {
+  @include Index.responsivo(Index.$large-tablet) {
     display: none;
   }
   .items {
@@ -15,6 +15,7 @@
         font-weight: 500;
         text-decoration: none;
         color: white;
+        white-space: nowrap;
 
         &:hover {
           color: Index.$primary-color;

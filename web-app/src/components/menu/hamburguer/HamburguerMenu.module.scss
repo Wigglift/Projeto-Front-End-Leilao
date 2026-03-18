@@ -3,8 +3,9 @@
 .menu {
   display: none;
 
-  @include Index.responsivo(Index.$tablet) {
+  @include Index.responsivo(Index.$large-tablet) {
     display: flex;
+    z-index: 1;
 
     .menuHamburger {
       align-self: flex-end;
