@@ -6,7 +6,6 @@ import styles from "./Banner.module.scss";
 import bid_icon from "../../assets/images/bid_icon.svg";
 import clock_icon from "../../assets/images/clock_icon.svg";
 import star_icon from "../../assets/images/star_icon.svg";
-import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/auth/useAuth";
 
 export default function Banner() {
@@ -19,8 +18,8 @@ export default function Banner() {
   const { user } = useAuth();
   return (
     <section className={styles.banner}>
-      <div className={`${styles.banner__container} container`}>
-        <div className={styles.texto__banner}>
+      <div className={`${styles.bannerContainer} container`}>
+        <div className={styles.textoBanner}>
           <h1>
             Sinta a emoção de acompanhar os <span className={styles.destaque}>melhores leilões</span> disponíveis <span className={styles.destaque}>ao vivo!</span>
           </h1>

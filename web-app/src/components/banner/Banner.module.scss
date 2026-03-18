@@ -1,16 +1,16 @@
 @use "../../Assets/Scss/Index.scss";
 
 .banner {
-  margin: 12em 0 10em 0;
+  margin: 8em 0 10em 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  @include Index.responsivo(Index.$tablet) {
-    margin: 8.5em 0 8em 0;
+  @include Index.responsivo(Index.$mobile) {
+    margin: 1.5em 0 6em 0;
   }
 
-  .banner__container {
+  .bannerContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,7 @@
       text-align: center;
     }
 
-    .texto__banner {
+    .textoBanner {
       max-width: 766px;
       display: flex;
       flex-direction: column;

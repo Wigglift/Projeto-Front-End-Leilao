@@ -5,7 +5,11 @@
   position: relative;
   padding: 2em 0 0 0;
 
-  .card__container {
+  @include Index.responsivo(Index.$tablet) {
+    width: 100%;
+  }
+
+  .cardContainer {
     padding: 0 0 2em 0;
     display: flex;
     justify-content: center;
@@ -15,20 +19,23 @@
     background: linear-gradient(102deg, rgba(0, 18, 31, 0.3) 46.24%, rgba(0, 47, 80, 0.3) 82.8%);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     transition: background-color 6s ease;
+
     &:hover {
       background: linear-gradient(102deg, rgba(0, 47, 80, 0.3) 46.24%, rgba(0, 18, 31, 0.3) 82.8%);
     }
-    .icone_bg {
+
+    .iconeBg {
       padding: 1em;
       position: absolute;
-      top: 0;
-      left: 38%;
+      top: 2em;
+      left: 50%;
       background-color: Index.$primary-color;
       border-radius: 50%;
       text-align: center;
+      transform: translate(-50%, -50%);
     }
 
-    .texto__card {
+    .textoCard {
       margin-top: 3em;
       text-align: center;
 
