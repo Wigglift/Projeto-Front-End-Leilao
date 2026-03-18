@@ -1,11 +1,9 @@
-import LogedInHeader from "../../components/header/logedInHeader/LogedInHeader";
+import LoggedInTemplate from "../../templates/loggedInTemplate/LoggedInTemplate";
 
 export default function Profile() {
-    return (
-            <>
-                <LogedInHeader />
-                    <h1>Live Auction</h1>
-                <footer />
-            </>
-        )
-    }
+  return (
+    <LoggedInTemplate>
+      <h2>Live Auction</h2>
+    </LoggedInTemplate>
+  );
+}

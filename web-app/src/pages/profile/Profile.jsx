@@ -1,12 +1,10 @@
-import LogedInHeader from "../../components/header/logedInHeader/LogedInHeader";
 import ProfileCard from "../../components/profileCard/ProfileCard";
+import LoggedInTemplate from "../../templates/loggedInTemplate/LoggedInTemplate";
 
 export default function Profile() {
-    return (
-            <>
-                <LogedInHeader />
-                <ProfileCard />
-                <footer />
-            </>
-        )
-    }
+  return (
+    <LoggedInTemplate>
+      <ProfileCard />
+    </LoggedInTemplate>
+  );
+}
