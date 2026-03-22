@@ -114,11 +114,6 @@ export default function Home({navigation}) {
     const handleAuctionPress = (auction) => {
         navigation.navigate("AuctionDetails", { auction });
     };
-
-    const handleLiveAuction = () => {
-        console.log("Navegar para leilões ao vivo");
-    };
-
     const handleApplyFilters = async (filters) => {
         try {
             setLoading(true);
@@ -173,8 +168,7 @@ export default function Home({navigation}) {
             [
                 {
                     text: "Cancelar",
-                    style: "cancel",
-                    onPress: () => console.log("Logout cancelado")
+                    style: "cancel"
                 },
                 {
                     text: "Sair",
@@ -279,17 +273,19 @@ export default function Home({navigation}) {
                         <AuctionsContainer>
                             {auctions.length > 0 ? (
                                 auctions.map((auction) => (
-                                    <AuctionCard
-                                        key={auction.id}
-                                        title={auction.titulo}
-                                        description={auction.descricao}
-                                        imageUrl={auction.imagemUrl}
-                                        currentBid={auction.currentBidFormatted}
-                                        timeRemaining={auction.timeRemaining}
-                                        totalBids={auction.totalLances}
-                                        onPress={() => handleAuctionPress(auction)}
-                                    />
-                                ))
+                                <AuctionCard
+                                    key={auction.id}
+                                    title={auction.titulo}
+                                    description={auction.descricao}
+                                    imageUrl={auction.imagemUrl}
+                                    auctioneer={auction.leiloeiro}
+                                    city={auction.cidade}
+                                    state={auction.estado}
+                                    date={auction.dataInicio}
+                                    totalLots={auction.totalLotes || 0}
+                                    onPress={() => handleAuctionPress(auction)}
+                                />
+                            ))
                             ) : (
                                 <SectionTitle style={{textAlign: "center", marginTop: 20}}>
                                     Nenhum leilão encontrado
@@ -300,7 +296,7 @@ export default function Home({navigation}) {
                 </Section>
             </Content>
 
-            <FloatingButton onPress={handleLiveAuction} activeOpacity={0.8}>
+            <FloatingButton activeOpacity={0.8}>
                 <Ionicons name="radio" size={moderateScale(24)} color="#fff"/>
                 <FloatingButtonText>Leilão Live</FloatingButtonText>
             </FloatingButton>

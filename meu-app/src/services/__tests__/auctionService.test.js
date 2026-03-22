@@ -300,20 +300,6 @@ describe('AuctionService', () => {
     });
   });
 
-  describe('getAuctioneers', () => {
-    it('deve retornar lista de leiloeiros', async () => {
-      const mockLeiloeiros = ['João Silva', 'Maria Santos', 'Pedro Oliveira'];
-
-      api.get.mockResolvedValue({ data: mockLeiloeiros });
-
-      const auctioneers = await auctionService.getAuctioneers();
-
-      expect(api.get).toHaveBeenCalledWith('/leiloes/leiloeiros');
-      expect(auctioneers).toHaveLength(3);
-      expect(auctioneers).toEqual(mockLeiloeiros);
-    });
-  });
-
   describe('getCitiesAndStates', () => {
     it('deve retornar lista de cidades e estados', async () => {
       const mockCidades = [

@@ -9,16 +9,26 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     checkAuth();
+    
+    // Verificar autenticação a cada 5 minutos (para detectar token expirado)
+    const interval = setInterval(checkAuth, 5 * 60 * 1000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   const checkAuth = async () => {
     try {
       const authenticated = await authService.isAuthenticated();
+      
+      if (!authenticated) {
+        await authService.logout();
+      }
+      
       setIsAuthenticated(authenticated);
+      setIsLoading(false);
     } catch (error) {
       console.error("Erro ao verificar autenticação:", error);
       setIsAuthenticated(false);
-    } finally {
       setIsLoading(false);
     }
   };

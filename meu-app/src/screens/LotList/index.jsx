@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ActivityIndicator, RefreshControl, Alert } from "react-native";
+import { GestureHandlerRootView, GestureDetector, Gesture } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import LotCard from "../../components/styleds/LotCard";
 import lotService from "../../services/lotService";
@@ -56,52 +57,69 @@ export default function LotList({ navigation, route }) {
     navigation.navigate("LotDetails", { lote, auction });
   };
 
-  return (
-    <Container>
-      <Header>
-        <HeaderTop>
-          <BackButton onPress={() => navigation.goBack()}>
-            <Ionicons name="chevron-back" size={moderateScale(24)} color="#FFFFFF" />
-          </BackButton>
-          <HeaderTitle>Lotes</HeaderTitle>
-        </HeaderTop>
-
-        <AuctionInfo>
-          <AuctionTitle numberOfLines={2}>{auction.titulo}</AuctionTitle>
-          <AuctionSubtitle>
-            {lotes.length} {lotes.length === 1 ? "lote disponível" : "lotes disponíveis"}
-          </AuctionSubtitle>
-        </AuctionInfo>
-      </Header>
-
-      <Content
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+  const handleGesture = () => {
+    return Gesture.Pan()
+      .minDistance(30)
+      .onEnd((event) => {
+        const isHorizontalSwipe = Math.abs(event.translationX) > Math.abs(event.translationY) * 1.5;
+        const isRightSwipe = event.translationX > 80;
+        
+        if (isHorizontalSwipe && isRightSwipe) {
+          navigation.goBack();
         }
-      >
-        {loading ? (
-          <LoadingContainer>
-            <ActivityIndicator size="large" color="#5A9FD4" />
-          </LoadingContainer>
-        ) : lotes.length > 0 ? (
-          <ListContainer>
-            {lotes.map((lote) => (
-              <LotCard
-                key={lote.id}
-                lote={lote}
-                onPress={() => handleLotPress(lote)}
-              />
-            ))}
-          </ListContainer>
-        ) : (
-          <EmptyContainer>
-            <Ionicons name="cube-outline" size={moderateScale(80)} color="#999" />
-            <EmptyText>
-              Nenhum lote disponível{"\n"}para este leilão
-            </EmptyText>
-          </EmptyContainer>
-        )}
-      </Content>
-    </Container>
+      });
+  };
+
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Container>
+        <GestureDetector gesture={handleGesture()}>
+          <Header>
+            <HeaderTop>
+              <BackButton onPress={() => navigation.goBack()}>
+                <Ionicons name="chevron-back" size={moderateScale(24)} color="#FFFFFF" />
+              </BackButton>
+              <HeaderTitle>Lotes</HeaderTitle>
+            </HeaderTop>
+
+            <AuctionInfo>
+              <AuctionTitle numberOfLines={2}>{auction.titulo}</AuctionTitle>
+              <AuctionSubtitle>
+                {lotes.length} {lotes.length === 1 ? "lote disponível" : "lotes disponíveis"}
+              </AuctionSubtitle>
+            </AuctionInfo>
+          </Header>
+        </GestureDetector>
+
+          <Content
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
+            {loading ? (
+              <LoadingContainer>
+                <ActivityIndicator size="large" color="#5A9FD4" />
+              </LoadingContainer>
+            ) : lotes.length > 0 ? (
+              <ListContainer>
+                {lotes.map((lote) => (
+                  <LotCard
+                    key={lote.id}
+                    lote={lote}
+                    onPress={() => handleLotPress(lote)}
+                  />
+                ))}
+              </ListContainer>
+            ) : (
+              <EmptyContainer>
+                <Ionicons name="cube-outline" size={moderateScale(80)} color="#999" />
+                <EmptyText>
+                  Nenhum lote disponível{"\n"}para este leilão
+                </EmptyText>
+              </EmptyContainer>
+              )}
+            </Content>
+        </Container>
+    </GestureHandlerRootView>
   );
 }

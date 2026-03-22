@@ -42,8 +42,23 @@ const lotService = {
       });
 
       return response.data
-        .filter(lote => this.isValidLote(lote))
-        .map(lote => this.mapLoteData(lote));
+        .map(lote => this.mapLoteData(lote))
+        .filter(lote => lote !== null)
+        .sort((a, b) => {
+          const countItems = (lote) => {
+            let count = 0;
+            const itemFields = ['ar', 'vidro_eletrico', 'direcao', 'automatico', 'manual_proprietario', 'kit_gas', 'estepe'];
+            itemFields.forEach(field => {
+              if (lote[field] === 1 || lote[field] === true) count++;
+            });
+            return count;
+          };
+          
+          const itemsA = countItems(a);
+          const itemsB = countItems(b);
+          
+          return itemsB - itemsA;
+        });
     } catch (error) {
       console.error("Erro ao buscar lotes:", error);
       throw error;
@@ -168,25 +183,20 @@ const lotService = {
   },
 
   /**
-   * Valida se um lote tem dados mínimos válidos
-   * @param {Object} lote - Objeto do lote
-   * @returns {boolean}
-   */
-  isValidLote(lote) {
-    return (
-      lote &&
-      lote.id &&
-      lote.leilao_id &&
-      parseFloat(lote.valor_inicial) >= 0
-    );
-  },
-
-  /**
    * Mapeia e formata os dados do lote
    * @param {Object} lote - Dados brutos do lote
    * @returns {Object} - Lote formatado
    */
   mapLoteData(lote) {
+    if (!lote || typeof lote !== 'object') {
+      console.warn('mapLoteData: lote inválido recebido:', lote);
+      return null;
+    }
+    
+    if (!lote.id) {
+      return null;
+    }
+
     return {
       id: lote.id,
       leilaoId: lote.leilao_id,
@@ -220,7 +230,7 @@ const lotService = {
       emissaoLaudoCsv: lote.emissao_laudo_csv,
       chassiOxidacao: lote.chassi_oxidacao,
       cambioObstruido: lote.cambio_obstruido,
-      cambioPericiado: lote.cambio_periciado,
+      FCXcambioPericiado: lote.cambio_periciado,
       manualProprietario: lote.manual_proprietario,
       documentoGnv: lote.documento_gnv,
       kitGas: lote.kit_gas,

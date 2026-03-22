@@ -13,37 +13,106 @@ describe('lotService', () => {
     authService.getToken.mockResolvedValue(mockToken);
   });
 
-  it('deve buscar lotes com sucesso', async () => {
-    const mockLotes = [
-      {
-        id: 1,
-        leilao_id: 1,
-        valor_inicial: '15000.00',
-        marca: 'FIAT',
-      },
-    ];
+  describe('getLotesByLeilao', () => {
+    it('deve buscar lotes com sucesso', async () => {
+      const mockLotes = [
+        {
+          id: 1,
+          leilao_id: 1,
+          valor_inicial: '15000.00',
+          marca: 'FIAT',
+        },
+      ];
 
-    api.get.mockResolvedValue({ data: mockLotes });
+      api.get.mockResolvedValue({ data: mockLotes });
 
-    const result = await lotService.getLotesByLeilao(1);
+      const result = await lotService.getLotesByLeilao(1);
 
-    expect(result).toHaveLength(1);
-    expect(api.get).toHaveBeenCalled();
+      expect(result).toHaveLength(1);
+      expect(api.get).toHaveBeenCalled();
+    });
+
+    it('deve ordenar lotes por quantidade de itens (maior primeiro)', async () => {
+      const mockLotes = [
+        {
+          id: 1,
+          leilao_id: 1,
+          valor_inicial: '15000.00',
+          marca: 'FIAT',
+          ar: 1,
+          vidro_eletrico: 1,
+          direcao: 1,
+          automatico: 1,
+          manual_proprietario: 0,
+          kit_gas: 0,
+          estepe: 0, // 4 itens
+        },
+        {
+          id: 2,
+          leilao_id: 1,
+          valor_inicial: '20000.00',
+          marca: 'VW',
+          ar: 1,
+          vidro_eletrico: 1,
+          direcao: 1,
+          automatico: 1,
+          manual_proprietario: 1,
+          kit_gas: 1,
+          estepe: 1, // 7 itens (deve vir primeiro)
+        },
+        {
+          id: 3,
+          leilao_id: 1,
+          valor_inicial: '10000.00',
+          marca: 'CHEVROLET',
+          ar: 1,
+          vidro_eletrico: 0,
+          direcao: 0,
+          automatico: 0,
+          manual_proprietario: 0,
+          kit_gas: 0,
+          estepe: 0, // 1 item (deve vir último)
+        },
+      ];
+
+      api.get.mockResolvedValue({ data: mockLotes });
+
+      const result = await lotService.getLotesByLeilao(1);
+
+      expect(result).toHaveLength(3);
+      expect(result[0].id).toBe(2); // 7 itens - primeiro
+      expect(result[1].id).toBe(1); // 4 itens - meio
+      expect(result[2].id).toBe(3); // 1 item - último
+    });
+
+    it('deve remover lotes com erro de mapeamento', async () => {
+      const mockLotes = [
+        {
+          id: 1,
+          leilao_id: 1,
+          valor_inicial: '15000.00',
+          marca: 'FIAT',
+        },
+        {
+          id: null, // inválido - deve ser removido
+          leilao_id: 1,
+          valor_inicial: '20000.00',
+          marca: 'VW',
+        },
+      ];
+
+      api.get.mockResolvedValue({ data: mockLotes });
+
+      const result = await lotService.getLotesByLeilao(1);
+
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toBe(1);
+    });
   });
 
   it('deve formatar valor como moeda', () => {
     const result = lotService.formatCurrency(15000);
     expect(result).toContain('R$');
-  });
-
-  it('deve validar lote válido', () => {
-    const lote = {
-      id: 1,
-      leilao_id: 1,
-      valor_inicial: '15000.00',
-    };
-
-    expect(lotService.isValidLote(lote)).toBe(true);
   });
 
   it('deve mapear dados do lote corretamente', () => {

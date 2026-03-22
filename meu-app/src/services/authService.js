@@ -29,7 +29,9 @@ const authService = {
       const { accessToken } = response.data;
 
       if (accessToken) {
-        await this.saveToken(accessToken);
+        // Padrão de 2 horas para expiração do token
+        const expiryTime = Date.now() + 2 * 60 * 60 * 1000;
+        await this.saveToken(accessToken, expiryTime);
         return { success: true, token: accessToken };
       }
 
@@ -42,18 +44,19 @@ const authService = {
         );
       } else if (error.request) {
         throw new Error("Erro de conexão - verifique sua internet");
+      } else {
+        throw new Error("Erro ao fazer login");
       }
-      throw error;
     }
   },
 
   /**
-   * Salva o token e define tempo de expiração (2 horas)
+   * Salva o token com tempo de expiração fixo de 2 horas
    * @param {string} token - Token JWT
+   * @param {number} expiryTime - Tempo de expiração em milisegundos
    */
-  async saveToken(token) {
+  async saveToken(token, expiryTime) {
     try {
-      const expiryTime = Date.now() + 2 * 60 * 60 * 1000; // 2 horas
       await AsyncStorage.setItem(TOKEN_KEY, token);
       await AsyncStorage.setItem(TOKEN_EXPIRY_KEY, expiryTime.toString());
     } catch (error) {
@@ -93,7 +96,13 @@ const authService = {
    */
   async isAuthenticated() {
     const token = await this.getToken();
-    return !!token;
+    const isAuth = !!token;
+
+    if (!isAuth) {
+      await this.clearToken();
+    }
+    
+    return isAuth;
   },
 
   /**

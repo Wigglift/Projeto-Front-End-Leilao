@@ -19,12 +19,22 @@ import {
   LanceContainer,
   LanceLabel,
   LanceValue,
+  ErrorContainer,
+  ErrorText,
 } from "./styles";
 
 export default function LotCard({
   lote,
   onPress,
 }) {
+  if (!lote || !lote.id) {
+    return (
+      <ErrorContainer onPress={onPress} activeOpacity={0.7}>
+        <ErrorText>Lote indisponível</ErrorText>
+      </ErrorContainer>
+    );
+  }
+
   const getTipoBadgeColor = (tipo) => {
     if (tipo === "MEDIA_MONTA") {
       return { bg: "#FFF3E0", text: "#F57C00" };
@@ -46,7 +56,7 @@ export default function LotCard({
     }
 
     if (parts.length === 0) {
-      return `Lote #${lote.id}`;
+      return "Veículo não identificado";
     }
 
     return parts.join(" ");
@@ -60,6 +70,15 @@ export default function LotCard({
       return `${lote.anoFabricacao}`;
     }
     return null;
+  };
+
+  const getItemCount = (lote) => {
+    let count = 0;
+    const itemFields = ['ar', 'vidroEletrico', 'direcao', 'automatico', 'manualProprietario', 'kitGas', 'estepe'];
+    itemFields.forEach(field => {
+      if (lote[field] === 1 || lote[field] === true) count++;
+    });
+    return count;
   };
 
   return (
@@ -100,6 +119,11 @@ export default function LotCard({
               <DetailText>{lote.km.toLocaleString()} km</DetailText>
             </DetailItem>
           )}
+
+          <DetailItem>
+            <Ionicons name="cube-outline" size={moderateScale(16)} color="#999" />
+            <DetailText>{getItemCount(lote)} itens</DetailText>
+          </DetailItem>
 
           {lote.cidadeDocumento && (
             <DetailItem>

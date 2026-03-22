@@ -138,7 +138,6 @@ src/
 
 ### 8. Componente CategoryChip
 **Arquivo:** `src/components/styleds/CategoryChip/__tests__/CategoryChip.test.jsx`
-**Total de testes:** 6
 
 **Cobertura:**
 - Renderiza com texto e ícone
@@ -150,7 +149,6 @@ src/
 
 ### 9. Componente MenuDrawer
 **Arquivo:** `src/components/styleds/MenuDrawer/__tests__/MenuDrawer.test.jsx`
-**Total de testes:** 10
 
 **Cobertura:**
 - Renderiza menu quando visível
@@ -166,7 +164,6 @@ src/
 
 ### 10. Componente BidConfirmationModal
 **Arquivo:** `src/components/styleds/BidConfirmationModal/__tests__/BidConfirmationModal.test.jsx`
-**Total de testes:** 8
 
 **Cobertura:**
 - Renderiza modal quando visível
@@ -179,7 +176,6 @@ src/
 
 ### 11. Componente FilterModal
 **Arquivo:** `src/components/styleds/FilterModal/__tests__/FilterModal.test.jsx`
-**Total de testes:** 10
 
 **Cobertura:**
 - Renderiza modal quando visível
@@ -195,24 +191,63 @@ src/
 
 ### 12. Tela AuctionDetails (Integração)
 **Arquivo:** `src/screens/AuctionDetails/__tests__/AuctionDetails.test.jsx`
-**Total de testes:** 17
 
 **Cobertura:**
-- Renderiza detalhes do leilão corretamente
-- Timer de 60 segundos inicia automaticamente
-- Timer decrementa a cada segundo
-- Timer chega a zero e abre modal de finalização
-- Botões de lance rápido (R$ 26k, R$ 28k, R$ 32k, R$ 35k)
-- Abrir modal de lance customizado
-- Validação de lance mínimo no modal customizado
-- Modal de confirmação de lance abre corretamente
-- Confirmação de lance exibe Alert de sucesso
-- Cancelamento de lance fecha modal
-- Modal de leilão finalizado exibe mensagem de vitória
-- Fechar modal de finalização navega de volta
-- Timer limpa interval ao desmontar componente
-- Navegação funciona corretamente
-- Todos os modais funcionam corretamente
+- Renderiza informações básicas do leilão (título, leiloeiro, cidade)
+- Exibe descrição do leilão quando disponível
+- Lida com múltiplas ocorrências do mesmo texto (leiloeiro aparece 2x)
+
+### 13. Componente LotCard
+**Arquivo:** `src/components/styleds/LotCard/__tests__/LotCard.test.jsx`
+
+**Cobertura:**
+- Renderiza informações básicas (marca, modelo, preço, ano, combustível)
+- Formatação correta de quilometragem (50,000 km)
+- Exibe contador de itens corretamente (5 itens)
+- Lida com ausência de marca/modelo (Veículo não identificado)
+- Callback onPress
+- Edge cases e dados incompletos
+
+### 14. Tela LotList (Integração)
+**Arquivo:** `src/screens/LotList/__tests__/LotList.test.jsx`
+
+**Cobertura:**
+- Carrega lotes ao iniciar com ordenação por ID decrescente
+- Exibe mensagem de carregamento e estado vazio
+- Navega para LotDetails ao clicar em LotCard
+- Tratamento de erros de rede (console.error esperado)
+- Mocks de navegação e gesture handling
+
+### 15. Serviço de Lotes
+**Arquivo:** `src/services/__tests__/lotService.test.js`
+
+**Cobertura:**
+- getLotesByLeilao ordena por ID decrescente (mais recentes primeiro)
+- mapLoteData formata dados corretamente (km, preço, contagem)
+- Lida com dados ausentes e inválidos
+- Cálculo de contagem de itens (ar, vidro_eletrico, etc.)
+- Tratamento de erros em todas as operações
+
+### 16. Componente LotFilterModal
+**Arquivo:** `src/components/styleds/LotFilterModal/__tests__/LotFilterModal.test.jsx`
+
+**Cobertura:**
+- Renderiza modal quando visível
+- Carrega opções de filtros (tipos, anos, combustíveis)
+- Aplica filtros corretamente
+- Limpa filtros ao resetar
+- Tratamento de erros de carregamento
+- Estados loading e interações do usuário
+
+### 17. Serviço de Foto do Usuário
+**Arquivo:** `src/services/__tests__/userPhotoService.test.js`
+
+**Cobertura:**
+- Obtém foto do usuário com sucesso
+- Remove foto do usuário corretamente
+- Tratamento de erros (console.error esperado)
+- Validação de URI e dados
+- Estados de sucesso e falha
 
 ## Mocks Configurados
 
@@ -270,3 +305,5 @@ npm test -- --verbose
 - [React Testing Library Docs](https://callstack.github.io/react-native-testing-library/)
 - [Jest Docs](https://jestjs.io/)
 - [Testing Best Practices](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
+- [React Testing Library Cheatsheet](https://testing-library.com/docs/react-native-testing-library/docs/intro)
+- [Jest Matchers Reference](https://jestjs.io/docs/using-matchers)
