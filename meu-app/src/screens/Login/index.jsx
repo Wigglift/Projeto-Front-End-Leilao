@@ -4,7 +4,7 @@ import Input from "../../components/styleds/Input";
 import Button from "../../components/styleds/Button";
 import Checkbox from "../../components/styleds/Checkbox";
 import TextLink from "../../components/styleds/TextLink";
-import authService from "../../services/authService";
+import { useAuth } from "../../context/AuthContext";
 import {
   Container,
   Header,
@@ -17,6 +17,7 @@ import {
 } from "./styles";
 
 export default function Login({ navigation }) {
+  const { signIn } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -30,8 +31,7 @@ export default function Login({ navigation }) {
 
     setLoading(true);
     try {
-      await authService.login(username, password);
-      navigation.navigate("Home");
+      await signIn(username, password);
     } catch (error) {
       Alert.alert(
         "Erro no Login",

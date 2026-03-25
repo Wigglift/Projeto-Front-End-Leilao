@@ -26,7 +26,6 @@ const SignUp = ({ navigation }) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      console.log('Cadastro realizado:', { name, email, password });
       navigation.navigate('Login');
     }, 1500);
   };

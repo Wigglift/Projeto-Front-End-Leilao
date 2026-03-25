@@ -8,25 +8,38 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-  height: 60px;
-  justify-content: center;
+  background-color: ${colors.backgroundSecondary};
+  padding: ${spacing.xl}px ${spacing.base}px ${spacing.lg}px;
+  shadow-color: ${shadows.sm.shadowColor};
+  shadow-offset: ${shadows.sm.shadowOffset.width}px ${shadows.sm.shadowOffset.height}px;
+  shadow-opacity: ${shadows.sm.shadowOpacity};
+  shadow-radius: ${shadows.sm.shadowRadius}px;
+  elevation: ${shadows.sm.elevation};
+`;
+
+export const HeaderTop = styled.View`
+  flex-direction: row;
   align-items: center;
-  position: relative;
+  padding-top: ${spacing.lg}px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  position: absolute;
-  left: ${spacing.base}px;
-  top: ${spacing.base}px;
   width: ${moderateScale(44)}px;
   height: ${moderateScale(44)}px;
   min-width: 40px;
   min-height: 40px;
-  background-color: ${colors.backgroundCard};
-  border-radius: ${moderateScale(22)}px;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  background-color: ${colors.backgroundCard};
+  border-radius: ${moderateScale(22)}px;
+`;
+
+export const HeaderTitle = styled.Text`
+  font-size: ${typography.fontSize.xxl}px;
+  font-weight: ${typography.fontWeight.bold};
+  color: ${colors.text};
+  flex: 1;
+  text-align: center;
 `;
 
 export const Content = styled.ScrollView`

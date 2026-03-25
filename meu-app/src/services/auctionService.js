@@ -34,7 +34,7 @@ const mapAuctionData = (apiAuction) => {
     id: apiAuction.id?.toString(),
     titulo: `${tipo} - ${cidade}`,
     descricao: `Leilão realizado em ${cidade}, ${estado}. ${apiAuction.leiloeiro ? `Leiloeiro: ${apiAuction.leiloeiro}` : ""}`.trim(),
-    imagemUrl: `https://picsum.photos/800/600?random=${apiAuction.id}`,
+    imagemUrl: `https://picsum.photos/seed/auction-${apiAuction.id}/400/300.jpg`,
     lanceAtual: 0,
     lanceMinimo: 100,
     dataInicio: apiAuction.data,
@@ -46,6 +46,7 @@ const mapAuctionData = (apiAuction) => {
     leiloeiro: apiAuction.leiloeiro || null,
     horario: apiAuction.horario,
     timeRemaining: calculateTimeRemaining(auctionDate.toISOString()),
+    totalLotes: apiAuction.total_lotes || apiAuction.totalLotes || 0,
     currentBidFormatted: formatCurrency(0),
     totalLances: 0,
     participantes: 0,
@@ -288,24 +289,6 @@ const auctionService = {
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar cidades e estados:", error);
-      throw error;
-    }
-  },
-
-  /**
-   * Busca lotes de um leilão específico
-   * @param {string} leilaoId - ID do leilão
-   * @param {Object} filters - Filtros opcionais
-   * @returns {Promise<Array>} - Array de lotes
-   */
-  async getAuctionLots(leilaoId, filters = {}) {
-    try {
-      const response = await api.get(`/leiloes/${leilaoId}/lotes`, {
-        params: filters,
-      });
-      return response.data;
-    } catch (error) {
-      console.error("Erro ao buscar lotes do leilão:", error);
       throw error;
     }
   },

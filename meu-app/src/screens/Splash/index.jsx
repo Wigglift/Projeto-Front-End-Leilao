@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
-import { StatusBar } from 'react-native';
-import Logo from '../../components/Logo';
-import { colors } from '../../theme';
-import { Container } from './styles';
+import { useEffect } from "react";
+import { StatusBar } from "react-native";
+import Logo from "../../components/Logo";
+import { colors } from "../../theme";
+import { useAuth } from "../../context/AuthContext";
+import { Container } from "./styles";
 
-const Splash = ({ navigation }) => {
+export default function Splash({ navigation }) {
+  const { isAuthenticated } = useAuth();
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate('Welcome');
+      if (isAuthenticated) {
+        navigation.reset({ index: 0, routes: [{ name: "Home" }] });
+      } else {
+        navigation.navigate("Welcome");
+      }
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [navigation]);
+  }, [navigation, isAuthenticated]);
 
   return (
     <Container>
@@ -19,6 +26,4 @@ const Splash = ({ navigation }) => {
       <Logo size={48} />
     </Container>
   );
-};
-
-export default Splash;
+}

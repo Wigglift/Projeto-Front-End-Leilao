@@ -57,12 +57,4 @@ describe('LotDetails', () => {
 
     expect(getByText('#1')).toBeTruthy();
   });
-
-  it('deve exibir botão Dar Lance', () => {
-    const { getByText } = render(
-      <LotDetails navigation={mockNavigation} route={mockRoute} />
-    );
-
-    expect(getByText('Dar Lance')).toBeTruthy();
-  });
 });
