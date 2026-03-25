@@ -106,67 +106,11 @@ export const DescriptionText = styled.Text`
   color: ${colors.textSecondary};
 `;
 
-export const BidSection = styled.View`
+export const AuctionInfo = styled.View`
   margin-bottom: ${spacing.xl}px;
 `;
 
-export const BidInfoRow = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  gap: ${spacing.md}px;
-`;
-
-export const BidInfoCard = styled.View`
-  flex: 1;
-  background-color: ${colors.backgroundSecondary};
-  padding: ${spacing.lg}px;
-  border-radius: ${borderRadius.md}px;
-`;
-
-export const BidLabel = styled.Text`
-  font-size: ${typography.fontSize.sm}px;
-  color: ${colors.textMuted};
-  margin-bottom: ${spacing.xs}px;
-`;
-
-export const BidValue = styled.Text`
-  font-size: ${typography.fontSize.xxxl}px;
-  font-weight: ${typography.fontWeight.bold};
-  color: ${props => props.primary ? colors.primary : colors.text};
-  margin-bottom: ${spacing.xs}px;
-`;
-
-export const LiveBadge = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-top: ${spacing.xs}px;
-`;
-
-export const LiveDot = styled.View`
-  width: 8px;
-  height: 8px;
-  border-radius: 4px;
-  background-color: ${colors.success};
-  margin-right: ${spacing.xs}px;
-`;
-
-export const LiveText = styled.Text`
-  font-size: ${typography.fontSize.sm}px;
-  font-weight: ${props => props.bold ? typography.fontWeight.semiBold : typography.fontWeight.regular};
-  color: ${props => props.primary ? colors.primary : colors.textSecondary};
-`;
-
-export const BidsCount = styled.Text`
-  font-size: ${typography.fontSize.sm}px;
-  color: ${colors.textSecondary};
-  margin-left: auto;
-`;
-
-export const BidsList = styled.View`
-  margin-top: ${spacing.lg}px;
-`;
-
-export const BidItem = styled.View`
+export const InfoRow = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -175,101 +119,17 @@ export const BidItem = styled.View`
   border-bottom-color: ${colors.border};
 `;
 
-export const BidderInfo = styled.View`
-  flex-direction: row;
-  align-items: center;
-  gap: ${spacing.sm}px;
-`;
-
-export const BidderAvatar = styled.Image`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-`;
-
-export const BidderName = styled.Text`
+export const InfoLabel = styled.Text`
   font-size: ${typography.fontSize.base}px;
   font-weight: ${typography.fontWeight.medium};
-  color: ${colors.text};
+  color: ${colors.textSecondary};
+  flex: 1;
 `;
 
-export const BidTime = styled.Text`
-  font-size: ${typography.fontSize.sm}px;
-  color: ${colors.textMuted};
-`;
-
-export const BidAmount = styled.Text`
-  font-size: ${typography.fontSize.lg}px;
-  font-weight: ${typography.fontWeight.semiBold};
-  color: ${colors.text};
-`;
-
-export const QuickBidsContainer = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: ${spacing.sm}px;
-  margin-bottom: ${spacing.lg}px;
-`;
-
-export const QuickBidButton = styled.TouchableOpacity`
-  padding: ${spacing.md}px ${spacing.lg}px;
-  border-radius: ${borderRadius.md}px;
-  border-width: 1px;
-  border-color: ${props => props.selected ? colors.primary : colors.border};
-  background-color: ${props => props.selected ? colors.primaryLight : colors.backgroundSecondary};
-`;
-
-export const QuickBidText = styled.Text`
+export const InfoValue = styled.Text`
   font-size: ${typography.fontSize.base}px;
-  font-weight: ${typography.fontWeight.medium};
-  color: ${props => props.selected ? colors.primary : colors.text};
-`;
-
-export const CustomBidButton = styled.TouchableOpacity`
-  padding: ${spacing.md}px ${spacing.lg}px;
-  border-radius: ${borderRadius.md}px;
-  background-color: ${props => props.selected ? colors.text : colors.backgroundSecondary};
-`;
-
-export const CustomBidText = styled.Text`
-  font-size: ${typography.fontSize.base}px;
-  font-weight: ${typography.fontWeight.medium};
+  font-weight: ${typography.fontWeight.regular};
   color: ${colors.text};
-`;
-
-export const PlaceBidButton = styled.TouchableOpacity`
-  background-color: ${colors.primary};
-  padding: ${spacing.lg}px;
-  border-radius: ${borderRadius.md}px;
-  align-items: center;
-  shadow-color: ${shadows.md.shadowColor};
-  shadow-offset: ${shadows.md.shadowOffset.width}px ${shadows.md.shadowOffset.height}px;
-  shadow-opacity: ${shadows.md.shadowOpacity};
-  shadow-radius: ${shadows.md.shadowRadius}px;
-  elevation: ${shadows.md.elevation};
-`;
-
-export const PlaceBidText = styled.Text`
-  font-size: ${typography.fontSize.lg}px;
-  font-weight: ${typography.fontWeight.bold};
-  color: #FFFFFF;
-`;
-
-export const ViewLotsButton = styled.TouchableOpacity`
-  background-color: ${colors.backgroundCard};
-  padding: ${spacing.lg}px;
-  border-radius: ${borderRadius.md}px;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-  border: 1px solid ${colors.primary};
-  margin-top: ${spacing.md}px;
-  margin-bottom: ${spacing.lg}px;
-`;
-
-export const ViewLotsText = styled.Text`
-  font-size: ${typography.fontSize.base}px;
-  font-weight: ${typography.fontWeight.semiBold};
-  color: ${colors.primary};
-  margin-left: ${spacing.sm}px;
+  flex: 2;
+  text-align: right;
 `;

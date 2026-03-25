@@ -38,41 +38,8 @@ export const Description = styled.Text`
   margin-bottom: ${spacing.md}px;
   line-height: ${typography.lineHeight.relaxed * typography.fontSize.base}px;
 `;
-
-export const CurrentBid = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  background-color: ${colors.primaryDark};
-  padding: ${spacing.md}px;
-  border-radius: ${borderRadius.md}px;
-  margin-bottom: ${spacing.md}px;
-`;
-
-export const BidLabel = styled.Text`
-  font-size: ${typography.fontSize.base}px;
-  color: ${colors.textSecondary};
-`;
-
-export const BidValue = styled.Text`
-  font-size: ${typography.fontSize.xl}px;
-  font-weight: ${typography.fontWeight.bold};
-  color: ${colors.primary};
-`;
-
-export const Footer = styled.View`
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-export const FooterItem = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const FooterText = styled.Text`
+export const InfoValue = styled.Text`
   font-size: ${typography.fontSize.sm}px;
-  color: ${colors.textMuted};
-  margin-left: ${spacing.xs}px;
+  font-weight: ${typography.fontWeight.semiBold};
+  color: ${colors.text};
 `;

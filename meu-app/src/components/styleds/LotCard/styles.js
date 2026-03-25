@@ -110,3 +110,20 @@ export const LanceValue = styled.Text`
   font-weight: ${typography.fontWeight.semiBold};
   color: ${colors.success};
 `;
+
+export const ErrorContainer = styled.TouchableOpacity`
+  background-color: ${colors.backgroundSecondary};
+  border-radius: ${borderRadius.lg}px;
+  margin-bottom: ${spacing.lg}px;
+  padding: ${spacing.lg}px;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  border: 1px dashed ${colors.border};
+`;
+
+export const ErrorText = styled.Text`
+  font-size: ${typography.fontSize.base}px;
+  color: ${colors.textMuted};
+  font-style: italic;
+`;

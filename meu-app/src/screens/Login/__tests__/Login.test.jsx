@@ -1,10 +1,13 @@
-import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import { Alert } from 'react-native';
 import Login from '../index';
-import authService from '../../../services/authService';
 
-jest.mock('../../../services/authService');
+const mockSignIn = jest.fn();
+
+jest.mock('../../../context/AuthContext', () => ({
+  useAuth: () => ({ signIn: mockSignIn }),
+}));
+
 jest.spyOn(Alert, 'alert');
 
 describe('Tela de Login', () => {
@@ -40,8 +43,8 @@ describe('Tela de Login', () => {
     });
   });
 
-  it('deve chamar authService.login com credenciais corretas', async () => {
-    authService.login.mockResolvedValue({ token: 'mock-token' });
+  it('deve chamar signIn com as credenciais corretas', async () => {
+    mockSignIn.mockResolvedValue({ token: 'mock-token' });
 
     const { getByPlaceholderText, getByText } = render(
       <Login navigation={mockNavigation} />
@@ -49,19 +52,16 @@ describe('Tela de Login', () => {
 
     fireEvent.changeText(getByPlaceholderText('Digite seu usuário...'), 'testuser');
     fireEvent.changeText(getByPlaceholderText('Digite sua senha...'), 'password123');
-    fireEvent.press(getByText('Entrar'));
 
-    await waitFor(
-      () => {
-        expect(authService.login).toHaveBeenCalledWith('testuser', 'password123');
-        expect(mockNavigation.navigate).toHaveBeenCalledWith('Home');
-      },
-      { timeout: 10000 }
-    );
+    await act(async () => {
+      fireEvent.press(getByText('Entrar'));
+    });
+
+    expect(mockSignIn).toHaveBeenCalledWith('testuser', 'password123');
   });
 
   it('deve mostrar mensagem de erro em caso de falha no login', async () => {
-    authService.login.mockRejectedValue(new Error('Credenciais inválidas'));
+    mockSignIn.mockRejectedValue(new Error('Credenciais inválidas'));
 
     const { getByPlaceholderText, getByText } = render(
       <Login navigation={mockNavigation} />
@@ -69,14 +69,15 @@ describe('Tela de Login', () => {
 
     fireEvent.changeText(getByPlaceholderText('Digite seu usuário...'), 'wronguser');
     fireEvent.changeText(getByPlaceholderText('Digite sua senha...'), 'wrongpass');
-    fireEvent.press(getByText('Entrar'));
 
-    await waitFor(() => {
-      expect(Alert.alert).toHaveBeenCalledWith(
-        'Erro no Login',
-        expect.any(String)
-      );
+    await act(async () => {
+      fireEvent.press(getByText('Entrar'));
     });
+
+    expect(Alert.alert).toHaveBeenCalledWith(
+      'Erro no Login',
+      expect.any(String)
+    );
   });
 
   it('deve alternar o checkbox "Lembrar de mim"', () => {
@@ -89,8 +90,9 @@ describe('Tela de Login', () => {
   });
 
   it('deve mostrar estado de carregamento durante o login', async () => {
-    authService.login.mockImplementation(
-      () => new Promise((resolve) => setTimeout(resolve, 100))
+    let resolveSignIn;
+    mockSignIn.mockImplementation(
+      () => new Promise((resolve) => { resolveSignIn = resolve; })
     );
 
     const { getByPlaceholderText, getByText } = render(
@@ -102,5 +104,7 @@ describe('Tela de Login', () => {
     fireEvent.press(getByText('Entrar'));
 
     expect(getByText('Entrando...')).toBeTruthy();
+
+    await act(async () => { resolveSignIn(); });
   });
 });

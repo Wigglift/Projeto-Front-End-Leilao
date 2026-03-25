@@ -1,9 +1,10 @@
-import { Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { moderateScale } from "../../utils/responsive";
 import {
   Container,
   Header,
+  HeaderTop,
+  HeaderTitle,
   BackButton,
   Content,
   InfoCard,
@@ -19,16 +20,10 @@ import {
   PriceSection,
   PriceLabel,
   PriceValue,
-  LanceSection,
-  LanceLabel,
-  LanceValue,
   FeaturesSection,
   FeatureItem,
   FeatureIcon,
   FeatureText,
-  ButtonContainer,
-  BidButton,
-  BidButtonText,
 } from "./styles";
 
 export default function LotDetails({ navigation, route }) {
@@ -71,24 +66,6 @@ export default function LotDetails({ navigation, route }) {
     return "Ano não informado";
   };
 
-  const handleBidPress = () => {
-    Alert.alert(
-      "Dar Lance",
-      `Deseja dar um lance no lote ${lote.id}?`,
-      [
-        {
-          text: "Cancelar",
-          style: "cancel",
-        },
-        {
-          text: "Confirmar",
-          onPress: () => {
-            Alert.alert("Sucesso", "Lance registrado com sucesso!");
-          },
-        },
-      ]
-    );
-  };
 
   const features = [
     { label: "Ar Condicionado", value: lote.ar },
@@ -127,9 +104,12 @@ export default function LotDetails({ navigation, route }) {
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back" size={moderateScale(24)} color="#FFFFFF" />
-        </BackButton>
+        <HeaderTop>
+          <BackButton onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={moderateScale(24)} color="#FFFFFF" />
+          </BackButton>
+          <HeaderTitle>Detalhes do Lote</HeaderTitle>
+        </HeaderTop>
       </Header>
 
       <Content showsVerticalScrollIndicator={false}>
@@ -149,13 +129,6 @@ export default function LotDetails({ navigation, route }) {
           <PriceSection>
             <PriceLabel>Valor Inicial</PriceLabel>
             <PriceValue>{lote.valorInicialFormatted}</PriceValue>
-
-            {lote.lance !== null && (
-              <LanceSection>
-                <LanceLabel>Lance Atual</LanceLabel>
-                <LanceValue>{lote.lanceFormatted}</LanceValue>
-              </LanceSection>
-            )}
           </PriceSection>
         </InfoCard>
 
@@ -269,13 +242,6 @@ export default function LotDetails({ navigation, route }) {
           </InfoCard>
         )}
       </Content>
-
-      <ButtonContainer>
-        <BidButton onPress={handleBidPress} activeOpacity={0.8}>
-          <Ionicons name="hammer" size={moderateScale(24)} color="#FFFFFF" />
-          <BidButtonText>Dar Lance</BidButtonText>
-        </BidButton>
-      </ButtonContainer>
     </Container>
   );
 }

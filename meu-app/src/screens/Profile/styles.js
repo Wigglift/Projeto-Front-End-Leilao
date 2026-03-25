@@ -54,6 +54,21 @@ export const ProfileHeader = styled.View`
 
 export const AvatarWrapper = styled.View`
     margin-bottom: ${spacing.base}px;
+    position: relative;
+`;
+
+export const CameraButton = styled.TouchableOpacity`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: ${moderateScale(36)}px;
+    height: ${moderateScale(36)}px;
+    border-radius: ${moderateScale(18)}px;
+    background-color: ${colors.primary};
+    align-items: center;
+    justify-content: center;
+    border-width: 3px;
+    border-color: ${colors.backgroundCard};
 `;
 
 export const UserName = styled.Text`
