@@ -14,7 +14,7 @@ export default function Header() {
     setIsOpen(!isOpen);
   };
   const options = [
-    { label: "Home", path: "/" },
+    { label: "Home", path: "/liveAuction" },
     { label: "Serviços", path: "/" },
     { label: "Vantagens", path: "/" },
     { label: "Sobre", path: "/" },

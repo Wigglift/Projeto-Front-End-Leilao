@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../../contexts/auth/useAuth";
 import styles from "./ProfileCard.module.scss";
+import PrimaryButton from "../primaryBtn/PrimaryBtn";
 
 const UserIcon = () => (
   <svg width='52' height='52' viewBox='0 0 24 24' fill='#5ba8f5'>
@@ -10,7 +11,7 @@ const UserIcon = () => (
 );
 
 export default function Perfil() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   let username = "Usuário";
   let email = "usuario@email.com";
@@ -50,6 +51,7 @@ export default function Perfil() {
           </div>
         </div>
       </div>
+      <PrimaryButton texto="Sair" onClick={logout}/>
     </div>
   );
 }

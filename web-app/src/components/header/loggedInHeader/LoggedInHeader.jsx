@@ -25,8 +25,8 @@ export default function LogedInHeader() {
 
   const options = [
     { label: "Leilão Live", path: "/liveAuction" },
-    { label: "Tipos", path: "/" },
-    { label: "Cidades", path: "/" },
+    { label: "Tipos", path: "/liveAuction" },
+    { label: "Cidades", path: "/liveAuction" },
   ];
 
   const toggleMenu = () => {
@@ -38,7 +38,7 @@ export default function LogedInHeader() {
       <div className={`${styles.headerContainer} container`}>
         <div className={styles.headerLeft}>
           <div>
-            <Link to='/'>
+            <Link to='/liveAuction'>
               <img src={logo} alt='Logo BidLive' title='Logo BidLive' />
             </Link>
           </div>
