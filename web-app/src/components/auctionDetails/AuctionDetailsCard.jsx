@@ -42,12 +42,13 @@ export default function AuctionDetailsCard({id}){
             <div className={styles.container}>
                 <h2>Lotes</h2>
                 {lotes && lotes.length > 0 && (
-                <div className={styles.lotesContainer}>
-                {lotes.map((item) => (
-                    <BatchDetails key={item.id} vehicle={item} />
-                ))}
+                    <div className={styles.lotesContainer}>
+                    {lotes.map((item) => (
+                        <BatchDetails key={item.id} vehicle={item} />
+                    ))}
                 </div>
             )}
+            {!lotes || lotes.length === 0 ? <p className={styles.noLotes}>Nenhum lote encontrado para este leilão.</p> : null}
             </div>
         );
 }
