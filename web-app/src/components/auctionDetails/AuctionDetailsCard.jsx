@@ -39,7 +39,7 @@ export default function AuctionDetailsCard({id}){
         console.log(lotes)
 
         return (
-            <div className={styles.container}>
+            <div className="container">
                 <h2>Lotes</h2>
                 {lotes && lotes.length > 0 && (
                     <div className={styles.lotesContainer}>
