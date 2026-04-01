@@ -5,6 +5,7 @@ import Button from "../../components/styleds/Button";
 import Checkbox from "../../components/styleds/Checkbox";
 import TextLink from "../../components/styleds/TextLink";
 import { useAuth } from "../../context/AuthContext";
+import notificationService from "../../services/notificationService";
 import {
   Container,
   Header,
@@ -32,6 +33,7 @@ export default function Login({ navigation }) {
     setLoading(true);
     try {
       await signIn(username, password);
+      await notificationService.sendWelcomeNotification(username);
     } catch (error) {
       Alert.alert(
         "Erro no Login",

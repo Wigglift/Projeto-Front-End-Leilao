@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StatusBar, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { StatusBar, ScrollView, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import Input from '../../components/styleds/Input';
 import Button from '../../components/styleds/Button';
+import localUserService from '../../services/localUserService';
 import { colors } from '../../theme';
 import {
   Container,
@@ -23,11 +24,22 @@ const SignUp = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
 
   const handleSignUp = async () => {
+    if (!name.trim() || !email.trim() || !password.trim()) {
+      Alert.alert('Erro', 'Por favor, preencha todos os campos');
+      return;
+    }
+
     setLoading(true);
-    setTimeout(() => {
+    try {
+      await localUserService.registerUser(name, email, password);
+      Alert.alert('Conta criada!', 'Seu cadastro foi realizado com sucesso.', [
+        { text: 'Entrar', onPress: () => navigation.navigate('Login') },
+      ]);
+    } catch (error) {
+      Alert.alert('Erro no cadastro', error.message);
+    } finally {
       setLoading(false);
-      navigation.navigate('Login');
-    }, 1500);
+    }
   };
 
   const handleLogin = () => {
