@@ -2,6 +2,8 @@
  * Paleta de Cores - BidLive
  */
 
+import { Platform } from 'react-native';
+
 export const colors = {
   // ========================================
   // CORES PRINCIPAIS
@@ -39,14 +41,16 @@ export const colors = {
   // STATUS E FEEDBACK
   // ========================================
   success: '#4CAF50',
+  successLight: 'rgba(76, 175, 80, 0.2)',
   error: '#F44336',
+  errorLight: 'rgba(244, 67, 54, 0.2)',
   warning: '#FF9800',
   info: '#2196F3',
 
   // ========================================
   // BOTÕES
   // ========================================
-  buttonPrimary: '#5A9FD4',
+  buttonPrimary: Platform.OS === 'ios' ? '#5A9FD4' : '#43A047',
   buttonPrimaryText: '#FFFFFF',
   buttonSecondary: 'transparent',
   buttonSecondaryBorder: '#5A9FD4',

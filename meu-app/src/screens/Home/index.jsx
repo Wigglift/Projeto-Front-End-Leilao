@@ -296,7 +296,17 @@ export default function Home({navigation}) {
                 </Section>
             </Content>
 
-            <FloatingButton activeOpacity={0.8}>
+            <FloatingButton
+                activeOpacity={0.8}
+                onPress={() => {
+                    if (auctions.length === 0) {
+                        Alert.alert("Aviso", "Nenhum leilão disponível no momento.");
+                        return;
+                    }
+                    const randomIndex = Math.floor(Math.random() * auctions.length);
+                    navigation.navigate("AuctionDetails", { auction: auctions[randomIndex] });
+                }}
+            >
                 <Ionicons name="radio" size={moderateScale(24)} color="#fff"/>
                 <FloatingButtonText>Leilão Live</FloatingButtonText>
             </FloatingButton>

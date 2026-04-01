@@ -188,6 +188,47 @@ export const ButtonContainer = styled.View`
   padding-bottom: ${spacing.xl}px;
 `;
 
+export const PhotoSection = styled.View`
+  margin-top: ${spacing.md}px;
+`;
+
+export const PhotoButton = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.backgroundSecondary};
+  border: 1px dashed ${colors.border};
+  border-radius: ${borderRadius.md}px;
+  padding: ${spacing.md}px;
+  gap: ${spacing.sm}px;
+`;
+
+export const PhotoButtonText = styled.Text`
+  font-size: ${typography.fontSize.sm}px;
+  font-weight: ${typography.fontWeight.medium};
+  color: ${colors.textSecondary};
+`;
+
+export const PhotoList = styled.ScrollView.attrs({
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+})`
+  margin-top: ${spacing.md}px;
+`;
+
+export const PhotoThumb = styled.Image`
+  width: ${moderateScale(80)}px;
+  height: ${moderateScale(80)}px;
+  border-radius: ${borderRadius.sm}px;
+  margin-right: ${spacing.sm}px;
+`;
+
+export const PhotoCount = styled.Text`
+  font-size: ${typography.fontSize.xs}px;
+  color: ${colors.textMuted};
+  margin-top: ${spacing.xs}px;
+`;
+
 export const BidButton = styled.TouchableOpacity`
   background-color: ${colors.primary};
   padding: ${spacing.lg}px;

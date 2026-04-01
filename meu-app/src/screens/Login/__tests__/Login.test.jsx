@@ -8,6 +8,12 @@ jest.mock('../../../context/AuthContext', () => ({
   useAuth: () => ({ signIn: mockSignIn }),
 }));
 
+jest.mock('../../../services/notificationService', () => ({
+  default: {
+    sendWelcomeNotification: jest.fn().mockResolvedValue(undefined),
+  },
+}));
+
 jest.spyOn(Alert, 'alert');
 
 describe('Tela de Login', () => {

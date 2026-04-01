@@ -1,6 +1,8 @@
-import { ScrollView } from "react-native";
+import { useState, useEffect } from "react";
+import { ScrollView, ActivityIndicator, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { moderateScale } from "../../utils/responsive";
+import lotService from "../../services/lotService";
 import {
   Container,
   InfoCard,
@@ -20,10 +22,35 @@ import {
   DescriptionSection,
   SectionTitle,
   DescriptionText,
+  LotesSection,
+  LoteItem,
+  LoteInfoText,
+  LoteSubText,
+  DetalhesButton,
+  DetalhesButtonText,
+  LoteLoadingContainer,
 } from "./styles";
 
 export default function AuctionDetails({ route, navigation }) {
   const { auction } = route.params;
+  const [lotes, setLotes] = useState([]);
+  const [loadingLotes, setLoadingLotes] = useState(true);
+
+  useEffect(() => {
+    loadLotes();
+  }, []);
+
+  const loadLotes = async () => {
+    try {
+      setLoadingLotes(true);
+      const data = await lotService.getLotesByLeilao(auction.id, {});
+      setLotes(data);
+    } catch (error) {
+      console.error("Erro ao carregar lotes:", error);
+    } finally {
+      setLoadingLotes(false);
+    }
+  };
 
   const formatDate = (dateString) => {
     if (!dateString) return "Não informada";
@@ -35,6 +62,19 @@ export default function AuctionDetails({ route, navigation }) {
       hour: '2-digit',
       minute: '2-digit'
     });
+  };
+
+  const getLoteTitle = (lote) => {
+    const parts = [lote.marca, lote.modelo].filter(Boolean);
+    return parts.length > 0 ? parts.join(' ') : `Lote #${lote.id}`;
+  };
+
+  const getLoteSubtitle = (lote) => {
+    const parts = [];
+    if (lote.anoFabricacao) parts.push(lote.anoFabricacao);
+    if (lote.combustivel) parts.push(lote.combustivel);
+    if (lote.km > 0) parts.push(`${lote.km.toLocaleString()} km`);
+    return parts.join(' · ') || lote.tipoVeiculo || '';
   };
 
   return (
@@ -108,6 +148,36 @@ export default function AuctionDetails({ route, navigation }) {
               <InfoValue>{auction.status || "Ativo"}</InfoValue>
             </InfoRow>
           </AuctionInfo>
+
+          <LotesSection>
+            <SectionTitle>
+              Lotes{lotes.length > 0 ? ` (${lotes.length})` : ''}
+            </SectionTitle>
+
+            {loadingLotes ? (
+              <LoteLoadingContainer>
+                <ActivityIndicator size="small" color="#5A9FD4" />
+              </LoteLoadingContainer>
+            ) : lotes.length === 0 ? (
+              <DescriptionText>Nenhum lote disponível para este leilão.</DescriptionText>
+            ) : (
+              lotes.map((lote) => (
+                <LoteItem key={lote.id}>
+                  <View style={{ flex: 1 }}>
+                    <LoteInfoText numberOfLines={1}>{getLoteTitle(lote)}</LoteInfoText>
+                    <LoteSubText numberOfLines={1}>{getLoteSubtitle(lote)}</LoteSubText>
+                    <LoteSubText>{lote.valorInicialFormatted}</LoteSubText>
+                  </View>
+                  <DetalhesButton
+                    onPress={() => navigation.navigate('LotDetails', { lote, auction })}
+                    activeOpacity={0.7}
+                  >
+                    <DetalhesButtonText>Detalhes</DetalhesButtonText>
+                  </DetalhesButton>
+                </LoteItem>
+              ))
+            )}
+          </LotesSection>
         </InfoCard>
       </ScrollView>
     </Container>
