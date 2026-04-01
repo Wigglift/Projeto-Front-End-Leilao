@@ -20,6 +20,9 @@ import {
   PriceSection,
   PriceLabel,
   PriceValue,
+  LanceSection,
+  LanceLabel,
+  LanceValue,
   FeaturesSection,
   FeatureItem,
   FeatureIcon,
@@ -97,7 +100,7 @@ export default function LotDetails({ navigation, route }) {
     { label: "Alagamento", value: lote.alagamento, icon: "water" },
     { label: "Chassi com Oxidação", value: lote.chassiOxidacao, icon: "warning" },
     { label: "Câmbio Obstruído", value: lote.cambioObstruido, icon: "settings" },
-    { label: "Câmbio Periciado", value: lote.cambioPericiado, icon: "construct" },
+    { label: "Câmbio Periciado", value: lote.FCXcambioPericiado, icon: "construct" },
     { label: "Emissão Laudo CSV", value: lote.emissaoLaudoCsv, icon: "document-text" },
   ].filter(f => f.value !== null);
 
@@ -130,6 +133,13 @@ export default function LotDetails({ navigation, route }) {
             <PriceLabel>Valor Inicial</PriceLabel>
             <PriceValue>{lote.valorInicialFormatted}</PriceValue>
           </PriceSection>
+
+          {lote.lance !== null && lote.lance !== undefined && (
+            <LanceSection>
+              <LanceLabel>Lance Atual</LanceLabel>
+              <LanceValue>{lote.lanceFormatted}</LanceValue>
+            </LanceSection>
+          )}
         </InfoCard>
 
         <InfoCard>

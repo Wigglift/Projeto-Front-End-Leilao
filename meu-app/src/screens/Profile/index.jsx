@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ScrollView, StatusBar, Alert, Modal, TouchableOpacity, Text } from "react-native";
+import notificationService from "../../services/notificationService";
 import { Ionicons } from "@expo/vector-icons";
 import CameraModal from "../../components/styleds/CameraModal";
 import Avatar from "../../components/styleds/Avatar";
@@ -51,12 +52,13 @@ export default function Profile({ navigation }) {
     setShowCamera(true);
   };
 
+
   const handleCapture = async (uri) => {
     setShowCamera(false);
     const saved = await saveUserPhoto(uri);
     if (saved) {
       setUserPhoto(uri);
-      Alert.alert("Sucesso!", "Foto do perfil atualizada com sucesso.");
+      await notificationService.sendPhotoUpdatedNotification();
     } else {
       Alert.alert("Erro", "Não foi possível salvar a foto. Tente novamente.");
     }

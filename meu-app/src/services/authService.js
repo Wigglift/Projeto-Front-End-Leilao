@@ -1,5 +1,6 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import localUserService from "./localUserService";
 
 const AUTH_API_URL = "http://ec2-3-20-227-42.us-east-2.compute.amazonaws.com:3000";
 const TOKEN_KEY = "@leilao_token";
@@ -36,13 +37,21 @@ const authService = {
       }
 
       throw new Error("Token não recebido");
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      if (error.response) {
+    } catch (apiError) {
+      const localUser = await localUserService.findUser(username, password);
+      if (localUser) {
+        const token = localUserService.generateToken(username);
+        const expiryTime = Date.now() + 2 * 60 * 60 * 1000;
+        await this.saveToken(token, expiryTime);
+        return { success: true, token, isLocal: true };
+      }
+
+      console.error("Erro ao fazer login:", apiError);
+      if (apiError.response) {
         throw new Error(
-          error.response.data?.message || "Credenciais inválidas"
+          apiError.response.data?.message || "Credenciais inválidas"
         );
-      } else if (error.request) {
+      } else if (apiError.request) {
         throw new Error("Erro de conexão - verifique sua internet");
       } else {
         throw new Error("Erro ao fazer login");

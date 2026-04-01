@@ -133,3 +133,47 @@ export const InfoValue = styled.Text`
   flex: 2;
   text-align: right;
 `;
+
+export const LotesSection = styled.View`
+  margin-top: ${spacing.xl}px;
+`;
+
+export const LoteItem = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: ${spacing.md}px;
+  background-color: ${colors.backgroundSecondary};
+  border-radius: ${borderRadius.md}px;
+  margin-bottom: ${spacing.sm}px;
+`;
+
+export const LoteInfoText = styled.Text`
+  font-size: ${typography.fontSize.sm}px;
+  color: ${colors.text};
+  flex: 1;
+`;
+
+export const LoteSubText = styled.Text`
+  font-size: ${typography.fontSize.xs}px;
+  color: ${colors.textMuted};
+  margin-top: ${spacing.xs / 2}px;
+`;
+
+export const DetalhesButton = styled.TouchableOpacity`
+  background-color: ${colors.primary};
+  padding: ${spacing.sm}px ${spacing.md}px;
+  border-radius: ${borderRadius.sm}px;
+  margin-left: ${spacing.sm}px;
+`;
+
+export const DetalhesButtonText = styled.Text`
+  font-size: ${typography.fontSize.xs}px;
+  font-weight: ${typography.fontWeight.semiBold};
+  color: #FFFFFF;
+`;
+
+export const LoteLoadingContainer = styled.View`
+  padding: ${spacing.xl}px 0;
+  align-items: center;
+`;

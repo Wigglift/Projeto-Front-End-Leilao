@@ -16,8 +16,8 @@ export const Container = styled.TouchableOpacity`
 
 export const Image = styled.Image`
   width: 100%;
-  height: ${moderateScale(180)}px;
-  min-height: 160px;
+  height: ${moderateScale(100)}px;
+  min-height: 90px;
   background-color: ${colors.backgroundSecondary};
 `;
 
@@ -33,11 +33,29 @@ export const Title = styled.Text`
 `;
 
 export const Description = styled.Text`
-  font-size: ${typography.fontSize.base}px;
+  font-size: ${typography.fontSize.sm}px;
   color: ${colors.textSecondary};
-  margin-bottom: ${spacing.md}px;
-  line-height: ${typography.lineHeight.relaxed * typography.fontSize.base}px;
+  margin-bottom: ${spacing.sm}px;
 `;
+
+export const MetaRow = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: ${spacing.sm}px;
+  margin-top: ${spacing.xs}px;
+`;
+
+export const MetaItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+  gap: ${spacing.xs}px;
+`;
+
+export const MetaText = styled.Text`
+  font-size: ${typography.fontSize.xs}px;
+  color: ${colors.textMuted};
+`;
+
 export const InfoValue = styled.Text`
   font-size: ${typography.fontSize.sm}px;
   font-weight: ${typography.fontWeight.semiBold};

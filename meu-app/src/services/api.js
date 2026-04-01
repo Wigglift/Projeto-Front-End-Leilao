@@ -1,5 +1,6 @@
 import axios from "axios";
 import authService from "./authService";
+import localUserService from "./localUserService";
 import { resetToLogin } from "../navigation/navigationRef";
 
 const API_BASE_URL = "http://ec2-3-20-227-42.us-east-2.compute.amazonaws.com:3000";
@@ -32,10 +33,14 @@ api.interceptors.response.use(
   async (error) => {
     if (error.response) {
       switch (error.response.status) {
-        case 401:
-          await authService.clearToken();
-          resetToLogin();
+        case 401: {
+          const token = await authService.getToken();
+          if (!localUserService.isLocalToken(token)) {
+            await authService.clearToken();
+            resetToLogin();
+          }
           break;
+        }
         case 404:
           console.log("Recurso não encontrado");
           break;
