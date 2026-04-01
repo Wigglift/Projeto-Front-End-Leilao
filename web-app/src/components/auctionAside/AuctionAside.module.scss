@@ -1,6 +1,9 @@
 @use "../../assets/scss/Index.scss";
 
 .actionAside {
+  @include Index.responsivo(Index.$tablet) {
+    padding: 2em;
+  }
   .fsWrap {
     min-width: 12em;
     display: flex;

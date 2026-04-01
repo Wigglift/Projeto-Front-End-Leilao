@@ -8,7 +8,7 @@ export default function AuctionCard({id, title, description, onPress}){
   return (
     <>
       <div>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div
             className={styles.card}
             onClick={() => {

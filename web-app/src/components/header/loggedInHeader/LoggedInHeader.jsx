@@ -23,11 +23,7 @@ export default function LogedInHeader() {
   const [isOpen, setIsOpen] = useState(true);
   const [search, setSearch] = useState("");
 
-  const options = [
-    { label: "Leilão Live", path: "/liveAuction" },
-    { label: "Tipos", path: "/liveAuction" },
-    { label: "Cidades", path: "/liveAuction" },
-  ];
+  const options = [{ label: "Leilão Live", path: "/liveAuction" }];
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

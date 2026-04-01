@@ -3,22 +3,31 @@
 .liveAuction {
   display: flex;
   justify-content: center;
+  margin-top: 13em;
+}
 
-  .auctionTitle {
- 
-    font-weight: 500;
-    color: Index.$tertiary-color;
+.auctionTitle {
+  font-weight: 500;
+  color: Index.$tertiary-color;
+}
+
+.liveAuctionContainer {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  @include Index.responsivo(Index.$large-desktop) {
+    align-items: center;
+    gap: 2em;
   }
-
-  .liveAuctionContainer {
-    max-width: 1200px;
+  .actionWrap {
     display: flex;
-    flex-direction: column;
-    gap: 50px;
+    gap: 4em;
 
-    .actionWrap {
-      display: flex;
-      gap: 2em;
+    @include Index.responsivo(Index.$tablet) {
+      width: 80vw;
+      flex-direction: column;
     }
   }
 }

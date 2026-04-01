@@ -13,12 +13,7 @@ export default function Header() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  const options = [
-    { label: "Home", path: "/liveAuction" },
-    { label: "Serviços", path: "/" },
-    { label: "Vantagens", path: "/" },
-    { label: "Sobre", path: "/" },
-  ];
+  const options = [{ label: "Home", path: "/liveAuction" }];
 
   return (
     <header className={styles.main}>
@@ -28,8 +23,7 @@ export default function Header() {
             <img src={logo} alt='Logo BidLive' title='Logo BidLive' />
           </Link>
         </div>
-        <Hamburguer links={options} isOpen={isOpen} toggleMenu={toggleMenu} />
-        <TopMenu links={options} />
+
         <div className={styles.btnContainer}>
           <PrimaryButton texto='Login' destino='/login' />
         </div>

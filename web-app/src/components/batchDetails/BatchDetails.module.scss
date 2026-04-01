@@ -1,184 +1,219 @@
+@use "../../Assets/Scss/Index.scss";
+
 .vcPage {
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
+  margin-bottom: 3em;
+  display: flex;
+  justify-content: center;
 }
 
 .vcCard {
-    width: 100%;
-    max-width: 1200px;
-    background: #111827;
-    border-radius: 24px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 320px 1fr;
+  padding: 2em;
+  width: 100%;
+  max-width: 1200px;
+  background: #111827;
+  border-radius: 24px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+
+  @include Index.responsivo(Index.$desktop) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /* ── LEFT PANEL ── */
 .vcLeft {
-    padding: 32px 12px;
-    border-right: 1px solid rgba(255,255,255,0.06);
-    display: flex;
-    flex-direction: column;
+  padding: 32px 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
 }
 
 .vcBadgeRow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
 .vcTipo {
-    background: rgba(59,158,255,0.12);
-    color: #3b9eff;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 30px;
-    border: 1px solid rgba(59,158,255,0.25);
+  background: rgba(59, 158, 255, 0.12);
+  color: #3b9eff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 30px;
+  border: 1px solid rgba(59, 158, 255, 0.25);
 }
 
 .vcIdPill {
-    color: #334155;
-    font-size: 11px;
-    font-weight: 500;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .vcTitle {
-    font-family: 'Syne', sans-serif;
-    font-size: 30px;
-    font-weight: 800;
-    color: #f1f5f9;
-    letter-spacing: -0.8px;
-    line-height: 1.05;
+  font-family: "Syne", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: -0.8px;
+  line-height: 1.05;
 }
 
 .vcSubtitle {
-    color: #64748b;
-    font-size: 13.5px;
-    font-weight: 500;
-    margin-top: 6px;
-    margin-bottom: 24px;
+  color: #64748b;
+  font-size: 13.5px;
+  font-weight: 500;
+  margin-top: 6px;
+  margin-bottom: 24px;
 }
 
 .chipsGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  flex: 1;
+  @include Index.responsivo(Index.$mobile) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .infoChip {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 12px;
-    padding: 11px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.chipIcon { color: #3b9eff; display: flex; align-items: center; flex-shrink: 0; }
-.chipContent { display: flex; flex-direction: column; gap: 2px; }
+.chipIcon {
+  color: #3b9eff;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.chipContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
 .chipLabel {
-    color: #475569;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
 .chipValue {
-    color: #e2e8f0;
-    font-size: 13px;
-    font-weight: 600;
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 /* ── RIGHT PANEL ── */
 .vcRight {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .vcTabs {
-    display: flex;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding: 0 32px;
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0 32px;
 }
 
 .tabBtn {
-    padding: 20px 28px;
-    background: transparent;
-    border: none;
-    color: #475569;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    cursor: pointer;
-    position: relative;
-    transition: color 0.2s;
-    text-transform: capitalize;
+  padding: 20px 28px;
+  background: transparent;
+  border: none;
+  color: #475569;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+  text-transform: capitalize;
 }
 
-.tabBtn:hover { color: #94a3b8; }
-.tabBtn.active { color: #38bdf8; }
+.tabBtn:hover {
+  color: #94a3b8;
+}
+.tabBtn.active {
+  color: #38bdf8;
+}
 
 .tabBtn.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 16%;
-    width: 68%;
-    height: 2px;
-    background: #38bdf8;
-    border-radius: 2px;
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 16%;
+  width: 68%;
+  height: 2px;
+  background: #38bdf8;
+  border-radius: 2px;
 }
 
 .tabBody {
-    padding: 28px 32px 32px;
-    flex: 1;
+  padding: 28px 32px 32px;
+  flex: 1;
 }
 
 /* 4-column badge grid */
 .badgeGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  @include Index.responsivo(Index.$desktop) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 14px;
-    border-radius: 10px;
-    font-size: 12.5px;
-    font-weight: 500;
-    border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 500;
+  border: 1px solid transparent;
 }
 
-.badgeIcon { display: flex; align-items: center; flex-shrink: 0; }
+.badgeIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
 
 .badgeYes {
-    background: rgba(74,222,128,0.08);
-    border-color: rgba(74,222,128,0.18);
-    color: #4ade80;
+  background: rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.18);
+  color: #4ade80;
 }
 
 .badgeNo {
-    background: rgba(248,113,113,0.08);
-    border-color: rgba(248,113,113,0.18);
-    color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  border-color: rgba(248, 113, 113, 0.18);
+  color: #f87171;
 }
 
 .badgeNull {
-    background: rgba(255,255,255,0.03);
-    border-color: rgba(255,255,255,0.06);
-    color: #334155;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+  color: #334155;
 }

@@ -1,13 +1,26 @@
-.lotesContainer{
+.AuctionDetailsCard {
+  margin-top: 12em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+
+  h2 {
+    margin-bottom: 2em;
+  }
+
+  .lotesContainer {
     display: flex;
     flex-direction: column;
     gap: 0px;
-}
+  }
 
-.noLotes {
+  .noLotes {
     text-align: center;
     margin-top: 20px;
     color: #94a3b8;
     font-size: 24px;
     font-weight: 500;
+  }
 }

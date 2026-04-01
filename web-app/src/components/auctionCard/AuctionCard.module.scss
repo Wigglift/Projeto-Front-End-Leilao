@@ -1,3 +1,5 @@
+@use "../../assets/scss/Index.scss";
+
 .card {
   width: 280px;
   background: #111827;
@@ -14,6 +16,14 @@
   position: relative;
   height: auto;
   padding-bottom: 18px;
+
+   @include Index.responsivo(Index.$desktop) {
+      width: 100%;
+    }
+
+    @include Index.responsivo(Index.$tablet) {
+      width: 100%;
+    }
 }
 
 .card:hover {
