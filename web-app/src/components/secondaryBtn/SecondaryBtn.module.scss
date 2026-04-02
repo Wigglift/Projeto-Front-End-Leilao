@@ -1,0 +1,21 @@
+@use "../../assets/scss/Index.scss";
+
+.button {
+  padding: 1em 1.5em;
+  background-color: transparent;
+  border: 1px solid Index.$primary-color;
+  font-weight: 500;
+  border-radius: 0.4em;
+  transition: 0.3s;
+  color: Index.$primary-color;
+
+  @include Index.responsivo(Index.$tablet) {
+    display: flex;
+    justify-content: center;
+  }
+
+  &:hover {
+    background-color: Index.$primary-color;
+    color: Index.$secondary-color;
+  }
+}

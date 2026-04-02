@@ -1,0 +1,26 @@
+@use "../../assets/scss/Index.scss";
+
+.actionAside {
+  @include Index.responsivo(Index.$tablet) {
+    padding: 2em;
+  }
+  .fsWrap {
+    min-width: 12em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    h3 {
+      font-weight: 500;
+    }
+  }
+
+  /* Preview backdrop */
+  .preview_bg {
+    min-height: 100vh;
+    background: #0f1420;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

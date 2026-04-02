@@ -1,0 +1,85 @@
+@use "../../assets/scss/Index.scss";
+
+.footer {
+  background-color: #01111e;
+  color: #c8d6e8;
+  font-size: 1em;
+  border-top: 1px solid #1e3a5f;
+
+  .footerGrid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 40px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+
+    @include Index.responsivo(Index.$tablet) {
+      grid-template-columns: 1fr;
+    }
+
+    .footerLeft {
+      .logo {
+        margin-bottom: 16px;
+        a {
+          img {
+            width: 12em;
+          }
+        }
+      }
+      p {
+        color: Index.$tertiary-color;
+        margin-bottom: 1em;
+      }
+    }
+
+    .sectionTitle {
+      color: #ffffff;
+      font-size: 1em;
+      margin-bottom: 1em;
+    }
+
+    .footerCenter {
+      display: flex;
+      justify-content: center;
+
+      @include Index.responsivo(Index.$tablet) {
+        justify-content: flex-start;
+      }
+
+      .linksList {
+        list-style: none;
+
+        li {
+          margin-bottom: 0.5em;
+
+          .linksListItem {
+            color: #8aa3bf;
+            text-decoration: none;
+            transition: color 0.2s;
+
+            &:hover {
+              color: Index.$primary-color;
+            }
+          }
+        }
+      }
+    }
+
+    .footerRight {
+      p {
+        color: Index.$tertiary-color;
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+  .copyright {
+    border-top: 1px solid #1e3a5f;
+    text-align: center;
+    padding: 14px 40px;
+    color: Index.$primary-color;
+    font-size: 1em;
+    background: Index.$gradient;
+  }
+}

@@ -1,0 +1,82 @@
+@use "../../assets/scss/Index.scss";
+
+.perfil {
+  margin: 6em 0 8em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .perfilContainer {
+    .perfilTitle {
+      align-self: flex-start;
+      margin-bottom: 2em;
+      font-weight: 600;
+      color: Index.$tertiary-color;
+    }
+
+    .userRow {
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .avatar {
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1a3a5c 0%, #0d2340 100%);
+        border-radius: 50%;
+      }
+
+      .username {
+        font-weight: 500;
+        font-size: 1.7rem;
+        color: #d0e8ff;
+      }
+    }
+
+    .detailsCard {
+      width: 100%;
+      padding: 28px 32px 36px;
+      background: linear-gradient(160deg, #0d1e32 0%, #091525 100%);
+      border: 1px solid rgba(74, 144, 226, 0.13);
+      border-radius: 14px;
+
+      .cardHeader {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #c8dff5;
+        margin-bottom: 16px;
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid rgba(74, 144, 226, 0.18);
+        margin-bottom: 1.8em;
+      }
+
+      .field {
+        margin-bottom: 1.8em;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .fieldLabel {
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: #5ba8f5;
+          margin-bottom: 6px;
+        }
+
+        .fieldValue {
+          font-size: 0.95rem;
+          color: #8aacca;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

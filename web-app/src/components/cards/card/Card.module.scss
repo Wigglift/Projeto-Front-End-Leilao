@@ -1,0 +1,54 @@
+@use "../../../assets/scss/Index.scss";
+
+.card {
+  width: 15em;
+  position: relative;
+  padding: 2em 0 0 0;
+
+  @include Index.responsivo(Index.$tablet) {
+    width: 100%;
+  }
+
+  .cardContainer {
+    padding: 0 0 2em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid rgba(78, 148, 208, 0.1);
+    background: linear-gradient(102deg, rgba(0, 18, 31, 0.3) 46.24%, rgba(0, 47, 80, 0.3) 82.8%);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    transition: background-color 6s ease;
+
+    &:hover {
+      background: linear-gradient(102deg, rgba(0, 47, 80, 0.3) 46.24%, rgba(0, 18, 31, 0.3) 82.8%);
+    }
+
+    .iconeBg {
+      padding: 1em;
+      position: absolute;
+      top: 2em;
+      left: 50%;
+      background-color: Index.$primary-color;
+      border-radius: 50%;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    .textoCard {
+      margin-top: 3em;
+      text-align: center;
+
+      h4 {
+        font-size: 2rem;
+        font-weight: 500;
+        color: Index.$primary-color;
+      }
+
+      span {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.45);
+      }
+    }
+  }
+}
