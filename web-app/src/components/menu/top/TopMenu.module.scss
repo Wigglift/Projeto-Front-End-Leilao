@@ -1,0 +1,27 @@
+@use "../../../assets/scss/Index.scss";
+.navItems {
+  @include Index.responsivo(Index.$large-tablet) {
+    display: none;
+  }
+  .items {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    li {
+      list-style: none;
+      a {
+        padding: 0 0.6em 2.2em 0.6em;
+        font-weight: 500;
+        text-decoration: none;
+        color: white;
+        white-space: nowrap;
+
+        &:hover {
+          color: Index.$primary-color;
+          border-bottom: 2px solid Index.$primary-color;
+        }
+      }
+    }
+  }
+}

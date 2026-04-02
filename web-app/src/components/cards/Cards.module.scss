@@ -1,0 +1,11 @@
+@use "../../assets/scss/Index.scss";
+
+.cards {
+  display: flex;
+  gap: 1em;
+
+  @include Index.responsivo(Index.$tablet) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}

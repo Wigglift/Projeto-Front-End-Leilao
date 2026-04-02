@@ -1,0 +1,59 @@
+@use "../../Assets/Scss/Index.scss";
+
+.banner {
+  margin: 6em 0 8em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include Index.responsivo(Index.$mobile) {
+    margin: 1.5em 0 6em 0;
+  }
+
+  .bannerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+
+    @include Index.responsivo(Index.$desktop) {
+      flex-direction: column-reverse;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .textoBanner {
+      max-width: 766px;
+      display: flex;
+      flex-direction: column;
+      gap: 3em;
+
+      .destaque {
+        color: Index.$primary-color;
+      }
+
+      .botoes {
+        display: flex;
+        gap: 1.5em;
+        @include Index.responsivo(Index.$desktop) {
+          justify-content: center;
+          flex-direction: column;
+        }
+      }
+    }
+    .devices {
+      @include Index.responsivo(Index.$desktop) {
+        width: 322px;
+      }
+      @include Index.responsivo(Index.$tablet) {
+        width: 60%;
+      }
+      @include Index.responsivo(Index.$mobile) {
+        width: 50%;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
